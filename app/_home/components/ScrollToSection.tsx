@@ -1,13 +1,13 @@
 "use client";
 
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import React, { ReactNode } from "react";
 
 type ScrollToSectionProps = React.PropsWithChildren<{
   children: ReactNode;
   id: string;
   className?: string;
-  size?: ButtonProps["size"];
+  size?: React.ComponentProps<typeof Button>["size"];
 }>;
 
 export default function ScrollToSection(props: ScrollToSectionProps) {

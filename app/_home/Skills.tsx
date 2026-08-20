@@ -1,3 +1,8 @@
+import {
+  categoryLabels,
+  skillsData,
+  type SkillCategory,
+} from "@/app/data/skillsData";
 import FadeUp from "@/components/motion/FadeUp";
 import StaggerContainer from "@/components/motion/StaggerContainer";
 import StaggerItem from "@/components/motion/StaggerItem";
@@ -5,11 +10,6 @@ import Section from "@/components/Section";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Separator } from "@/components/ui/separator";
-import {
-  categoryLabels,
-  skillsData,
-  type SkillCategory,
-} from "../../data/skillsData";
 import SkillCard from "./components/SkillCard";
 
 const CATEGORIES: SkillCategory[] = ["frontend", "backend", "outils"];

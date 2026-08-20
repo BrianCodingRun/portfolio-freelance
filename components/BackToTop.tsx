@@ -29,7 +29,7 @@ export default function BackToTop() {
 
   return (
     <Button
-      size="icon"
+      size="lg"
       onClick={scrollToTop}
       className={`${!active && "invisible opacity-0"} transition-opacity duration-200 fixed bottom-4 right-4`}
       aria-label="Remonter vers le haut"

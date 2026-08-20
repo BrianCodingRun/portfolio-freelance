@@ -6,6 +6,7 @@ import { Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 // import { SiteBanner } from "@/components/banner/SiteBanner";
+import { SiteBanner } from "@/components/banner/SiteBanner";
 import { Header } from "@/components/Header";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -51,7 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <TooltipProvider>
           <ClientProviders />
           <div className="sticky top-0 left-0 w-full z-30">
-            {/* <SiteBanner /> */}
+            <SiteBanner />
             <Header />
           </div>
           <main>{children}</main>

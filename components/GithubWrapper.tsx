@@ -1,4 +1,4 @@
-import { Code } from "@/app/(website)/_home/components/Code";
+import { Code } from "@/app/_home/components/Code";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa6";

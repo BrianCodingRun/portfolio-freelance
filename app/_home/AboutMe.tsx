@@ -88,7 +88,7 @@ export default function AboutMe({ profile }: { profile: UserType }) {
                 key={stat.value}
                 className="flex items-center gap-4 p-4 border border-border bg-card hover:border-primary/30 transition-all duration-300"
               >
-                <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                   <Icon className="w-6 h-6 text-primary" aria-hidden />
                 </div>
                 <div className="flex flex-col">

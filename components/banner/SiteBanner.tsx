@@ -6,6 +6,8 @@ import { Banner } from "./Banner";
 export async function SiteBanner() {
   const banner = await getBanner();
 
+  if (banner === null) return;
+
   if (!isBannerActive(banner)) return null;
 
   const cookieStore = await cookies();

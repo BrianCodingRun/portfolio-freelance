@@ -72,7 +72,7 @@ export default function HeroContact() {
             const Icon = item.icon;
             return (
               <StaggerItem key={item.label}>
-                <div className="flex gap-4 items-center p-4 border border-border bg-card transition-all duration-300 group hover:border-primary/40 hover:bg-gradient-to-tl hover:from-primary/5 hover:to-transparent">
+                <div className="flex gap-4 items-center p-4 border border-border bg-card transition-all duration-300 group hover:border-primary/40 hover:bg-linear-to-tl hover:from-primary/5 hover:to-transparent">
                   <div className="w-10 h-10 bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                     <Icon className="w-4 h-4 text-primary" />
                   </div>

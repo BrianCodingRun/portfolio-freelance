@@ -1,8 +1,8 @@
 "use client";
 
-import type { BannerDTO } from "@/lib/dto/siteSettingsDTO";
+import type { Banner } from "@/types/banner";
 
-import { dismissBanner } from "@/app/actions/siteSettingActions";
+import { dismissBanner } from "@/app/actions/bannerActions";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
@@ -12,7 +12,7 @@ import { BannerMessages } from "./BannerMessages";
 import { Countdown } from "./Countdown";
 
 type BannerProps = {
-  banner: BannerDTO;
+  banner: Banner;
   preview?: boolean;
 };
 
