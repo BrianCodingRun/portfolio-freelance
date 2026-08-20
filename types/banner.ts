@@ -8,12 +8,12 @@ export type BannerForegroundColor =
   | "accent-foreground"
   | "destructive-foreground";
 
-export interface BannerButton {
+export type BannerButton = {
   text: string;
   href: string;
-}
+};
 
-export interface Banner {
+export type Banner = {
   enabled: boolean;
   title: string;
   message: string;
@@ -26,4 +26,4 @@ export interface Banner {
   textColor: BannerForegroundColor;
   closable: boolean;
   version: number;
-}
+};

@@ -3,7 +3,7 @@ import { fr } from "date-fns/locale";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import type { BannerFormValues } from "@/schemas/bannerSchema";
+import type { Banner } from "@/types/banner";
 import {
   BadgePercent,
   CalendarDays,
@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 type BannerMessagesProps = {
-  banner: BannerFormValues;
+  banner: Banner;
 };
 
 type BannerMessage = {

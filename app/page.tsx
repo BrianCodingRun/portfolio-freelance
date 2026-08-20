@@ -11,7 +11,7 @@ import Services from "./_home/Services";
 import WhyMe from "./_home/WhyMe";
 
 export const metadata: Metadata = {
-  title: "Accueil",
+  title: "Accueil | Brian Coupama - Développeur Web Freelance à La Réunion",
   description:
     "Développeur web freelance à La Réunion. Création de sites internet performants, applications web et solutions sur mesure pour les entreprises et indépendants.",
 

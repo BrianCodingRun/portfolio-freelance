@@ -3,9 +3,12 @@ import type { Banner } from "@/types/banner"; // adapte le type
 
 export async function getBanner(): Promise<Banner | null> {
   try {
-    const res = await fetch(`${process.env.DASHBOARD_API_URL}/api/banner`, {
-      next: { revalidate: 60, tags: ["banner"] },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_WEBSITE_URL}/banner`,
+      {
+        next: { revalidate: 60, tags: ["banner"] },
+      },
+    );
     if (!res.ok) throw new Error(`Erreur banner: ${res.status}`);
     return res.json();
   } catch (err) {
