@@ -24,7 +24,7 @@ const stats = [
   },
 ];
 
-export default function AboutMe({ profile }: { profile: UserType }) {
+export default function AboutMe({ profile }: { profile: UserType | null }) {
   return (
     <Section className="py-4">
       <div className="w-full flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-center">

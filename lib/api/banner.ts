@@ -9,7 +9,7 @@ export async function getBanner(): Promise<Banner | null> {
         next: { revalidate: 60, tags: ["banner"] },
       },
     );
-    if (!res.ok) throw new Error(`Erreur banner: ${res.status}`);
+    if (!res.ok) return null;
     return res.json();
   } catch (err) {
     console.error("getBanner failed:", err);

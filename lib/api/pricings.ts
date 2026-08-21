@@ -2,16 +2,20 @@
 import type { Pricing } from "@/types/pricing"; // adapte le type à ton besoin côté portfolio
 
 export async function getActivePricings(): Promise<Pricing[]> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_WEBSITE_URL}/pricings`,
-    {
-      next: { revalidate: 60, tags: ["pricings"] },
-    },
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_WEBSITE_URL}/pricings`,
+      {
+        next: { revalidate: 60, tags: ["pricings"] },
+      },
+    );
 
-  if (!res.ok) {
-    throw new Error(`Erreur récupération projets: ${res.status}`);
+    if (!res.ok)
+      throw new Error(`Erreur récupération des offres: ${res.status}`);
+
+    return res.json();
+  } catch (error) {
+    console.error(`Erreur récupération projets: ${error}`);
+    return [];
   }
-
-  return res.json();
 }
