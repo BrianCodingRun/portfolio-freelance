@@ -8,6 +8,7 @@ import Hero from "./_home/Hero";
 import Process from "./_home/Process";
 import Projects from "./_home/Projects";
 import Services from "./_home/Services";
+import Skills from "./_home/Skills";
 import WhyMe from "./_home/WhyMe";
 
 export const metadata: Metadata = {
@@ -49,6 +50,10 @@ export default async function Home() {
       <Spacing size="sm" />
       {/* PROJECTS */}
       <Projects projects={projects} />
+      {/* SPACING */}
+      <Spacing size="sm" />
+      {/* SKILL */}
+      <Skills />
       {/* SPACING */}
       <Spacing size="sm" />
       {/* SERVICES */}

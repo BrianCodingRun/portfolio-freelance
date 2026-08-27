@@ -15,7 +15,7 @@ export const skillsData: Skill[] = [
     icon: "nextjs",
     title: "Next.js",
     description:
-      "Mon framework de prédilection pour des apps web rapides, SEO-friendly et prêtes pour la prod.",
+      "Mon framework de prédilection pour des apps web rapides, SEO-friendly et prêtes pour la production.",
     years: 2,
     category: "frontend",
   },
@@ -30,15 +30,6 @@ export const skillsData: Skill[] = [
   },
   {
     id: 3,
-    icon: "tailwindcss",
-    title: "Tailwind CSS",
-    description:
-      "Pour des interfaces soignées et cohérentes, développées deux fois plus vite.",
-    years: 4,
-    category: "frontend",
-  },
-  {
-    id: 4,
     icon: "nodejs",
     title: "Node.js",
     description:
@@ -47,7 +38,7 @@ export const skillsData: Skill[] = [
     category: "backend",
   },
   {
-    id: 5,
+    id: 4,
     icon: "wordpress",
     title: "WordPress",
     description:
@@ -56,16 +47,7 @@ export const skillsData: Skill[] = [
     category: "outils",
   },
   {
-    id: 6,
-    icon: "prestashop",
-    title: "PrestaShop",
-    description:
-      "Boutiques e-commerce personnalisées, optimisées pour vendre dès le premier jour.",
-    years: 1,
-    category: "outils",
-  },
-  {
-    id: 7,
+    id: 5,
     icon: "git",
     title: "Git",
     description:
@@ -74,7 +56,7 @@ export const skillsData: Skill[] = [
     category: "outils",
   },
   {
-    id: 8,
+    id: 6,
     icon: "symfony",
     title: "Symfony",
     description:
@@ -83,7 +65,7 @@ export const skillsData: Skill[] = [
     category: "backend",
   },
   {
-    id: 9,
+    id: 7,
     icon: "mysql",
     title: "MySQL",
     description:
@@ -92,7 +74,7 @@ export const skillsData: Skill[] = [
     category: "backend",
   },
   {
-    id: 10,
+    id: 8,
     icon: "docker",
     title: "Docker",
     description:
@@ -101,7 +83,7 @@ export const skillsData: Skill[] = [
     category: "outils",
   },
   {
-    id: 11,
+    id: 9,
     icon: "flutter",
     title: "Flutter",
     description:
