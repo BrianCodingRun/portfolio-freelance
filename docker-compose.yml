@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/BrianCodingRun/portfolio-freelance:latest
+    image: ghcr.io/briancodingrun/portfolio-freelance:latest
     container_name: portfolio_app_new
     restart: unless-stopped
     ports:
