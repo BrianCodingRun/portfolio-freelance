@@ -35,6 +35,8 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_API_WEBSITE_URL=${{secrets.NEXT_PUBLIC_API_WEBSITE_URL}}
 
   deploy:
     needs: build-and-push
