@@ -153,6 +153,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                       <Link
                         key={index}
                         href={link.href}
+                        onClick={toggleMenu}
                         className={`${
                           pathname === link.href ? "text-primary" : ""
                         } text-7xl transition-colors block font-semibold`}

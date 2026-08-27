@@ -19,21 +19,21 @@ export default function SkillCard({
   const dots = Array.from({ length: MAX_YEARS }, (_, i) => i < years);
 
   return (
-    <div className="group relative flex gap-3 items-start p-4 rounded-md border border-border bg-card transition-all duration-300 group hover:border-primary/40 hover:bg-gradient-to-tl hover:from-primary/5 hover:to-transparent cursor-default overflow-hidden">
+    <div className="group relative flex gap-3 items-start p-4 border border-border bg-card transition-all duration-300 group hover:border-primary/40 hover:bg-linear-to-tl hover:from-primary/5 hover:to-transparent cursor-default overflow-hidden">
       {/* Ligne lumineuse */}
-      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-transparent group-hover:bg-gradient-to-r group-hover:from-transparent group-hover:via-primary opacity-50 group-hover:to-transparent transition-all duration-1000" />
+      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-transparent group-hover:bg-linear-to-r group-hover:from-transparent group-hover:via-primary opacity-50 group-hover:to-transparent transition-all duration-1000" />
 
       {/* Icône */}
-      <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-base shrink-0 mt-0.5">
+      <div className="w-9 h-9 bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-base shrink-0 mt-0.5">
         <TechIcon name={icon} className="fill-primary" />
       </div>
 
       {/* Contenu */}
       <div className="flex flex-col gap-1 flex-1 min-w-0">
-        <h3 className="text-sm font-semibold text-foreground leading-snug">
+        <h3 className="text-base font-semibold text-foreground leading-snug">
           {title}
         </h3>
-        <p className="text-xs text-muted-foreground leading-relaxed">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           {description}
         </p>
 

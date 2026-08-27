@@ -22,11 +22,17 @@ export default function Skills() {
         <FadeUp delay={0.4}>
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Separator orientation="horizontal" className="bg-primary w-8" />
-              <span className="text-primary uppercase text-sm font-display">
+              <Separator
+                orientation="horizontal"
+                className="bg-primary data-horizontal:w-8"
+              />
+              <span className="text-primary font-semibold uppercase text-sm sm:text-base">
                 Ma stack technique
               </span>
-              <Separator orientation="horizontal" className="bg-primary w-8" />
+              <Separator
+                orientation="horizontal"
+                className="bg-primary data-horizontal:w-8"
+              />
             </div>
             <Title level={2} className="text-current">
               Avec quoi je travaille.
