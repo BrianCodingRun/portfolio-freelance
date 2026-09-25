@@ -31,7 +31,7 @@ export default function BackToTop() {
     <Button
       size="lg"
       onClick={scrollToTop}
-      className={`${!active && "invisible opacity-0"} transition-opacity duration-200 fixed bottom-4 right-4`}
+      className={`${!active && "invisible opacity-0"} transition-opacity duration-200 fixed bottom-4 right-4 z-30`}
       aria-label="Remonter vers le haut"
     >
       <ChevronUp className="w-4 h-4" />

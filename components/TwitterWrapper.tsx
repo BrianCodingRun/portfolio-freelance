@@ -9,7 +9,7 @@ export default function TwitterWrapper(
   return (
     <Code>
       <Link
-        href="https://x.com/CoupamaBrian"
+        href="https://x.com/nexmyr_officiel"
         target="_blank"
         rel="noreferrer"
         className={cn("flex items-center gap-2", props.className)}

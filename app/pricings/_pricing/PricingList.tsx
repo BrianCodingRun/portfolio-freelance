@@ -15,14 +15,14 @@ export default function PricingList({ pricings }: { pricings: Pricing[] }) {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
             <span className="text-primary uppercase text-sm sm:text-base font-semibold">
               Ce que je propose ?
             </span>
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
           </div>
         </StaggerItem>

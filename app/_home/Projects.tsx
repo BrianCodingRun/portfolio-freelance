@@ -25,14 +25,14 @@ export default function Projects({ projects }: { projects: Project[] }) {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Separator
                 orientation="horizontal"
-                className="bg-primary data-horizontal:w-10"
+                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
               <span className="text-primary font-semibold uppercase text-sm sm:text-base">
                 Ce que {"j'ai"} produit
               </span>
               <Separator
                 orientation="horizontal"
-                className="bg-primary data-horizontal:w-10"
+                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
             </div>
             {/* TITLE */}

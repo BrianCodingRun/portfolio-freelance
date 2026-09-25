@@ -1,24 +1,59 @@
-import { createFade, createSlide, createStagger } from "./factories";
-import { DELAY, DURATION, EASE, STAGGER } from "./transitions";
+import {
+  createBlur,
+  createFade,
+  createSlide,
+  createStagger,
+} from "./factories";
+import { BLUR, DELAY, DURATION, EASE, STAGGER } from "./transitions";
+
+// Bloc entier (titre, paragraphe…)
+export const blurIn = createBlur();
+
+export const heroTitleBlur = createBlur({
+  amount: BLUR.strong,
+  axis: "y",
+  distance: 4,
+  duration: DURATION.slow,
+});
+
+// Mot par mot (même logique que ton wordVariant)
+export const blurStagger = createStagger({ staggerChildren: STAGGER.normal });
+
+export const wordBlurVariant = {
+  hidden: {
+    opacity: 0,
+    filter: `blur(${BLUR.normal}px)`,
+    y: 2,
+  },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    transition: {
+      duration: DURATION.slow,
+      ease: EASE.smooth,
+    },
+  },
+};
 
 export const heroBadge = createSlide({
   distance: 4,
-  duration: DURATION.ultraSlower,
+  duration: DURATION.slow,
 });
 
 export const heroTitle = createSlide({
   distance: 10,
-  duration: DURATION.ultraSlower,
+  duration: DURATION.slow,
 });
 
 export const heroDescription = createSlide({
   distance: 10,
-  duration: DURATION.ultraSlower,
+  duration: DURATION.slow,
 });
 
 export const heroButtons = createSlide({
   distance: 10,
-  duration: DURATION.ultraSlower,
+  duration: DURATION.slow,
 });
 
 export const heroStagger = createStagger({ staggerChildren: STAGGER.fast });

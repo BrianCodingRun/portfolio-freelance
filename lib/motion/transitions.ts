@@ -2,6 +2,14 @@ export type DurationType = (typeof DURATION)[keyof typeof DURATION];
 export type DelayType = (typeof DELAY)[keyof typeof DELAY];
 export type EaseType = (typeof EASE)[keyof typeof EASE];
 export type StaggerType = (typeof STAGGER)[keyof typeof STAGGER];
+export type BlurType = (typeof BLUR)[keyof typeof BLUR];
+
+export const BLUR = {
+  none: 0,
+  light: 4,
+  normal: 8,
+  strong: 16,
+} as const;
 
 export type TransitionOptions = {
   duration?: DurationType;

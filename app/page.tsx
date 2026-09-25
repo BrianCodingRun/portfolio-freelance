@@ -12,9 +12,8 @@ import Skills from "./_home/Skills";
 import WhyMe from "./_home/WhyMe";
 
 export const metadata: Metadata = {
-  title: "Accueil | Brian Coupama - Développeur Web Freelance à La Réunion",
   description:
-    "Développeur web freelance à La Réunion. Création de sites internet performants, applications web et solutions sur mesure pour les entreprises et indépendants.",
+    "Création de sites internet performants, applications web et solutions sur mesure pour les PME et indépendants.",
 
   robots: {
     index: true,
@@ -22,9 +21,8 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Accueil",
     description:
-      "Développeur web freelance à La Réunion. Création de sites internet performants, applications web et solutions sur mesure pour les entreprises et indépendants.",
+      "Création de sites internet performants, applications web et solutions sur mesure pour les PME et indépendants.",
   },
 };
 

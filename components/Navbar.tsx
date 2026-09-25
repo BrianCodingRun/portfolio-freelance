@@ -2,9 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { fade, mobileMenu, slideUp, slideUpSkew } from "@/lib/motion/";
-import Logo from "@/public/assets/logo-original.svg";
+import Logo from "@/public/assets/nexmyr_logo_fond_sombre.svg";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -14,6 +13,8 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
+import SquareEffect from "./SquareEffect";
+import { ToggleTheme } from "./ToggleTheme";
 
 type Navlink = {
   name: string;
@@ -21,7 +22,7 @@ type Navlink = {
 };
 const navLinks: Navlink[] = [
   {
-    name: "Projets",
+    name: "Portfolio",
     href: "/projects",
   },
   {
@@ -29,7 +30,7 @@ const navLinks: Navlink[] = [
     href: "/pricings",
   },
   {
-    name: "Parcours",
+    name: "Qui suis-je",
     href: "/journey",
   },
   {
@@ -47,79 +48,86 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
   };
 
   return (
-    <nav>
-      <div
-        className={`flex items-center justify-between ${isScrolled ? "h-20" : "h-24"}`}
-      >
-        <div className="flex items-center">
-          <Link
-            href="/"
-            aria-label="retour vers la page d'accueil"
-            prefetch={false}
-          >
-            <Logo
-              className={`${isScrolled ? "w-12 h-12 md:w-14 md:h-14" : "w-16 h-16 md:w-20 md:h-20"} transition-[width,height]`}
-            />
-          </Link>
-        </div>
-        <div className="hidden md:flex gap-4">
-          {navLinks &&
-            navLinks.map((link: Navlink, index: number) => (
-              <Link
-                key={index}
-                href={link.href}
-                className={`${
-                  pathname === link.href ? "text-primary font-medium" : ""
-                } 2xl:text-lg hover:text-primary hover:underline underline-offset-4 transition-colors`}
-                prefetch={false}
-              >
-                {link.name}
-              </Link>
-            ))}
-        </div>
-        <div className="hidden md:flex gap-4">
-          {[
-            {
-              name: "Twitter",
-              icon: <FaXTwitter className="w-5 h-5" />,
-              href: "https://x.com/CoupamaBrian",
-            },
-            {
-              name: "Instagram",
-              icon: <FaInstagram className="w-5 h-5" />,
-              href: "https://www.instagram.com/briandevrun",
-            },
-            {
-              name: "Github",
-              icon: <FaGithub className="w-5 h-5" />,
-              href: "https://github.com/BrianCodingRun",
-            },
-            {
-              name: "Linkedin",
-              icon: <FaLinkedinIn className="w-5 h-5" />,
-              href: "https://www.linkedin.com/in/brian-coupama/",
-            },
-          ].map((item, index) => (
+    <nav className="flex items-center justify-between h-24">
+      <div className="flex items-center shrink-0">
+        <Link
+          href="/"
+          aria-label="retour vers la page d'accueil"
+          prefetch={false}
+          className="text-center"
+        >
+          <Logo
+            className={`w-12 h-12 md:w-16 md:h-16 origin-left transition-transform duration-100 ${
+              isScrolled ? "scale-[0.85]" : "scale-100"
+            }`}
+          />
+        </Link>
+      </div>
+      <div className="hidden md:flex gap-4">
+        {navLinks &&
+          navLinks.map((link: Navlink, index: number) => (
             <Link
               key={index}
-              href={item.href}
-              aria-label={`Lien vers mon profil ${item.name}`}
-              className="text-muted-foreground transition-all hover:-translate-y-0.5 hover:text-primary"
+              href={link.href}
+              className={`${
+                pathname === link.href
+                  ? "text-primary font-bold"
+                  : "font-medium"
+              } ${isScrolled && "scale-[0.90]"} transition-transform duration-100 text-lg hover:text-primary hover:underline underline-offset-4`}
+              prefetch={false}
             >
-              {item.icon}
+              {link.name}
             </Link>
           ))}
-        </div>
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={toggleMenu}
-            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+      </div>
+      <div className="hidden md:flex items-center gap-4">
+        <ToggleTheme />
+        {[
+          {
+            name: "Twitter",
+            icon: <FaXTwitter className="w-5 h-5" />,
+            href: "https://x.com/nexmyr_officiel",
+          },
+          {
+            name: "Instagram",
+            icon: <FaInstagram className="w-5 h-5" />,
+            href: "https://www.instagram.com/nexmyr_officiel",
+          },
+          {
+            name: "Github",
+            icon: <FaGithub className="w-5 h-5" />,
+            href: "https://github.com/BrianCodingRun",
+          },
+          {
+            name: "Linkedin",
+            icon: <FaLinkedinIn className="w-5 h-5" />,
+            href: "https://www.linkedin.com/company/nexmyr",
+          },
+        ].map((item, index) => (
+          <Link
+            key={index}
+            href={item.href}
+            target="_blank"
+            aria-label={`Lien vers mon profil ${item.name}`}
+            className="text-muted-foreground transition-all hover:-translate-y-0.5 hover:text-primary"
           >
-            <span className="sr-only">Open main menu</span>
+            {item.icon}
+          </Link>
+        ))}
+      </div>
+      <div className="md:hidden flex items-center">
+        <button
+          onClick={toggleMenu}
+          className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <span className="sr-only">Open main menu</span>
 
-            <Menu className="block h-8 w-8 stroke-slate-200" />
-          </button>
-        </div>
+          <div className="relative w-10 h-10">
+            <span className="w-6 h-0.5 absolute top-3 left-2/4 -translate-2/4 block bg-neutral-700 dark:bg-zinc-200 rounded-full" />
+            <span className="w-6 h-0.5 absolute top-5 left-2/4 -translate-2/4 block bg-neutral-700 dark:bg-zinc-200 rounded-full" />
+            <span className="w-6 h-0.5 absolute top-7 left-2/4 -translate-2/4 block bg-neutral-700 dark:bg-zinc-200 rounded-full" />
+          </div>
+        </button>
       </div>
       <AnimatePresence mode="wait">
         {isOpen && (
@@ -130,7 +138,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
             exit="closed"
             className="md:hidden z-50 fixed top-0 right-0 bottom-0 left-0 w-full min-h-svh flex flex-col justify-between bg-background p-4"
           >
-            <motion.div variants={fade}>
+            <motion.div variants={fade} className="flex justify-between">
               <Link
                 href="/"
                 aria-label="retour vers la page d'accueil"
@@ -138,6 +146,8 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
               >
                 <Logo className="w-16 h-16" />
               </Link>
+              {/* Theme Dark/Light mode */}
+              <ToggleTheme />
             </motion.div>
             <div className="space-y-6 mb-6">
               {navLinks &&
@@ -156,7 +166,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                         onClick={toggleMenu}
                         className={`${
                           pathname === link.href ? "text-primary" : ""
-                        } text-7xl transition-colors block font-semibold`}
+                        } text-6xl transition-colors block font-semibold`}
                       >
                         {link.name}
                       </Link>
@@ -177,12 +187,12 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                   {
                     name: "Twitter",
                     icon: <FaXTwitter className="w-4 h-4" />,
-                    href: "https://x.com/CoupamaBrian",
+                    href: "https://x.com/nexmyr_officiel",
                   },
                   {
                     name: "Instagram",
                     icon: <FaInstagram className="w-4 h-4" />,
-                    href: "https://www.instagram.com/briandevrun",
+                    href: "https://www.instagram.com/nexmyr_officiel",
                   },
                   {
                     name: "Github",
@@ -192,12 +202,13 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                   {
                     name: "Linkedin",
                     icon: <FaLinkedinIn className="w-4 h-4" />,
-                    href: "https://www.linkedin.com/in/brian-coupama/",
+                    href: "https://www.linkedin.com/company/nexmyr",
                   },
                 ].map((item, index) => (
                   <Link
                     key={index}
                     href={item.href}
+                    target="_blank"
                     aria-label={`Lien vers mon profil ${item.name}`}
                     className="text-muted-foreground transition-all hover:-translate-y-0.5 hover:text-primary"
                   >
@@ -219,6 +230,13 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                   Fermer le menu
                 </Button>
               </motion.div>
+            </div>
+            <div className="absolute overflow-hidden -z-30 -right-32 -bottom-32 w-52 rotate-32">
+              <div className="grid grid-cols-3 justify-between">
+                <SquareEffect />
+                <SquareEffect />
+                <SquareEffect />
+              </div>
             </div>
           </motion.div>
         )}

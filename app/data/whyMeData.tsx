@@ -11,23 +11,23 @@ export const whyMeData: WhyMeItem[] = [
   {
     id: "local",
     icon: MapPin,
-    title: "Ancré dans le Sud Sauvage.",
+    title: "Ancré à La Réunion.",
     description:
-      "Basé à Saint-Joseph, je me déplace chez vous — pas besoin de visio, on peut se voir autour d'un café.",
+      "Basé sur l'île de La Réunion, je me déplace pour vous rencontrer — pas besoin de visio, on peut se voir autour d'un café.",
   },
   {
     id: "unique-contact",
     icon: User,
-    title: "Un seul interlocuteur.",
+    title: "Un guide, pas un intermédiaire.",
     description:
-      "Pas d'agence, pas d'intermédiaire — vous parlez directement au développeur qui code votre site.",
+      "Pas d'agence, pas de chef de projet entre nous — je vous accompagne du premier échange à la mise en ligne.",
   },
   {
     id: "custom",
     icon: Code2,
     title: "Sur mesure, vraiment.",
     description:
-      "Pas de template recyclé — chaque site est conçu spécifiquement pour votre activité et vos clients.",
+      "Pas de template recyclé — chaque site est pensé pour votre activité, pas pour n'importe qui.",
   },
   {
     id: "convert",

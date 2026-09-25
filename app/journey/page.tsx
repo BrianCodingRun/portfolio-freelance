@@ -6,14 +6,14 @@ import type { Metadata } from "next";
 import TimelineJourney from "./_journey/TimelineJourney";
 
 export const metadata: Metadata = {
-  title: "Mon parcours",
+  title: "Qui suis-je",
   description:
     "De 2011 à 2026 : un chemin différent, fait de pauses, de rebonds et d'une vocation trouvée en chemin.",
   alternates: {
     canonical: "/journey",
   },
   openGraph: {
-    title: "Mon parcours",
+    title: "Qui suis-je",
     description:
       "De 2011 à 2026 : un chemin différent, fait de pauses, de rebonds et d'une vocation trouvée en chemin.",
   },
@@ -39,7 +39,7 @@ export default function JourneyIndexPage() {
           </StaggerItem>
           <StaggerItem>
             <h1 className="mt-4 text-4xl md:text-5xl font-semibold text-foreground sm:text-5xl">
-              Mon parcours
+              Qui suis-je
             </h1>
           </StaggerItem>
           <StaggerItem>

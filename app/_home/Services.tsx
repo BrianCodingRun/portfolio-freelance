@@ -49,7 +49,7 @@ export default async function Services() {
                   <div className="flex items-center justify-center gap-2 mb-4">
                     <Separator
                       orientation="horizontal"
-                      className="bg-primary data-horizontal:w-10"
+                      className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
                     />
 
                     <span className="text-primary uppercase text-sm sm:text-base font-semibold">
@@ -58,7 +58,7 @@ export default async function Services() {
 
                     <Separator
                       orientation="horizontal"
-                      className="bg-primary data-horizontal:w-10"
+                      className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
                     />
                   </div>
 

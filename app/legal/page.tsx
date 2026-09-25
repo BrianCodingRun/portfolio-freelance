@@ -6,14 +6,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description:
-    "Mentions légales du site portfolio.briancoupama.re — Informations légales, propriété intellectuelle, confidentialité et conditions d'utilisation.",
+    "Mentions légales du site Nexmyr — Informations légales, propriété intellectuelle, confidentialité et conditions d'utilisation.",
   alternates: {
     canonical: "/legal",
   },
   openGraph: {
     title: "Mentions légales",
     description:
-      "Mentions légales du site portfolio.briancoupama.re — Informations légales, propriété intellectuelle, confidentialité et conditions d'utilisation.",
+      "Mentions légales du site Nexmyr — Informations légales, propriété intellectuelle, confidentialité et conditions d'utilisation.",
   },
   robots: {
     index: true,
@@ -78,13 +78,17 @@ export default function MentionsLegales() {
             {[
               {
                 label: "Nom du site",
-                value: "Coupama Brian | Développeur Web Freelance à La Réunion",
+                value:
+                  "Nexmyr — Conception de sites web et d'applications à La Réunion",
               },
               {
                 label: "Adresse",
-                value: "https://portfolio.briancoupama.re",
+                value: "https://nexmyr.com",
               },
-              { label: "Propriétaire", value: "Coupama Brian" },
+              {
+                label: "Propriétaire",
+                value: "Coupama Brian, exerçant sous le nom commercial Nexmyr",
+              },
               { label: "Responsable de publication", value: "Coupama Brian" },
               { label: "Conception & réalisation", value: "Coupama Brian" },
               { label: "Animation", value: "Coupama Brian" },
@@ -103,7 +107,7 @@ export default function MentionsLegales() {
               },
               {
                 label: "Email",
-                value: "dev.contact@briancoupama.re",
+                value: "contact@nexmyr.com",
               },
               {
                 label: "Téléphone",
@@ -241,7 +245,7 @@ export default function MentionsLegales() {
                 key={item}
                 className="flex items-start gap-2 text-sm text-muted-foreground"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
                 {item}
               </li>
             ))}
@@ -268,10 +272,10 @@ export default function MentionsLegales() {
               "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données. Pour exercer ces droits, contactez-nous à"
             }{" "}
             <a
-              href="mailto:dev.contact@briancoupama.re"
+              href="mailto:contact@nexmyr.com"
               className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
             >
-              dev.contact@briancoupama.re
+              contact@nexmyr.com
             </a>
             .
           </Prose>

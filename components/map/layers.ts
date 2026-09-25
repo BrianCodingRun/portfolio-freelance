@@ -1,5 +1,4 @@
 import type { Map } from "maplibre-gl";
-import { SERVICE_AREA } from "./constants";
 
 export function addServiceAreaLayers(map: Map) {
   map.addLayer({
@@ -7,11 +6,9 @@ export function addServiceAreaLayers(map: Map) {
     type: "fill",
     source: "communes",
 
-    filter: ["in", ["get", "nom"], ["literal", [...SERVICE_AREA]]],
-
     paint: {
       "fill-color": "#D89B42",
-      "fill-opacity": 0.3,
+      "fill-opacity": 0.2,
       "fill-outline-color": "#F2C464",
     },
   });
@@ -21,12 +18,10 @@ export function addServiceAreaLayers(map: Map) {
     type: "line",
     source: "communes",
 
-    filter: ["in", ["get", "nom"], ["literal", [...SERVICE_AREA]]],
-
     paint: {
       "line-color": "#D89B42",
-      "line-width": 1.5,
-      "line-opacity": 0.8,
+      "line-width": 1,
+      "line-opacity": 0.6,
     },
   });
 }
