@@ -74,6 +74,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 "@type": "Person",
                 name: "Brian Coupama",
               },
+              employee: {
+                "@type": "Person",
+                name: "Brian Coupama",
+                jobTitle: "Développeur web freelance",
+              },
+              numberOfEmployees: {
+                "@type": "QuantitativeValue",
+                value: 1,
+              },
+              sameAs: [
+                "https://www.linkedin.com/company/nexmyr",
+                "https://www.instagram.com/nexmyr_officiel",
+                "https://x.com/nexmyr_officiel",
+              ],
             }),
           }}
         />

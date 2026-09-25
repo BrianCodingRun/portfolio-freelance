@@ -239,7 +239,7 @@ export default function Hero() {
                 <div className="border border-muted-foreground/25 p-3 space-y-1.5">
                   <span className="block w-10 h-2 bg-muted-foreground/40" />
                   <span className="block w-14 h-5 bg-muted-foreground" />
-                  <div className="flex items-center gap-1 text-muted-foreground/60">
+                  <div className="flex items-center gap-1 text-muted-foreground">
                     <TrendingDown className="w-3 h-3" />
                     <span className="text-[10px] font-medium">-2%</span>
                   </div>

@@ -86,7 +86,7 @@ export function ProjectHero({ project }: Props) {
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <FadeUp delay={0.02}>
             <div className="flex flex-col gap-2">
-              <p className="text-xs text-muted-foreground mb-1">
+              <p className="text-sm md:text-base text-muted-foreground mb-1">
                 {project.year} · {project.duration}
                 {project.client && ` · ${project.client}`}
               </p>

@@ -1,6 +1,7 @@
 import Opacity from "@/components/motion/Opacity";
 import Section from "@/components/Section";
 import { getProject, getProjects } from "@/lib/api/projects";
+import { buildMetadata } from "@/lib/metadata";
 import type { Project } from "@/types/project";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
@@ -23,30 +24,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await getProject(slug);
 
   if (!project) {
-    return {
+    return buildMetadata({
       title: "Projet introuvable",
-    };
+      description: "Ce projet n'existe pas ou n'est plus disponible.",
+      path: `/projects/${slug}`,
+      index: false,
+    });
   }
 
-  return {
-    title: `${project.title}`,
+  return buildMetadata({
+    title: project.title,
     description: project.tagline,
-    alternates: {
-      canonical: `/projects/${project.slug}`,
-    },
-    openGraph: {
-      title: project.title,
-      description: project.tagline,
-      images: project.coverImage
-        ? [{ url: project.coverImage, alt: project.title }]
-        : [],
-      type: "article",
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
+    path: `/projects/${project.slug}`,
+    image: project.coverImage ?? undefined,
+    imageAlt: project.title,
+    type: "article",
+  });
 }
 
 // --- Static params (ISR / SSG) ---

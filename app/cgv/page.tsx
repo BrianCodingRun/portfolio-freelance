@@ -1,26 +1,16 @@
 import Section from "@/components/Section";
 import { Separator } from "@/components/ui/separator";
+import { buildMetadata } from "@/lib/metadata";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Conditions Générales de Vente",
   description:
     "Conditions Générales de Vente applicables aux prestations de développement web et mobile proposées par Nexmyr (Brian Coupama), développeur freelance à La Réunion.",
-  alternates: {
-    canonical: "/cgv",
-  },
-  openGraph: {
-    title: "Conditions Générales de Vente",
-    description:
-      "Conditions Générales de Vente applicables aux prestations de développement web et mobile proposées par Nexmyr (Brian Coupama), développeur freelance à La Réunion.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  path: "/cgv",
+});
 
 const LAST_UPDATE = "28 avril 2026";
 
@@ -48,7 +38,7 @@ export default function CGVPage() {
           <div className="flex items-center gap-2 mb-4">
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
             <span className="text-primary uppercase text-sm">Légal</span>
           </div>

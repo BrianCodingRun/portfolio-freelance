@@ -1,6 +1,7 @@
 import { Spacing } from "@/components/Spacing";
 import { getProjectFeatured } from "@/lib/api/projects";
 import { getProfile } from "@/lib/api/user";
+import { buildMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import AboutMe from "./_home/AboutMe";
 import FAQ from "./_home/FAQ";
@@ -11,20 +12,11 @@ import Services from "./_home/Services";
 import Skills from "./_home/Skills";
 import WhyMe from "./_home/WhyMe";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   description:
     "Création de sites internet performants, applications web et solutions sur mesure pour les PME et indépendants.",
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-
-  openGraph: {
-    description:
-      "Création de sites internet performants, applications web et solutions sur mesure pour les PME et indépendants.",
-  },
-};
+  path: "/",
+});
 
 export const revalidate = 60;
 
