@@ -7,7 +7,7 @@ export default function Section(
   return (
     <section
       className={cn(
-        "max-w-3xl xl:max-w-6xl w-full px-6 md:px-8 mx-auto",
+        "max-w-3xl xl:max-w-6xl w-full px-4 md:px-8 mx-auto",
         props.className,
       )}
       id={props.id}

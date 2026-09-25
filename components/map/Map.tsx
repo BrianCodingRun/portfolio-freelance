@@ -4,7 +4,7 @@ import maplibregl from "maplibre-gl";
 import { useEffect, useRef } from "react";
 
 import { cn } from "@/lib/utils";
-import { fitSouthReunion } from "./bounds";
+import { fitReunion } from "./bounds";
 import { mapConfig } from "./config";
 import { addServiceAreaLayers } from "./layers";
 import { addOfficeMarker } from "./markers";
@@ -29,7 +29,7 @@ export default function Map({ className }: MapProps) {
     });
 
     map.once("load", () => {
-      fitSouthReunion(map);
+      fitReunion(map);
       addCommunesSource(map);
       addServiceAreaLayers(map);
       addOfficeMarker(map);

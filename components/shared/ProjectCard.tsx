@@ -11,14 +11,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const badgeStyles: Record<TechBadge["color"], string> = {
-  blue: "bg-blue-950/60 text-blue-300 border-blue-800",
-  teal: "bg-teal-950/60 text-teal-300   border-teal-800",
-  amber: "bg-amber-950/60 text-amber-300 border-amber-800",
-  purple: "bg-purple-950/60 text-purple-300 border-purple-800",
-  green: "bg-green-950/60 text-green-300 border-green-800",
-  coral: "bg-orange-950/60 text-orange-300 border-orange-800",
-  pink: "bg-pink-950/60 text-pink-300 border-pink-800",
-  red: "bg-red-950/60 text-red-300 border-red-800",
+  blue: "bg-blue-950/80 text-blue-300 border-blue-800",
+  teal: "bg-teal-950/80 text-teal-300   border-teal-800",
+  amber: "bg-amber-950/80 text-amber-300 border-amber-800",
+  purple: "bg-purple-950/80 text-purple-300 border-purple-800",
+  green: "bg-green-950/80 text-green-300 border-green-800",
+  coral: "bg-orange-950/80 text-orange-300 border-orange-800",
+  pink: "bg-pink-950/80 text-pink-300 border-pink-800",
+  red: "bg-red-950/80 text-red-300 border-red-800",
 };
 
 const statusStyles = {

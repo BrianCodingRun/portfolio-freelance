@@ -14,7 +14,7 @@ import Link from "next/link";
 const steps = [
   {
     number: "01",
-    title: "Discussion du projet",
+    title: "Phase de discussion",
     description:
       "Nous échangeons sur vos besoins, vos objectifs et les fonctionnalités nécessaires pour votre projet.",
     badge: "Gratuit & sans engagement",
@@ -50,14 +50,14 @@ export default function ProcessProject() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
             <span className="text-primary uppercase text-sm sm:text-base font-semibold">
               Comment ça se passe ?
             </span>
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
           </div>
         </StaggerItem>

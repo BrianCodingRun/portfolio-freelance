@@ -1,0 +1,17 @@
+<svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="456" cy="454" r="5.5" transform="rotate(-180 456 454)" fill="var(--primary)" stroke="var(--primary)"/>
+<line y1="-3" x2="280.648" y2="-3" transform="matrix(-0.710528 -0.703668 0.710528 -0.703668 461.408 455.483)" stroke="var(--primary)" stroke-width="6"/>
+<circle cx="45" cy="46" r="5.5" fill="var(--primary)" stroke="var(--primary)"/>
+<line y1="-3" x2="280.196" y2="-3" transform="matrix(0.710419 0.703779 -0.710419 0.703779 40.9434 45.8037)" stroke="var(--primary)" stroke-width="6"/>
+<rect x="75" y="75" width="80" height="80" fill="var(--primary)"/>
+<rect x="345" y="75" width="80" height="80" fill="var(--primary)"/>
+<rect x="75" y="165" width="80" height="80" fill="var(--primary)"/>
+<rect x="165" y="165" width="80" height="80" fill="var(--primary)"/>
+<rect x="345" y="165" width="80" height="80" fill="var(--primary)"/>
+<rect x="75" y="255" width="80" height="80" fill="var(--primary)"/>
+<rect x="255" y="255" width="80" height="80" fill="var(--primary)"/>
+<rect x="345" y="255" width="80" height="80" fill="var(--primary)"/>
+<rect x="75" y="345" width="80" height="80" fill="var(--primary)"/>
+<rect x="345" y="345" width="80" height="80" fill="var(--primary)"/>
+<rect x="185" y="185" width="40" height="40" fill="var(--secondary)"/>
+</svg>

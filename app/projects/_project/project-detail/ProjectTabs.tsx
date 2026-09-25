@@ -1,5 +1,6 @@
 "use client";
 
+import Section from "@/components/Section";
 import TechIcon from "@/components/TechIcon";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -47,7 +48,7 @@ export function ProjectTabs({ project }: Props) {
   const [active, setActive] = useState<Tab>("context");
 
   return (
-    <section className="space-y-3 py-6">
+    <Section className="space-y-3 py-6">
       {/* Tab nav */}
 
       <div className="flex gap-1 border-b border-zinc-800">
@@ -56,10 +57,8 @@ export function ProjectTabs({ project }: Props) {
             key={tab.id}
             onClick={() => setActive(tab.id)}
             className={cn(
-              "px-4 py-2.5 text-sm font-medium transition-colors relative",
-              active === tab.id
-                ? "text-primary"
-                : "text-zinc-400 hover:text-zinc-300",
+              "px-3 py-2.5 text-sm font-medium transition-colors relative",
+              active === tab.id && "text-primary",
             )}
           >
             {tab.label}
@@ -81,14 +80,12 @@ export function ProjectTabs({ project }: Props) {
           className="min-h-50"
         >
           {active === "context" && (
-            <div className="space-y-4 text-zinc-400 leading-relaxed">
+            <div className="space-y-4 leading-relaxed">
               <p className="text-base">{project.context}</p>
               {project.role && (
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="text-zinc-500">Mon rôle :</span>
-                  <span className="font-medium text-zinc-300">
-                    {project.role}
-                  </span>
+                  <span className="font-semibold">Mon rôle :</span>
+                  <span className="font-medium">{project.role}</span>
                 </div>
               )}
             </div>
@@ -104,10 +101,10 @@ export function ProjectTabs({ project }: Props) {
                       <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-zinc-100 mb-0.5">
+                      <p className="text-sm font-semibold mb-0.5">
                         {challenge.problem}
                       </p>
-                      <p className="text-sm text-zinc-400 leading-relaxed">
+                      <p className="text-sm leading-relaxed">
                         {challenge.problemDetail}
                       </p>
                     </div>
@@ -122,10 +119,10 @@ export function ProjectTabs({ project }: Props) {
                       <CheckSquare2 className="w-3.5 h-3.5 text-green-400" />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-zinc-100 mb-0.5">
+                      <p className="text-sm font-semibold mb-0.5">
                         {challenge.solution}
                       </p>
-                      <p className="text-sm text-zinc-400 leading-relaxed">
+                      <p className="text-sm leading-relaxed">
                         {challenge.solutionDetail}
                       </p>
                     </div>
@@ -158,13 +155,13 @@ export function ProjectTabs({ project }: Props) {
           )}
 
           {active === "results" && (
-            <div className="space-y-4 text-zinc-400 leading-relaxed">
+            <div className="space-y-4 leading-relaxed">
               <p className="text-base">{project.description}</p>
             </div>
           )}
         </motion.div>
       </AnimatePresence>
-    </section>
+    </Section>
   );
 }
 

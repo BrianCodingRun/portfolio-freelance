@@ -24,14 +24,14 @@ export default function Skills() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Separator
                 orientation="horizontal"
-                className="bg-primary data-horizontal:w-8"
+                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
               <span className="text-primary font-semibold uppercase text-sm sm:text-base">
                 Ma stack technique
               </span>
               <Separator
                 orientation="horizontal"
-                className="bg-primary data-horizontal:w-8"
+                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
             </div>
             <Title level={2} className="text-current">

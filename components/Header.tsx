@@ -18,14 +18,12 @@ export const Header = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <header
-      className={`sticky top-0 left-0 right-0 z-30 ${isScrolled && "backdrop-blur-lg bg-background/20"}`}
-    >
+    <header className={isScrolled ? "backdrop-blur-lg bg-background/80" : ""}>
       <Section>
         <Navbar isScrolled={isScrolled} />
       </Section>

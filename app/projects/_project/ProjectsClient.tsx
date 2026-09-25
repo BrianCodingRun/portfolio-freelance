@@ -49,7 +49,7 @@ export function ProjectsClient({ projects }: Props) {
         <FadeUp delay={0.02}>
           <header className="space-y-2 max-w-xl">
             <p className="text-sm font-semibold tracking-widest text-primary uppercase">
-              Brian Coupama · Portfolio
+              Nexmyr · Portfolio
             </p>
 
             <h1 className="text-4xl font-bold tracking-tight">

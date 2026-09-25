@@ -9,7 +9,7 @@ export default function InstagramWrapper(
   return (
     <Code>
       <Link
-        href="https://www.instagram.com/briandevrun/"
+        href="https://www.instagram.com/nexmyr_officiel"
         target="_blank"
         rel="noreferrer"
         className={cn("flex items-center gap-2", props.className)}

@@ -15,7 +15,7 @@ import ProcessCard from "./components/ProcessCard";
 const steps = [
   {
     number: "01",
-    title: "Discussion du projet",
+    title: "Phase de discussion",
     description:
       "Nous échangeons sur vos besoins, vos objectifs et les fonctionnalités nécessaires pour votre projet.",
     badge: "Gratuit & sans engagement",
@@ -53,18 +53,18 @@ export default function Process() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Separator
                 orientation="horizontal"
-                className="bg-primary data-horizontal:w-10"
+                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
               <span className="text-primary uppercase text-sm sm:text-base font-semibold">
                 Comment ca marche ?
               </span>
               <Separator
                 orientation="horizontal"
-                className="bg-primary data-horizontal:w-10"
+                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
             </div>
             <Title level={2} className="text-current">
-              Comment se déroule votre projet ?
+              Comment je structure votre projet ?
             </Title>
             <Subtitle className="text-muted-foreground not-italic py-2 max-w-lg mx-auto">
               Un processus simple et transparent pour transformer votre idée en

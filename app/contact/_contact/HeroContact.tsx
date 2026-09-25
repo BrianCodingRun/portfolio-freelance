@@ -23,15 +23,15 @@ const contactItems = [
   {
     icon: Mail,
     label: "Email",
-    value: "dev.contact@briancoupama.re",
+    value: "contact@nexmyr.com",
     sub: "Réponse sous 24h",
-    href: "mailto:dev.contact@briancoupama.re",
+    href: "mailto:contact@nexmyr.com",
   },
   {
     icon: MapPin,
     label: "Localisation",
-    value: "Saint-Joseph",
-    sub: "97480 — Île de La Réunion",
+    value: "La Réunion",
+    sub: "Interventions sur toute l'île",
     href: null,
   },
 ];
@@ -45,7 +45,7 @@ export default function HeroContact() {
           <div className="flex items-center gap-2 mb-4">
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
             <span className="text-primary uppercase text-sm sm:text-base font-semibold">
               Moyen de contact
@@ -123,18 +123,10 @@ export default function HeroContact() {
         <div className="relative overflow-hidden border border-border h-70 lg:h-full min-h-65">
           <Map />
           <div className="absolute bottom-0 left-0 w-full bg-card p-4 flex items-center gap-4">
-            <div className="space-y-1">
-              <div className="w-5 h-2 bg-primary border border-border" />
-              <p className="text-xs font-medium text-muted-foreground">
-                Zone {"d'intervention"}
-              </p>
-            </div>
-            <div className="space-y-1">
-              <div className="w-5 h-2 bg-neutral-800 border border-muted-foreground" />
-              <p className="text-xs font-medium text-muted-foreground">
-                Zone hors intervention (peut intervenir exceptionnellement)
-              </p>
-            </div>
+            <div className="w-5 h-2 bg-primary border border-border" />
+            <p className="text-xs font-medium text-muted-foreground">
+              Interventions sur l&apos;ensemble de l&apos;île de La Réunion
+            </p>
           </div>
         </div>
       </StaggerContainer>

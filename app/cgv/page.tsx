@@ -7,14 +7,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Conditions Générales de Vente",
   description:
-    "Conditions Générales de Vente applicables aux prestations de développement web et mobile proposées par Brian Coupama, développeur freelance à La Réunion.",
+    "Conditions Générales de Vente applicables aux prestations de développement web et mobile proposées par Nexmyr (Brian Coupama), développeur freelance à La Réunion.",
   alternates: {
     canonical: "/cgv",
   },
   openGraph: {
     title: "Conditions Générales de Vente",
     description:
-      "Conditions Générales de Vente applicables aux prestations de développement web et mobile proposées par Brian Coupama, développeur freelance à La Réunion.",
+      "Conditions Générales de Vente applicables aux prestations de développement web et mobile proposées par Nexmyr (Brian Coupama), développeur freelance à La Réunion.",
   },
   robots: {
     index: true,
@@ -64,8 +64,17 @@ export default function CGVPage() {
               Les présentes Conditions Générales de Vente (CGV) {"s'appliquent"}{" "}
               à toutes les prestations de services conclues entre{" "}
               <span className="text-foreground font-medium">Coupama Brian</span>
-              , développeur web freelance domicilié à Saint-Joseph, La Réunion
-              (97480), ci-après désigné le{" "}
+              , exerçant sous le nom commercial{" "}
+              <span className="text-foreground font-medium">Nexmyr</span>,
+              développeur web freelance domicilié à{" "}
+              {"l'adresse indiquée dans les"}{" "}
+              <Link
+                href="/legal"
+                className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
+              >
+                mentions légales
+              </Link>
+              , ci-après désigné le{" "}
               <span className="text-foreground font-medium">
                 « Prestataire »
               </span>
@@ -395,10 +404,10 @@ export default function CGVPage() {
             Pour toute question relative aux présentes CGV, vous pouvez nous
             contacter à {"l'adresse"} :{" "}
             <a
-              href="mailto:dev.contact@briancoupama.re"
+              href="mailto:contact@nexmyr.com"
               className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
             >
-              dev.contact@briancoupama.re
+              contact@nexmyr.com
             </a>
           </Prose>
         </div>
@@ -435,10 +444,10 @@ export default function CGVPage() {
             Les forfaits de maintenance sont proposés sans engagement de durée
             minimale. Le Client peut résilier à tout moment par email adressé à{" "}
             <a
-              href="mailto:dev.contact@briancoupama.re"
+              href="mailto:contact@nexmyr.com"
               className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
             >
-              dev.contact@briancoupama.re
+              contact@nexmyr.com
             </a>
             , sous réserve {"d'un"} préavis de{" "}
             <span className="text-foreground font-medium">

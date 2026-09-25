@@ -19,7 +19,7 @@ export default function SkillCard({
   const dots = Array.from({ length: MAX_YEARS }, (_, i) => i < years);
 
   return (
-    <div className="group relative flex gap-3 items-start p-4 border border-border bg-card transition-all duration-300 group hover:border-primary/40 hover:bg-linear-to-tl hover:from-primary/5 hover:to-transparent cursor-default overflow-hidden">
+    <div className="group relative h-full flex gap-3 items-start p-4 border border-border bg-card transition-all duration-300 group hover:border-primary/40 hover:bg-linear-to-tl hover:from-primary/5 hover:to-transparent cursor-default overflow-hidden">
       {/* Ligne lumineuse */}
       <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-transparent group-hover:bg-linear-to-r group-hover:from-transparent group-hover:via-primary opacity-50 group-hover:to-transparent transition-all duration-1000" />
 

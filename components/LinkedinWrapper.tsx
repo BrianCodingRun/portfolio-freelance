@@ -9,7 +9,7 @@ export default function LinkedinWrapper(
   return (
     <Code>
       <Link
-        href="https://www.linkedin.com/in/brian-coupama/"
+        href="https://www.linkedin.com/company/nexmyr"
         target="_blank"
         rel="noreferrer"
         className={cn("flex items-center gap-2", props.className)}

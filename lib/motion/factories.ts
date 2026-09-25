@@ -1,6 +1,6 @@
 import type { TargetAndTransition } from "framer-motion";
-import type { TransitionOptions } from "./transitions";
-import { DELAY, DURATION, EASE } from "./transitions";
+import type { BlurType, TransitionOptions } from "./transitions";
+import { BLUR, DELAY, DURATION, EASE } from "./transitions";
 
 type SlideOptions = TransitionOptions & {
   axis?: "x" | "y";
@@ -103,6 +103,40 @@ export const createFade = ({
 
     visible: {
       opacity: 1,
+    },
+
+    transition: createTransition({
+      duration,
+      delay,
+      ease,
+    }),
+  });
+
+type BlurOptions = TransitionOptions & {
+  amount?: BlurType;
+  axis?: "x" | "y";
+  distance?: number;
+};
+
+export const createBlur = ({
+  amount = BLUR.normal,
+  axis,
+  distance = 0,
+  duration = DURATION.slower,
+  delay = DELAY.none,
+  ease = EASE.smooth,
+}: BlurOptions = {}) =>
+  createVariant({
+    hidden: {
+      opacity: 0,
+      filter: `blur(${amount}px)`,
+      ...(axis && { [axis]: distance }),
+    },
+
+    visible: {
+      opacity: 1,
+      filter: "blur(0px)",
+      ...(axis && { [axis]: 0 }),
     },
 
     transition: createTransition({

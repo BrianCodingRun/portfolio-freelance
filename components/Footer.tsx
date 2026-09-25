@@ -1,4 +1,4 @@
-import Logo from "@/public/assets/logo-original.svg";
+import Logo from "@/public/assets/nexmyr_logo_fond_sombre.svg";
 import Link from "next/link";
 import {
   FaGithub,
@@ -18,9 +18,9 @@ export default function Footer() {
               <Link href="/" aria-label="Retour à la page d'accueil">
                 <Logo className="h-16 w-auto" />
               </Link>
-              <p className="mt-2 text-sm tracking-wider">
-                Développeur Web Freelance
-                <br />à La Réunion
+              <p className="mt-2 tracking-wider max-w-xs">
+                Conception et développement de solutions web sur mesure à La
+                Réunion
               </p>
             </div>
 
@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Navigation */}
           <div className="space-y-4">
             <h4 className="text-sm text-primary font-semibold uppercase">
-              Navigation
+              Liens utile
             </h4>
 
             <ul className="space-y-3">
@@ -49,7 +49,7 @@ export default function Footer() {
                   ariaLabel: "Consulter mes tarifs",
                 },
                 {
-                  title: "Parcours",
+                  title: "Qui suis-je",
                   href: "/journey",
                   ariaLabel: "Voir mon parcours",
                 },
@@ -62,10 +62,10 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="text-muted-foreground transition-colors hover:text-primary"
                     aria-label={item.ariaLabel}
                   >
-                    {index + 1 + "."} {item.title}
+                    {item.title}
                   </Link>
                 </li>
               ))}
@@ -73,12 +73,12 @@ export default function Footer() {
           </div>
 
           {/* Réseaux */}
-          <div>
-            <h4 className="mb-6 text-primary font-semibold uppercase">
+          <div className="space-y-4">
+            <h4 className="text-primary font-semibold uppercase">
               Restons connectés
             </h4>
 
-            <p className="mb-6 text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Une idée de projet ou simplement envie {"d'échanger"} ?
             </p>
 
@@ -86,12 +86,12 @@ export default function Footer() {
               {[
                 {
                   icon: <FaXTwitter size={16} />,
-                  href: "https://x.com/CoupamaBrian",
+                  href: "https://x.com/nexmyr_officiel",
                   ariaLabel: "Accéder à mon profil Twitter",
                 },
                 {
                   icon: <FaInstagram size={16} />,
-                  href: "https://www.instagram.com/briandevrun",
+                  href: "https://www.instagram.com/nexmyr_officiel",
                   ariaLabel: "Accéder à mon profil Instagram",
                 },
                 {
@@ -101,7 +101,7 @@ export default function Footer() {
                 },
                 {
                   icon: <FaLinkedinIn size={16} />,
-                  href: "https://www.linkedin.com/in/brian-coupama/",
+                  href: "https://www.linkedin.com/company/nexmyr",
                   ariaLabel: "Mon profil Linkedin",
                 },
               ].map((item, index) => (
@@ -120,10 +120,7 @@ export default function Footer() {
 
         {/* Bas du footer */}
         <div className="mt-12 flex flex-col gap-4 border-t border-primary/20 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} Brian Coupama — Développeur Web
-            Freelance à La Réunion
-          </p>
+          <p>© {new Date().getFullYear()} Nexmyr — Tous droits réservés</p>
 
           <div className="flex gap-6">
             <Link
