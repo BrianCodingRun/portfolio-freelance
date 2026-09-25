@@ -107,12 +107,12 @@ export function ProjectCard({ project, featured = false }: Props) {
 
         {/* Title + tagline */}
         <div className="space-y-1.5">
-          <Title level={3} className="text-current">
+          <Title level={2} className="text-current">
             <Link
               href={`/projects/${project.slug}`}
               className={cn(
                 "outline-none",
-                // Pseudo-élément qui étend la zone cliquable à toute la card
+                // // Pseudo-élément qui étend la zone cliquable à toute la card
                 "before:absolute before:inset-0 before:content-['']",
                 "before:rounded-md",
               )}

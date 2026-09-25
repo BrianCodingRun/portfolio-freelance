@@ -6,6 +6,7 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
+import Title from "./Title";
 
 export default function Footer() {
   return (
@@ -32,9 +33,12 @@ export default function Footer() {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="text-sm text-primary font-semibold uppercase">
+            <Title
+              level={3}
+              className="text-sm md:text-sm text-primary font-semibold uppercase"
+            >
               Liens utile
-            </h4>
+            </Title>
 
             <ul className="space-y-3">
               {[

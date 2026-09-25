@@ -29,7 +29,7 @@ export function BrowserFrame({
           <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]/40" />
         </div>
 
-        <div className="mx-auto flex items-center gap-1.5 bg-white/5 px-3 py-1 text-xs text-white/40">
+        <div className="mx-auto flex items-center gap-1.5 bg-white/5 px-3 py-1 text-xs text-white/50">
           {deployed ? (
             <>
               <Lock className="h-3 w-3" />

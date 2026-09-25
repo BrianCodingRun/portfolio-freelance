@@ -8,6 +8,7 @@ import {
   getAllChapterSlugs,
   getChapterBySlug,
 } from "@/lib/journey";
+import { buildMetadata } from "@/lib/metadata";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -30,26 +31,22 @@ export async function generateMetadata({
   const chapter = getChapterBySlug(slug);
 
   if (!chapter) {
-    return {
+    return buildMetadata({
       title: "Chapitre introuvable",
-    };
+      description: "Ce chapitre n'existe pas ou n'est plus disponible.",
+      path: `/journey/${slug}`,
+      index: false,
+    });
   }
 
-  return {
+  return buildMetadata({
     title: chapter.title,
     description: chapter.teaser,
-    alternates: {
-      canonical: `/journey/${chapter.slug}`,
-    },
-    openGraph: {
-      title: chapter.title,
-      description: chapter.teaser,
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
+    path: `/journey/${chapter.slug}`,
+    image: chapter.image ?? undefined,
+    imageAlt: chapter.title,
+    type: "article",
+  });
 }
 
 export default async function JourneyChapterPage({ params }: PageProps) {
@@ -80,10 +77,10 @@ export default async function JourneyChapterPage({ params }: PageProps) {
               />
               {/* Overlay so text stays readable over the photo, in both themes */}
               <div className="absolute inset-0 bg-background opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-background/20" />
+              <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/60 to-background/20" />
             </>
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-muted to-background" />
+            <div className="absolute inset-0 bg-linear-to-br from-primary/15 via-muted to-background" />
           )}
 
           <div

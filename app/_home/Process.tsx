@@ -93,7 +93,7 @@ export default function Process() {
               </p>
             </div>
             <Link
-              href="mailto:dev.contact@briancoupama.re"
+              href="mailto:contact@nexmyr.com"
               className={cn(
                 buttonVariants({ variant: "default" }),
                 "group shadow-none",

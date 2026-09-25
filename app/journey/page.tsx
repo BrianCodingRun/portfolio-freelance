@@ -2,26 +2,16 @@ import StaggerContainer from "@/components/motion/StaggerContainer";
 import StaggerItem from "@/components/motion/StaggerItem";
 import Section from "@/components/Section";
 import { getAllChapters, getConclusion } from "@/lib/journey";
+import { buildMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import TimelineJourney from "./_journey/TimelineJourney";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Qui suis-je",
   description:
     "De 2011 à 2026 : un chemin différent, fait de pauses, de rebonds et d'une vocation trouvée en chemin.",
-  alternates: {
-    canonical: "/journey",
-  },
-  openGraph: {
-    title: "Qui suis-je",
-    description:
-      "De 2011 à 2026 : un chemin différent, fait de pauses, de rebonds et d'une vocation trouvée en chemin.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  path: "/journey",
+});
 
 export default function JourneyIndexPage() {
   const chapters = getAllChapters();

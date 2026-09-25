@@ -18,7 +18,7 @@ export function ProjectMetrics({ metrics }: Props) {
                 <dd className="text-3xl font-bold tracking-tight">
                   {metric.value}
                 </dd>
-                <dt className="mt-1 text-xs text-muted-foreground">
+                <dt className="mt-1 text-sm md:text-base text-muted-foreground">
                   {metric.label}
                 </dt>
               </div>

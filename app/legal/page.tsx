@@ -1,25 +1,15 @@
 import Section from "@/components/Section";
 import { Separator } from "@/components/ui/separator";
+import { buildMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Mentions légales",
   description:
     "Mentions légales du site Nexmyr — Informations légales, propriété intellectuelle, confidentialité et conditions d'utilisation.",
-  alternates: {
-    canonical: "/legal",
-  },
-  openGraph: {
-    title: "Mentions légales",
-    description:
-      "Mentions légales du site Nexmyr — Informations légales, propriété intellectuelle, confidentialité et conditions d'utilisation.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  path: "/legal",
+});
 
 const LAST_UPDATE = "3 mai 2026";
 
@@ -43,7 +33,7 @@ export default function MentionsLegales() {
           <div className="flex items-center gap-2 mb-4">
             <Separator
               orientation="horizontal"
-              className="bg-primary data-horizontal:w-8"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
             <span className="text-primary uppercase text-sm">Légal</span>
           </div>
@@ -306,7 +296,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
       <h2 className="text-xl lg:text-2xl font-semibold text-foreground">
         {children}
       </h2>
-      <div className="absolute bottom-0 left-0 w-10 h-0.5 bg-primary rounded-full" />
+      <div className="absolute bottom-0 left-0 w-10 h-0.5 bg-primary" />
     </div>
   );
 }
