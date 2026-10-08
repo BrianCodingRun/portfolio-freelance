@@ -27,8 +27,12 @@ export default function PricingList({ pricings }: { pricings: Pricing[] }) {
           </div>
         </StaggerItem>
         <StaggerItem>
-          <Title level={2} className="text-current md:text-3xl">
-            Des tarifs qui {"s'adapte"} à votre besoin
+          <Title
+            level={2}
+            className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+          >
+            Des tarifs qui {"s'adapte"} à{" "}
+            <span className="text-primary">votre besoin.</span>
           </Title>
         </StaggerItem>
         <StaggerItem>

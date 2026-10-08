@@ -26,8 +26,9 @@ export const metadata: Metadata = {
 
   title: {
     template:
-      "%s | Nexmyr - Conception de sites web et d'application à La Réunion",
-    default: "Nexmyr - Conception de sites web et d'application à La Réunion",
+      "%s | Nexmyr - Créateur de sites web sur-mesure et d'applications à La Réunion",
+    default:
+      "Nexmyr - Créateur de sites web sur-mesure et d'applications à La Réunion",
   },
 
   alternates: {
@@ -40,7 +41,8 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    siteName: "Nexmyr - Conception de sites web et d'application à La Réunion",
+    siteName:
+      "Nexmyr - Créateur de sites web sur-mesure et d'applications à La Réunion",
     locale: "fr_FR",
     type: "website",
     images: [
@@ -48,14 +50,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Nexmyr - Conception de sites web et d'application à La Réunion",
+        alt: "Nexmyr - Créateur de sites web sur-mesure et d'applications à La Réunion",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Nexmyr - Conception de sites web et d'application à La Réunion",
+    title:
+      "Nexmyr - Créateur de sites web sur-mesure et d'applications à La Réunion",
     description:
       "Création de sites internet performants, applications web et solutions sur mesure pour les PME et indépendants à La Réunion.",
     images: ["/og-image.png"],
@@ -87,7 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Nexmyr - Conception de solution web sur mesure",
+              name: "Nexmyr - Créateur de solution web sur mesure",
               url: "https://nexmyr.com",
               address: {
                 "@type": "PostalAddress",

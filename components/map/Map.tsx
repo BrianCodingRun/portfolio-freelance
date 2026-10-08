@@ -5,7 +5,8 @@ import { useEffect, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { fitReunion } from "./bounds";
-import { mapConfig } from "./config";
+import { getMapConfig } from "./config";
+import { addTownLabels } from "./labels";
 import { addServiceAreaLayers } from "./layers";
 import { addOfficeMarker } from "./markers";
 import { addCommunesSource } from "./sources";
@@ -14,30 +15,35 @@ import "./marker.css";
 
 type MapProps = {
   className?: string;
+  interactive?: boolean;
+  transparent?: boolean;
 };
 
-export default function Map({ className }: MapProps) {
+export default function Map({
+  className,
+  interactive = true,
+  transparent = false,
+}: MapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
+    const variant = transparent ? "onDark" : "default";
+
     const map = new maplibregl.Map({
       container: containerRef.current,
-      ...mapConfig,
+      ...getMapConfig(transparent),
+      interactive,
     });
 
     map.once("load", () => {
-      fitReunion(map);
+      fitReunion(map, transparent ? 8 : 40);
       addCommunesSource(map);
-      addServiceAreaLayers(map);
+      addServiceAreaLayers(map, variant);
+      addTownLabels(map, variant);
       addOfficeMarker(map);
-
-      map.setLayoutProperty("Town labels", "text-size", 15);
-
-      map.setLayerZoomRange("Town labels", 3, 24);
-      map.setLayerZoomRange("Village labels", 8, 24);
     });
 
     mapRef.current = map;
@@ -46,7 +52,7 @@ export default function Map({ className }: MapProps) {
       map.remove();
       mapRef.current = null;
     };
-  }, []);
+  }, [interactive, transparent]);
 
   return <div ref={containerRef} className={cn("size-full", className)} />;
 }

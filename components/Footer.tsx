@@ -37,7 +37,7 @@ export default function Footer() {
               level={3}
               className="text-sm md:text-sm text-primary font-semibold uppercase"
             >
-              Liens utile
+              Liens utiles
             </Title>
 
             <ul className="space-y-3">
@@ -127,6 +127,12 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Nexmyr — Tous droits réservés</p>
 
           <div className="flex gap-6">
+            <Link
+              href="/privacy"
+              className="hover:text-primary hover:underline transition-colors"
+            >
+              Politique de confidentialité
+            </Link>
             <Link
               href="/legal"
               className="hover:text-primary hover:underline transition-colors"

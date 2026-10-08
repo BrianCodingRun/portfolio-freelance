@@ -20,8 +20,6 @@ export default async function PricingPage() {
     <>
       {/* HERO */}
       <HeroPricing />
-      {/* SPACING */}
-      <Spacing size="sm" />
       {/* PROCESS */}
       <ProcessProject />
       {/* SPACING */}

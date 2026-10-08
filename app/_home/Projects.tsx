@@ -36,8 +36,12 @@ export default function Projects({ projects }: { projects: Project[] }) {
               />
             </div>
             {/* TITLE */}
-            <Title level={2} className="text-current">
-              Une sélection de mes réalisations.
+            <Title
+              level={2}
+              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+            >
+              Une sélection de mes{" "}
+              <span className="text-primary">réalisations.</span>
             </Title>
             {/* DESCRIPTION */}
             <Subtitle className="py-2 max-w-xl mx-auto">
@@ -61,11 +65,11 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
         <Opacity delay={0.04}>
           <div className="flex items-center justify-between flex-wrap gap-4 px-5 py-4 border border-border bg-card my-6">
-            <div className="space-y-2">
-              <p className="text-lg font-semibold text-foreground">
+            <div className="space-y-1">
+              <p className="text-xl font-semibold text-neutral-800 dark:text-zinc-200">
                 Chaque projet a son histoire.
               </p>
-              <p className="max-w-xl text-sm text-muted-foreground mt-0.5">
+              <p className="max-w-xl text-base text-muted-foreground mt-0.5">
                 Contexte, choix techniques, résultats : retrouve le détail
                 complet de chaque réalisation sur la page dédiée.
               </p>

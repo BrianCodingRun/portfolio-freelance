@@ -2,6 +2,7 @@
 
 import Section from "@/components/Section";
 import SquareEffect from "@/components/SquareEffect";
+import Title from "@/components/Title";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { lineXVariant } from "@/lib/motion/variants";
@@ -16,29 +17,32 @@ import Link from "next/link";
 export default function AboutMe({ profile }: { profile: UserType | null }) {
   return (
     <Section className="relative xl:max-w-6xl py-4">
-      <div className="w-full flex flex-col md:flex-row gap-12 md:gap-16 items-start md:items-center justify-between">
+      <div className="w-full flex flex-col md:flex-row gap-16 items-start md:items-center justify-between">
         {/* ── COLONNE GAUCHE : Bio + CTA ── */}
-        <div className="flex flex-1 flex-col items-start md:gap-6 gap-2">
-          {/* Label */}
-          <div className="flex items-center gap-2">
-            <motion.div
-              variants={lineXVariant}
-              initial="hidden"
-              animate="visible"
-              className="bg-primary w-7 h-0.5 origin-left"
-            />
-            <h2 className="text-primary uppercase tracking-widest font-semibold">
-              Au service de {"l'humain"}
-            </h2>
-          </div>
-          <div className="flex flex-col gap-2 max-sm:py-2">
+        <div className="flex flex-1 flex-col items-start gap-6">
+          <div className="flex flex-col">
+            {/* Label */}
+            <div className="flex items-center gap-2">
+              <motion.div
+                variants={lineXVariant}
+                initial="hidden"
+                animate="visible"
+                className="bg-primary w-7 h-0.5 origin-left"
+              />
+              <span className="max-sm:text-sm 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
+                Au service de {"l'humain"}
+              </span>
+            </div>
             {/* Titre accrocheur */}
-            <h3 className="text-2xl md:text-4xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl">
+            <Title
+              level={2}
+              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
+            >
               Le visage derrière <span className="text-primary">Nexmyr.</span>
-            </h3>
-            <Badge variant="outline" className="max-sm:hidden">
-              Brian Coupama • Développeur & Fondateur de Nexmyr
-            </Badge>
+              <Badge variant="outline" className="max-sm:hidden text-sm">
+                Brian Coupama • Développeur & Fondateur de Nexmyr
+              </Badge>
+            </Title>
           </div>
           {/* ── CARTE D'IDENTITÉ (mobile uniquement) ── */}
           <div className="md:hidden flex items-center gap-3">
@@ -50,7 +54,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
               className="w-12 h-12 object-cover object-[center_-6px] border border-primary/40 shrink-0"
               loading="eager"
             />
-            <div className="text-sm leading-tight">
+            <div className="text-xs leading-tight">
               <p className="font-semibold text-neutral-800 dark:text-zinc-200">
                 Brian Coupama
               </p>
@@ -60,14 +64,14 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
             </div>
           </div>
           {/* Bio */}
-          <p className="text-lg leading-normal">
+          <p className="max-sm:text-base 2xl:text-lg text-xl leading-relaxed">
             {profile?.bio === ""
               ? "Passionné par le développement web depuis 2021, j'ai construit mes compétences étape par étape — du titre DWWM jusqu'au Bac+3 CDA. Basé à La Réunion, j'accompagne les entreprises, indépendants et associations de l'île dans la création de sites qui leur ressemblent et qui attirent de vrais clients."
               : profile?.bio}
           </p>
 
           {/* Citation personnelle */}
-          <blockquote className="border-l-2 border-primary pl-4 text-base text-muted-foreground italic max-w-xl">
+          <blockquote className="border-l-2 border-primary pl-4 max-sm:text-sm text-base text-muted-foreground font-light italic max-w-xl">
             &quot;
             {
               "J'ai appris à douter, à recommencer, à tenir. C'est ça, aujourd'hui, que je mets dans chaque projet."
@@ -79,7 +83,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
           <Link
             href="/journey"
             className={cn(
-              buttonVariants({ variant: "secondary", size: "default" }),
+              buttonVariants({ variant: "secondary", size: "lg" }),
               "group",
             )}
           >
@@ -175,7 +179,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
                 ease: "easeOut",
               },
             }}
-            className="absolute -bottom-4 -left-4 w-0.5 h-12 bg-primary origin-top"
+            className="absolute -bottom-4 -left-4 w-12 h-0.5 bg-primary origin-top"
           />
           <motion.div
             initial={{
@@ -203,7 +207,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
                 ease: "easeOut",
               },
             }}
-            className="absolute -bottom-2 -left-2 w-12 h-0.5 bg-primary origin-bottom-left"
+            className="absolute -bottom-2 -left-2 w-0.5 h-12 bg-primary origin-bottom-left"
           />
           <motion.div
             initial={{

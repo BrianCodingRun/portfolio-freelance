@@ -1,49 +1,64 @@
 "use client";
 
-import DynamicStagger from "@/components/motion/DynamicStagger";
-import DynamicStaggerItem from "@/components/motion/DynamicStaggerItem";
+/* 
+
+TOUS LES CONTENUS EN COMMENTAIRE SONT POUR LA PROCHAINE
+INTEGRATION DE SYSTEME DE FILTRE LORSQU'IL Y AURA PLUS DE
+PROJETS A MONTRER.
+
+A SURTOUT PAS SUPPRIMER: NOTE A MOI MÊME !
+
+*/
+
+// import DynamicStagger from "@/components/motion/DynamicStagger";
+// import DynamicStaggerItem from "@/components/motion/DynamicStaggerItem";
+// import Opacity from "@/components/motion/Opacity";
+// import { AnimatePresence, motion } from "framer-motion";
+// import { useMemo, useState } from "react";
 import FadeUp from "@/components/motion/FadeUp";
-import Opacity from "@/components/motion/Opacity";
 import Section from "@/components/Section";
 import { ProjectCard } from "@/components/shared/ProjectCard";
+import Title from "@/components/Title";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
-import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { Mail } from "lucide-react";
+import Link from "next/link";
 
-const FILTERS = [
-  { id: "all", label: "Tous" },
-  { id: "fullstack", label: "Fullstack" },
-  { id: "backend", label: "Backend" },
-  { id: "frontend", label: "Frontend" },
-] as const;
+// const FILTERS = [
+//   { id: "all", label: "Tous" },
+//   { id: "fullstack", label: "Fullstack" },
+//   { id: "backend", label: "Backend" },
+//   { id: "frontend", label: "Frontend" },
+// ] as const;
 
-type FilterId = (typeof FILTERS)[number]["id"];
+// type FilterId = (typeof FILTERS)[number]["id"];
 
-const filterMap: Record<FilterId, (p: Project) => boolean> = {
-  all: () => true,
-  fullstack: (p) => p.techFrontend.length > 0 && p.techBackend.length > 0,
-  backend: (p) => p.techBackend.length > 0 && p.techFrontend.length === 0,
-  frontend: (p) => p.techFrontend.length > 0 && p.techBackend.length === 0,
-};
+// const filterMap: Record<FilterId, (p: Project) => boolean> = {
+//   all: () => true,
+//   fullstack: (p) => p.techFrontend.length > 0 && p.techBackend.length > 0,
+//   backend: (p) => p.techBackend.length > 0 && p.techFrontend.length === 0,
+//   frontend: (p) => p.techFrontend.length > 0 && p.techBackend.length === 0,
+// };
 
 type Props = {
   projects: Project[];
 };
 
 export function ProjectsClient({ projects }: Props) {
-  const [activeFilter, setActiveFilter] = useState<FilterId>("all");
+  // const [activeFilter, setActiveFilter] = useState<FilterId>("all"); // Pour plus tard
 
-  const filtered = useMemo(() => {
-    const fn = filterMap[activeFilter];
-    return projects.filter(fn);
-  }, [projects, activeFilter]);
+  // const filtered = useMemo(() => {
+  //   const fn = filterMap[activeFilter];
+  //   return projects.filter(fn);
+  // }, [projects, activeFilter]);
 
-  const gridProjects = useMemo(() => {
-    return filtered.filter((p) => p || activeFilter !== "all");
-  }, [filtered, activeFilter]);
+  // const gridProjects = useMemo(() => {
+  //   return filtered.filter((p) => p || activeFilter !== "all");
+  // }, [filtered, activeFilter]);
 
   return (
-    <Section className="xl:max-w-5xl">
+    <Section>
       <div className="py-12 space-y-12">
         {/* En-tête */}
         <FadeUp delay={0.02}>
@@ -52,9 +67,12 @@ export function ProjectsClient({ projects }: Props) {
               Nexmyr · Portfolio
             </p>
 
-            <h1 className="text-4xl font-bold tracking-tight">
+            <Title
+              level={1}
+              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
+            >
               Mes réalisations
-            </h1>
+            </Title>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
               Chaque projet répond à un besoin différent, avec la stack la plus
@@ -64,7 +82,7 @@ export function ProjectsClient({ projects }: Props) {
         </FadeUp>
 
         {/* Filtres */}
-        <FadeUp delay={0.02}>
+        {/* <FadeUp delay={0.02}>
           <div className="flex items-center gap-3 flex-wrap">
             <div className="flex items-center gap-1.5 flex-wrap">
               {FILTERS.map((filter) => (
@@ -87,10 +105,10 @@ export function ProjectsClient({ projects }: Props) {
               {filtered.length} projet{filtered.length > 1 ? "s" : ""}
             </span>
           </div>
-        </FadeUp>
+        </FadeUp> */}
 
         {/* Grille projets */}
-        <AnimatePresence mode="wait">
+        {/* <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
             initial={{ opacity: 0 }}
@@ -124,46 +142,65 @@ export function ProjectsClient({ projects }: Props) {
               </Opacity>
             )}
           </motion.div>
-        </AnimatePresence>
+        </AnimatePresence> */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {projects.map((project) => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
+        </div>
+      </div>
+      <div className="border bg-card p-8 text-center space-y-3 mb-8">
+        <h2 className="text-2xl font-semibold">Un projet en tête ?</h2>
+        <p className="text-base text-muted-foreground max-w-sm mx-auto">
+          Une idée de plateforme, un site à créer, un besoin métier à
+          digitaliser — discutons-en.
+        </p>
+        <Link
+          href="/contact"
+          className={cn(buttonVariants({ variant: "default" }))}
+        >
+          <Mail className="w-4 h-4" />
+          Me contacter
+        </Link>
       </div>
     </Section>
   );
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-3 text-xs font-medium tracking-widest uppercase text-muted-foreground">
-      <span>{children}</span>
-      <span className="flex-1 h-px bg-muted-foreground" />
-    </div>
-  );
-}
+// function SectionLabel({ children }: { children: React.ReactNode }) {
+//   return (
+//     <div className="flex items-center gap-3 text-xs font-medium tracking-widest uppercase text-muted-foreground">
+//       <span>{children}</span>
+//       <span className="flex-1 h-px bg-muted-foreground" />
+//     </div>
+//   );
+// }
 
-function EmptyState() {
-  return (
-    <div className="flex flex-col items-center justify-center py-20 gap-3 text-center border border-dashed border-muted-foreground">
-      <div className="w-10 h-10 bg-muted flex items-center justify-center">
-        <svg
-          className="w-4 h-4 text-muted-foreground"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          viewBox="0 0 24 24"
-          aria-hidden
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776"
-          />
-        </svg>
-      </div>
+// function EmptyState() {
+//   return (
+//     <div className="flex flex-col items-center justify-center py-20 gap-3 text-center border border-dashed border-muted-foreground">
+//       <div className="w-10 h-10 bg-muted flex items-center justify-center">
+//         <svg
+//           className="w-4 h-4 text-muted-foreground"
+//           fill="none"
+//           stroke="currentColor"
+//           strokeWidth={1.5}
+//           viewBox="0 0 24 24"
+//           aria-hidden
+//         >
+//           <path
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776"
+//           />
+//         </svg>
+//       </div>
 
-      <p className="text-sm font-medium">Aucun projet dans cette catégorie</p>
+//       <p className="text-sm font-medium">Aucun projet dans cette catégorie</p>
 
-      <p className="text-xs text-muted-foreground">
-        {"D'autres projets arrivent bientôt."}
-      </p>
-    </div>
-  );
-}
+//       <p className="text-xs text-muted-foreground">
+//         {"D'autres projets arrivent bientôt."}
+//       </p>
+//     </div>
+//   );
+// }

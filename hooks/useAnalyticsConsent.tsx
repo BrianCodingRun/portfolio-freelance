@@ -1,33 +1,57 @@
 import { useSyncExternalStore } from "react";
 
-type ConsentState = "pending" | "accepted" | "refused";
+export type ConsentState = "pending" | "accepted" | "refused";
 
 const CONSENT_KEY = "analytics_consent";
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 an
 
-// ── Cookie helpers ────────────────────────────────────────────────────────────
+/** Le choix est redemandé au bout d'environ 6 mois */
+const CONSENT_TTL_MS = 1000 * 60 * 60 * 24 * 182;
+
+type StoredConsent = { value: "accepted" | "refused"; at: number };
+
+// ── Lecture / écriture ───────────────────────────────────────────────────────
+
+/** Lit le choix courant. Utilisable hors React (ex. au moment d'envoyer). */
+export function getConsent(): ConsentState {
+  try {
+    const raw = localStorage.getItem(CONSENT_KEY);
+    if (!raw) return "pending";
+    // L'ancien format (simple chaîne) échoue au parse → on redemande le choix
+    const stored = JSON.parse(raw) as StoredConsent;
+    if (stored.value !== "accepted" && stored.value !== "refused")
+      return "pending";
+    if (Date.now() - stored.at > CONSENT_TTL_MS) return "pending";
+    return stored.value;
+  } catch {
+    return "pending";
+  }
+}
+
+function write(value: "accepted" | "refused") {
+  const stored: StoredConsent = { value, at: Date.now() };
+  localStorage.setItem(CONSENT_KEY, JSON.stringify(stored));
+  setCookie(value);
+}
+
+// ── Cookie (même durée de vie que le choix) ──────────────────────────────────
+// Supprime-le si rien côté serveur ne le lit : localStorage suffit.
 
 function setCookie(value: "accepted" | "refused") {
-  document.cookie = [
+  const parts = [
     `${CONSENT_KEY}=${value}`,
-    `max-age=${COOKIE_MAX_AGE}`,
+    `max-age=${Math.round(CONSENT_TTL_MS / 1000)}`,
     "path=/",
     "SameSite=Lax",
-    // Décommente si ton site est en HTTPS uniquement :
-    // "Secure",
-  ].join("; ");
+  ];
+  if (location.protocol === "https:") parts.push("Secure");
+  document.cookie = parts.join("; ");
 }
 
 function deleteCookie() {
   document.cookie = `${CONSENT_KEY}=; max-age=0; path=/`;
 }
 
-// ── Store (localStorage comme source de vérité côté client) ──────────────────
-
-function getSnapshot(): ConsentState {
-  const stored = localStorage.getItem(CONSENT_KEY) as ConsentState | null;
-  return stored === "accepted" || stored === "refused" ? stored : "pending";
-}
+// ── Store ────────────────────────────────────────────────────────────────────
 
 function getServerSnapshot(): ConsentState {
   return "pending";
@@ -49,19 +73,17 @@ function notify() {
 export function useAnalyticsConsent() {
   const consent = useSyncExternalStore(
     subscribe,
-    getSnapshot,
+    getConsent,
     getServerSnapshot,
   );
 
   const accept = () => {
-    localStorage.setItem(CONSENT_KEY, "accepted");
-    setCookie("accepted");
+    write("accepted");
     notify();
   };
 
   const refuse = () => {
-    localStorage.setItem(CONSENT_KEY, "refused");
-    setCookie("refused");
+    write("refused");
     notify();
   };
 

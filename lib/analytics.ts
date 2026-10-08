@@ -1,6 +1,12 @@
 import type { AnalyticsEntry, AnalyticsStats, Period } from "@/types/analytics";
 
-const API_URL = process.env.NEXT_PUBLIC_ANALYTICS_API_URL!;
+// Variables serveur uniquement (sans NEXT_PUBLIC_) : le jeton ne doit jamais
+// atteindre le navigateur. Ce fichier ne doit donc être importé que depuis des
+// composants serveur, des server actions ou des route handlers.
+const API_URL = process.env.ANALYTICS_API_URL;
+const READ_TOKEN = process.env.ANALYTICS_READ_TOKEN;
+
+type Count = { name: string; count: number };
 
 function getPeriodRange(period: Period): {
   from: Date;
@@ -22,34 +28,40 @@ function getPeriodRange(period: Period): {
   return { from, to, prevFrom, prevTo };
 }
 
-export async function fetchAnalytics(
-  period: Period,
-): Promise<AnalyticsEntry[]> {
-  const res = await fetch(`${API_URL}`, {
+// --- Récupération : l'API filtre par période et exige le jeton ---
+
+async function fetchRange(from: Date, to: Date): Promise<AnalyticsEntry[]> {
+  if (!API_URL || !READ_TOKEN) {
+    throw new Error("ANALYTICS_API_URL et ANALYTICS_READ_TOKEN sont requis");
+  }
+
+  const url = `${API_URL}?from=${from.toISOString()}&to=${to.toISOString()}`;
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${READ_TOKEN}` },
     next: { revalidate: 120 },
   });
 
   if (!res.ok) throw new Error("Erreur fetch analytics");
-  const all: AnalyticsEntry[] = await res.json();
+  return res.json();
+}
 
-  const { from } = getPeriodRange(period);
-  return all.filter((e) => new Date(e.timestamp) >= from);
+export async function fetchAnalytics(
+  period: Period,
+): Promise<AnalyticsEntry[]> {
+  const { from, to } = getPeriodRange(period);
+  return fetchRange(from, to);
 }
 
 export async function fetchAnalyticsPrev(
   period: Period,
 ): Promise<AnalyticsEntry[]> {
-  const res = await fetch(`${API_URL}`, {
-    next: { revalidate: 120 },
-  });
-
-  if (!res.ok) return [];
-  const all: AnalyticsEntry[] = await res.json();
-
   const { prevFrom, prevTo } = getPeriodRange(period);
-  return all.filter(
-    (e) => new Date(e.timestamp) >= prevFrom && new Date(e.timestamp) <= prevTo,
-  );
+  try {
+    return await fetchRange(prevFrom, prevTo);
+  } catch {
+    // La période précédente sert seulement à la comparaison
+    return [];
+  }
 }
 
 // --- Agrégations ---
@@ -61,12 +73,12 @@ function countUnique(
   return new Set(entries.map(key)).size;
 }
 
-function countBy<T extends string>(
+function countBy(
   entries: AnalyticsEntry[],
-  key: (e: AnalyticsEntry) => T,
+  key: (e: AnalyticsEntry) => string,
   limit = 5,
-): { name: T; count: number }[] {
-  const map = new Map<T, number>();
+): Count[] {
+  const map = new Map<string, number>();
   for (const e of entries) {
     const k = key(e);
     map.set(k, (map.get(k) ?? 0) + 1);
@@ -78,26 +90,16 @@ function countBy<T extends string>(
 }
 
 function countPages(entries: AnalyticsEntry[], limit = 5) {
-  const map = new Map<string, number>();
-  for (const e of entries) {
-    map.set(e.pathname, (map.get(e.pathname) ?? 0) + 1);
-  }
-  return Array.from(map.entries())
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([pathname, count]) => ({ pathname, count }));
+  return countBy(entries, (e) => e.pathname, limit).map(({ name, count }) => ({
+    pathname: name,
+    count,
+  }));
 }
 
 function countCountries(entries: AnalyticsEntry[], limit = 5) {
-  const map = new Map<string, number>();
-  for (const e of entries) {
-    const c = e.location.country;
-    map.set(c, (map.get(c) ?? 0) + 1);
-  }
-  return Array.from(map.entries())
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([country, count]) => ({ country, count }));
+  return countBy(entries, (e) => e.location?.country ?? "Unknown", limit).map(
+    ({ name, count }) => ({ country: name, count }),
+  );
 }
 
 function buildChartData(
@@ -125,8 +127,7 @@ function buildChartData(
     const d = new Date(now);
     if (format === "hour") d.setHours(d.getHours() - i);
     else d.setDate(d.getDate() - i);
-    const key = getKey(d);
-    buckets.set(key, { current: 0, previous: 0 });
+    buckets.set(getKey(d), { current: 0, previous: 0 });
   }
 
   for (const e of current) {
@@ -147,8 +148,10 @@ export async function computeStats(period: Period): Promise<AnalyticsStats> {
     fetchAnalyticsPrev(period),
   ]);
 
-  const uniqueVisitors = countUnique(current, (e) => e.ip);
-  const uniqueVisitorsPrev = countUnique(previous, (e) => e.ip);
+  // L'identifiant change chaque jour : on compte donc des visiteurs uniques
+  // PAR JOUR, cumulés sur la période (et non des personnes distinctes).
+  const uniqueVisitors = countUnique(current, (e) => e.visitorId);
+  const uniqueVisitorsPrev = countUnique(previous, (e) => e.visitorId);
 
   const avgDuration =
     current.length > 0
@@ -161,7 +164,7 @@ export async function computeStats(period: Period): Promise<AnalyticsStats> {
         )
       : 0;
 
-  // Pages par session = total visites / visiteurs uniques
+  // Pages par session ≈ total de pages vues / visiteurs uniques du jour
   const pagesPerSession =
     uniqueVisitors > 0
       ? Math.round((current.length / uniqueVisitors) * 10) / 10
@@ -180,9 +183,9 @@ export async function computeStats(period: Period): Promise<AnalyticsStats> {
     pagesPerSessionPrev,
     topPages: countPages(current),
     topCountries: countCountries(current),
-    devices: countBy(current, (e) => e.device as any),
-    browsers: countBy(current, (e) => e.browser as any),
-    systems: countBy(current, (e) => e.os as any),
+    devices: countBy(current, (e) => e.device),
+    browsers: countBy(current, (e) => e.browser),
+    systems: countBy(current, (e) => e.os),
     chartData: buildChartData(current, previous, period),
     recentVisits: [...current]
       .sort(

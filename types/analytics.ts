@@ -1,12 +1,12 @@
 export type AnalyticsEntry = {
   _id?: string;
-  timestamp: Date;
+  timestamp: Date | string;
   pathname: string;
   duration: number;
-  ip: string;
+  /** Identifiant haché qui change chaque jour (aucune IP stockée) */
+  visitorId: string;
   location: {
     country: string;
-    city: string;
   };
   device: string;
   browser: string;
@@ -16,6 +16,7 @@ export type AnalyticsEntry = {
 export type Period = "today" | "7d" | "30d" | "90d";
 
 export type AnalyticsStats = {
+  /** Visiteurs uniques par jour, cumulés sur la période */
   uniqueVisitors: number;
   uniqueVisitorsPrev: number;
   avgDuration: number;

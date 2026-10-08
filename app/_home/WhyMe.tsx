@@ -7,6 +7,7 @@ import Section from "@/components/Section";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import WhyMeCard from "./components/WhyMeCard";
 
 export default function WhyMe() {
@@ -29,10 +30,13 @@ export default function WhyMe() {
                   className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
                 />
               </div>
-              <Title level={2} className="text-current">
-                Des atouts concrets.
+              <Title
+                level={2}
+                className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+              >
+                Des atouts <span className="text-primary">concrets.</span>
               </Title>
-              <Subtitle className="py-2 sm:max-w-lg sm:mx-auto">
+              <Subtitle className="max-sm:text-base 2xl:text-lg text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
                 Au-delà des compétences techniques, voici ce qui fait la
                 différence quand on travaille ensemble.
               </Subtitle>
@@ -40,10 +44,10 @@ export default function WhyMe() {
           </FadeUp>
         </div>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-          {whyMeData.map((item) => (
-            <StaggerItem key={item.id}>
-              <WhyMeCard item={item} />
+        <StaggerContainer className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {whyMeData.map((item, i) => (
+            <StaggerItem key={item.id} className={cn("h-full", item.className)}>
+              <WhyMeCard item={item} index={i} />
             </StaggerItem>
           ))}
         </StaggerContainer>

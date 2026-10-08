@@ -11,6 +11,7 @@ import Projects from "./_home/Projects";
 import Services from "./_home/Services";
 import Skills from "./_home/Skills";
 import WhyMe from "./_home/WhyMe";
+import InfiniteMarquee from "./_home/components/InfiniteMarquee";
 
 export const metadata: Metadata = buildMetadata({
   description:
@@ -28,6 +29,10 @@ export default async function Home() {
     <>
       {/* HERO */}
       <Hero />
+      {/* SPACING */}
+      <Spacing size="sm" />
+      {/* MARQUEE ANIMATION TEXT */}
+      <InfiniteMarquee />
       {/* SPACING */}
       <Spacing size="sm" />
       {/* ABOUT ME */}

@@ -9,7 +9,7 @@ export default function Subtitle(props: SubtitleProps) {
   return (
     <p
       className={cn(
-        "text-muted-foreground text-base sm:text-lg py-4 md:leading-6",
+        "text-muted-foreground text-base sm:text-lg py-4 sm:leading-6",
         props.className,
       )}
     >

@@ -19,7 +19,7 @@ export default async function FAQ() {
 
   const faqData = generateFaqData(pricings);
   return (
-    <Section>
+    <Section className="xl:max-w-5xl">
       <Column>
         <div className="w-full">
           <FadeUp delay={0.4}>
@@ -32,10 +32,13 @@ export default async function FAQ() {
                 FAQ
               </span>
             </div>
-            <Title level={2} className="text-current">
-              Questions fréquentes.
+            <Title
+              level={2}
+              className="md:text-5xl text-neutral-800 dark:text-zinc-300"
+            >
+              Questions <span className="text-primary">fréquentes.</span>
             </Title>
-            <Subtitle className="text-muted-foreground not-italic py-2">
+            <Subtitle className="text-muted-foreground py-2">
               Tout ce que vous devez savoir avant de démarrer votre projet web
               avec moi.
             </Subtitle>

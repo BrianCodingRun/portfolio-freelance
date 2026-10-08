@@ -1,40 +1,21 @@
 import { BrowserFrame } from "@/components/BrowserFrame";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getBrowserFrameProps } from "@/lib/project-utils";
 import { cn } from "@/lib/utils";
-import type { Project, TechBadge } from "@/types/project";
+import type { Project } from "@/types/project";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const badgeStyles: Record<TechBadge["color"], string> = {
-  blue: "bg-blue-950/80 text-blue-300 border-blue-800",
-  teal: "bg-teal-950/80 text-teal-300   border-teal-800",
-  amber: "bg-amber-950/80 text-amber-300 border-amber-800",
-  purple: "bg-purple-950/80 text-purple-300 border-purple-800",
-  green: "bg-green-950/80 text-green-300 border-green-800",
-  coral: "bg-orange-950/80 text-orange-300 border-orange-800",
-  pink: "bg-pink-950/80 text-pink-300 border-pink-800",
-  red: "bg-red-950/80 text-red-300 border-red-800",
-};
-
-const statusStyles = {
-  completed:
-    "bg-teal-50   text-teal-700   border-teal-200   dark:bg-teal-950   dark:text-teal-300   dark:border-teal-800",
-  "in-progress":
-    "bg-amber-50  text-amber-700  border-amber-200  dark:bg-amber-950  dark:text-amber-300  dark:border-amber-800",
-  archived:
-    "bg-zinc-100  text-zinc-500   border-zinc-200   dark:bg-zinc-800      dark:text-zinc-400   dark:border-zinc-700",
-};
-
-const statusLabels = {
-  completed: "Terminé",
-  "in-progress": "En cours",
-  archived: "Archivé",
-};
+/**
+ * Nombre maximum de badges techniques affichés.
+ * À répercuter dans le dashboard (limite de saisie) pour qu'aucun badge
+ * ne disparaisse sans explication.
+ */
+const MAX_BADGES = 5;
 
 type Props = {
   project: Project;
@@ -42,38 +23,51 @@ type Props = {
   featured?: boolean;
 };
 
+/**
+ * Champs optionnels à ajouter à `Project` (types + schéma Mongoose + dashboard) :
+ *  - result?: string         → bénéfice concret, ex. « 3 rôles gérés : admin, instructeur, apprenant »
+ *  - coverAlt?: string       → texte alternatif descriptif de la capture
+ *  - coverPosition?: string  → object-position CSS, ex. "left top" ou "50% 20%"
+ *                              pour recadrer la capture sur l'élément clé
+ */
 export function ProjectCard({ project, featured = false }: Props) {
+  const { result, coverAlt, coverPosition } = project as Project & {
+    result?: string;
+    coverAlt?: string;
+    coverPosition?: string;
+  };
+
   return (
     <article
       className={cn(
-        "group relative flex flex-col bg-card h-full",
-        "border",
-        "overflow-hidden",
-        "transition-all duration-200",
-        "hover:border-primary",
-        "hover:shadow-sm",
-        "focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-background",
+        "group relative flex h-full flex-col overflow-hidden border bg-card",
+        "transition-colors duration-200 hover:border-primary",
+        // Anneau de focus uniquement pour la navigation clavier
+        "has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-primary",
+        "has-[a:focus-visible]:ring-offset-2 has-[a:focus-visible]:ring-offset-background",
         featured && "sm:flex-row",
       )}
     >
       {/* Cover */}
       <div
         className={cn(
-          "relative bg-card shrink-0",
-          "border-b border-border",
+          "relative shrink-0 border-b border-border bg-card",
           featured
-            ? "sm:border-b-0 sm:border-r sm:w-56 sm:h-auto h-44 w-full"
-            : "h-52 w-full",
+            ? "h-44 w-full sm:h-auto sm:w-56 sm:border-b-0 sm:border-r"
+            : "h-56 w-full",
         )}
       >
         {project.coverImage ? (
           <BrowserFrame {...getBrowserFrameProps(project)} className="h-full">
             <Image
               src={project.coverImage}
-              alt={`Aperçu ${project.title}`}
+              alt={coverAlt ?? `Aperçu du projet ${project.title}`}
               fill
               sizes="(max-width: 640px) 100vw, 540px"
-              className="object-cover"
+              className="object-cover object-top"
+              style={
+                coverPosition ? { objectPosition: coverPosition } : undefined
+              }
             />
           </BrowserFrame>
         ) : (
@@ -82,103 +76,100 @@ export function ProjectCard({ project, featured = false }: Props) {
       </div>
 
       {/* Body */}
-      <div className="flex flex-col flex-1 p-5 gap-4">
-        {/* Meta */}
-        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <span
-            className={cn(
-              "sm:visible hidden text-xs font-medium px-1.5 py-0.5 border",
-              statusStyles[project.status],
-            )}
-          >
-            {statusLabels[project.status]}
-          </span>
-          <Separator orientation="vertical" className="sm:visible hidden" />
-          <span>{project.year}</span>
-          <Dot />
-          <span>{project.duration}</span>
+      <div className="flex flex-1 flex-col gap-4 p-5">
+        <div className="space-y-2">
+          {/* Contexte : pour qui a été fait le projet */}
           {project.client && (
-            <>
-              <Dot />
-              <span className="truncate">{project.client}</span>
-            </>
+            <p className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span
+                aria-hidden
+                className="size-1.5 shrink-0 rounded-full bg-primary"
+              />
+              {project.client}
+            </p>
           )}
-        </div>
 
-        {/* Title + tagline */}
-        <div className="space-y-1.5">
-          <Title level={2} className="text-current">
+          <Title
+            level={3}
+            className="font-medium text-current max-sm:text-2xl md:text-3xl"
+          >
             <Link
               href={`/projects/${project.slug}`}
-              className={cn(
-                "outline-none",
-                // // Pseudo-élément qui étend la zone cliquable à toute la card
-                "before:absolute before:inset-0 before:content-['']",
-                "before:rounded-md",
-              )}
+              // Le pseudo-élément étend la zone cliquable à toute la card
+              className="outline-none before:absolute before:inset-0 before:content-['']"
             >
               {project.title}
             </Link>
           </Title>
-          <Subtitle className="py-0 md:text-base">{project.tagline}</Subtitle>
+
+          {/* Ce que fait le projet, en langage client */}
+          <Subtitle className="py-0 text-base leading-snug max-sm:text-sm">
+            {project.tagline}
+          </Subtitle>
         </div>
 
-        {/* Badges */}
+        {/* Bénéfice concret (optionnel) */}
+        {result && (
+          <p className="border-l-2 border-primary pl-3 text-sm leading-snug">
+            {result}
+          </p>
+        )}
+
+        {/* Stack : discrète, une seule teinte issue de la palette */}
         {project.badges.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {project.badges.slice(0, 5).map((badge) => (
-              <span
+          <ul
+            aria-label="Technologies utilisées"
+            className="flex flex-wrap gap-1.5"
+          >
+            {project.badges.slice(0, MAX_BADGES).map((badge) => (
+              <li
                 key={badge.label}
-                className={cn(
-                  "text-xs font-medium px-2 py-0.5 border",
-                  badgeStyles[badge.color],
-                )}
+                className="border border-border bg-muted px-1.5 py-0.5 text-xs font-medium text-muted-foreground"
               >
                 {badge.label}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
+
         <Separator />
-        {/* Footer */}
-        <div className="mt-auto flex justify-between items-center gap-2 pt-1">
-          <Button
-            size="lg"
-            aria-hidden="true"
-            className="inline-flex items-center gap-1.5 text-sm font-medium shadow-none"
-            tabIndex={-1}
+
+        {/* Faux bouton : le lien du titre couvre déjà toute la card,
+            donc pas d'élément interactif caché (aria-hidden + tabIndex) */}
+        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+          <span
+            aria-hidden
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "pointer-events-none gap-1.5 text-sm font-medium shadow-none",
+            )}
           >
             Voir le projet
-            <ArrowRight
-              className="w-3.5 h-3.5 transition-transform duration-150 group-hover:translate-x-0.5"
-              aria-hidden
-            />
-          </Button>
+            <ArrowRight className="size-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
+          </span>
         </div>
       </div>
     </article>
   );
 }
 
-function Dot() {
-  return (
-    <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 inline-block" />
-  );
-}
-
 function CoverPlaceholder() {
+  // color-mix : mieux supporté que la relative color syntax `rgb(from …)`
+  const line = "color-mix(in srgb, currentColor 15%, transparent)";
+
   return (
     <div className="absolute inset-0 flex items-center justify-center">
       <div
+        aria-hidden
         className="absolute inset-0 opacity-40"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(0deg,rgb(from currentColor r g b/0.15) 0,rgb(from currentColor r g b/0.15) 0.5px,transparent 0.5px,transparent 32px)," +
-            "repeating-linear-gradient(90deg,rgb(from currentColor r g b/0.15) 0,rgb(from currentColor r g b/0.15) 0.5px,transparent 0.5px,transparent 32px)",
+            `repeating-linear-gradient(0deg,${line} 0,${line} 0.5px,transparent 0.5px,transparent 32px),` +
+            `repeating-linear-gradient(90deg,${line} 0,${line} 0.5px,transparent 0.5px,transparent 32px)`,
         }}
       />
-      <span className="relative text-[12px] text-zinc-400 dark:text-zinc-600">
-        aperçu non disponible
+      <span className="relative text-xs text-muted-foreground">
+        Aperçu non disponible
       </span>
     </div>
   );

@@ -20,7 +20,7 @@ const sections = [
   { id: "interactivite", label: "Interactivité" },
   { id: "propriete", label: "Propriété intellectuelle" },
   { id: "liens", label: "Liens" },
-  { id: "confidentialite", label: "Confidentialité" },
+  { id: "privacy", label: "Confidentialité" },
   { id: "cgv", label: "CGV" },
 ];
 
@@ -69,7 +69,7 @@ export default function MentionsLegales() {
               {
                 label: "Nom du site",
                 value:
-                  "Nexmyr — Conception de sites web et d'applications à La Réunion",
+                  "Nexmyr - Créateur de sites web sur-mesure et d'applications à La Réunion",
               },
               {
                 label: "Adresse",
@@ -250,23 +250,18 @@ export default function MentionsLegales() {
         <Separator />
 
         {/* Section : Confidentialité */}
-        <div id="confidentialite" className="flex flex-col gap-4 scroll-mt-20">
-          <SectionTitle>Confidentialité</SectionTitle>
+        <div id="privacy" className="flex flex-col gap-4 scroll-mt-20">
+          <SectionTitle>Politique de confidentialité</SectionTitle>
           <Prose>
-            {
-              'Ce site collecte des données analytiques de navigation (pages visitées, durée de session, appareil, navigateur, localisation approximative et adresse IP) uniquement avec votre consentement explicite. Ces données sont utilisées exclusivement à des fins statistiques internes et ne sont ni revendues ni partagées avec des tiers. Vous pouvez retirer votre consentement à tout moment via le bouton "Confidentialité" en bas de page.'
-            }
-          </Prose>
-          <Prose>
-            {
-              "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données. Pour exercer ces droits, contactez-nous à"
-            }{" "}
-            <a
-              href="mailto:contact@nexmyr.com"
+            Nous tenons à la protection de vos données. Pour comprendre comment
+            elles sont stockées, utilisées et pour connaître vos droits,
+            consultez notre politique de confidentialité.{" "}
+            <Link
+              href="/privacy"
               className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
             >
-              contact@nexmyr.com
-            </a>
+              Voir la politique de confidentialité
+            </Link>
             .
           </Prose>
         </div>

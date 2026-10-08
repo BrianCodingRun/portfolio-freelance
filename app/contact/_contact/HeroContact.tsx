@@ -51,7 +51,10 @@ export default function HeroContact() {
               Moyen de contact
             </span>
           </div>
-          <Title level={1} className="md:text-5xl text-current">
+          <Title
+            level={1}
+            className="max-md:text-2xl 2xl:text-5xl text-7xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+          >
             Travaillons ensemble.
           </Title>
           <Subtitle className="font-light text-muted-foreground not-italic mt-2 max-w-xl">

@@ -12,7 +12,9 @@ export type TechBadge = {
 };
 
 export type Challenge = {
+  /** Titre du problème (idéalement compréhensible sans jargon) */
   problem: string;
+  /** Titre de la solution */
   solution: string;
   problemDetail: string;
   solutionDetail: string;
@@ -42,6 +44,7 @@ export type Project = {
   slug: string;
   title: string;
   tagline: string;
+  /** Texte détaillé du résultat (section « Le résultat » de la page de détail) */
   description: string;
   coverImage: string;
   images?: string[];
@@ -50,6 +53,7 @@ export type Project = {
   duration: string;
   role: string;
   client?: string;
+  /** Ancien champ « contexte » : sert de repli si `need` est vide */
   context: string;
   challenges: Challenge[];
   metrics: ProjectMetric[];
@@ -64,4 +68,16 @@ export type Project = {
   order: number;
   createdAt: string;
   updatedAt: string;
+
+  // --- Nouveaux champs optionnels ---
+  /** Le besoin du client, 2 à 3 phrases, sans jargon */
+  need?: string;
+  /** 3 à 4 fonctionnalités formulées en langage d'usage */
+  features?: string[];
+  /** Bénéfice en une phrase (affiché sur la carte du portfolio) */
+  result?: string;
+  /** Texte alternatif descriptif de la capture */
+  coverAlt?: string;
+  /** object-position CSS pour recadrer la capture, ex. "left top" */
+  coverPosition?: string;
 };

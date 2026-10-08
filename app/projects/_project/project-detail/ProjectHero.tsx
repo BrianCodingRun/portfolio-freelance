@@ -1,144 +1,95 @@
-"use client";
-
-import FadeUp from "@/components/motion/FadeUp";
+import { BrowserFrame } from "@/components/BrowserFrame";
 import Opacity from "@/components/motion/Opacity";
-import StaggerContainer from "@/components/motion/StaggerContainer";
-import StaggerItem from "@/components/motion/StaggerItem";
-import Section from "@/components/Section";
 import { buttonVariants } from "@/components/ui/button";
+import { getBrowserFrameProps } from "@/lib/project-utils";
 import { cn } from "@/lib/utils";
-import type { Project, TechBadge } from "@/types/project";
+import type { Project } from "@/types/project";
 import { ArrowUpRight, ExternalLink, FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
-const badgeVariantMap: Record<TechBadge["color"], string> = {
-  blue: "bg-blue-950/80 text-blue-300 border-blue-800",
-  teal: "bg-teal-950/80 text-teal-300   border-teal-800",
-  amber: "bg-amber-950/80 text-amber-300 border-amber-800",
-  purple: "bg-purple-950/80 text-purple-300 border-purple-800",
-  green: "bg-green-950/80 text-green-300 border-green-800",
-  coral: "bg-orange-950/80 text-orange-300 border-orange-800",
-  pink: "bg-pink-950/80 text-pink-300 border-pink-800",
-  red: "bg-red-950/80 text-red-300 border-red-800",
-};
-
 const linkIconMap = {
-  demo: <ExternalLink className="w-4 h-4" />,
-  github: <FaGithub className="w-4 h-4" />,
-  pdf: <FileText className="w-4 h-4" />,
-  external: <ArrowUpRight className="w-4 h-4" />,
-};
-
-const statusMap = {
-  completed: {
-    label: "Terminé",
-    className:
-      "bg-green-50 text-green-700 border-green-200 dark:bg-green-950 dark:text-green-300",
-  },
-  "in-progress": {
-    label: "En cours",
-    className:
-      "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300",
-  },
-  archived: {
-    label: "Archivé",
-    className:
-      "bg-zinc-100 text-zinc-500 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400",
-  },
+  demo: <ExternalLink className="size-4" aria-hidden />,
+  github: <FaGithub className="size-4" aria-hidden />,
+  pdf: <FileText className="size-4" aria-hidden />,
+  external: <ArrowUpRight className="size-4" aria-hidden />,
 };
 
 type Props = { project: Project };
 
 export function ProjectHero({ project }: Props) {
-  const status = statusMap[project.status];
-
   return (
-    <Section className="space-y-8">
-      {/* Cover image */}
-      <Opacity delay={0.04}>
-        <div className="relative w-full aspect-video overflow-hidden border-2 border-neutral-800">
-          {project.coverImage ? (
-            <Image
-              src={project.coverImage}
-              alt={`Aperçu du projet ${project.title}`}
-              fill
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-zinc-400 dark:text-zinc-600 text-sm">
-              Aperçu non disponible
-            </div>
-          )}
-          {/* Status badge flottant */}
-          <span
-            className={`absolute top-4 right-4 text-xs font-medium px-3 py-1 border backdrop-blur-sm ${status.className}`}
-          >
-            {status.label}
-          </span>
-        </div>
-      </Opacity>
-
-      {/* Title + meta */}
+    <header className="space-y-8">
       <div className="space-y-4">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <FadeUp delay={0.02}>
-            <div className="flex flex-col gap-2">
-              <p className="text-sm md:text-base text-muted-foreground mb-1">
-                {project.year} · {project.duration}
-                {project.client && ` · ${project.client}`}
-              </p>
-              <h1 className="text-4xl font-bold tracking-tight">
-                {project.title}
-              </h1>
-            </div>
-          </FadeUp>
-        </div>
-        <FadeUp delay={0.02}>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-            {project.tagline}
+        {/* Pour qui a été fait le projet (même repère que sur la carte) */}
+        {project.client && (
+          <p className="flex items-center gap-2 text-sm text-muted-foreground md:text-base">
+            <span
+              aria-hidden
+              className="size-1.5 shrink-0 rounded-full bg-primary"
+            />
+            {project.client}
           </p>
-        </FadeUp>
+        )}
 
-        {/* Tech badges */}
-        <StaggerContainer className="flex flex-wrap gap-2">
-          {project.badges.map((badge) => (
-            <StaggerItem key={badge.label}>
-              <span
-                className={`inline-flex items-center text-xs font-medium px-3 py-1 border ${badgeVariantMap[badge.color]}`}
-              >
-                {badge.label}
-              </span>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          {project.title}
+        </h1>
 
-        {/* CTA buttons */}
+        <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          {project.tagline}
+        </p>
+
         {project.links.length > 0 && (
           <div className="flex flex-wrap gap-3 pt-2">
-            {project.links.map((link, i) => (
-              <Opacity key={i} delay={0.04}>
-                <Link
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({
-                      variant: link.type === "demo" ? "default" : "outline",
-                      size: "sm",
-                    }),
-                  )}
-                >
-                  {linkIconMap[link.type]}
-                  {link.label}
-                </Link>
-              </Opacity>
+            {project.links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({
+                    variant: link.type === "demo" ? "default" : "outline",
+                    size: "sm",
+                  }),
+                )}
+              >
+                {linkIconMap[link.type]}
+                {link.label}
+              </Link>
             ))}
           </div>
         )}
       </div>
-    </Section>
+
+      {/* Capture : même cadre que sur la carte du portfolio */}
+      <Opacity delay={0.04}>
+        <div className="relative aspect-video w-full overflow-hidden border">
+          {project.coverImage ? (
+            <BrowserFrame {...getBrowserFrameProps(project)} className="h-full">
+              <Image
+                src={project.coverImage}
+                alt={project.coverAlt ?? `Aperçu du projet ${project.title}`}
+                fill
+                priority
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                className="object-cover object-top"
+                style={
+                  project.coverPosition
+                    ? { objectPosition: project.coverPosition }
+                    : undefined
+                }
+              />
+            </BrowserFrame>
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
+              Aperçu non disponible
+            </div>
+          )}
+        </div>
+      </Opacity>
+    </header>
   );
 }

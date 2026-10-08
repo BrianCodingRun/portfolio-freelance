@@ -35,3 +35,23 @@
     opacity: 0;
   }
 }
+
+/* Noms des villes : texte crème avec un halo pour rester lisible sur la carte */
+.town-label {
+  --town-halo: #2f2d2d;
+  color: #f5edd8;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow:
+    0 0 3px var(--town-halo),
+    0 0 3px var(--town-halo),
+    0 1px 2px var(--town-halo);
+}
+
+/* Sur le fond brun de la carte vedette */
+.town-label--onDark {
+  --town-halo: #7b5a2a;
+}

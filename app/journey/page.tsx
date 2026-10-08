@@ -1,6 +1,8 @@
 import StaggerContainer from "@/components/motion/StaggerContainer";
 import StaggerItem from "@/components/motion/StaggerItem";
 import Section from "@/components/Section";
+import Title from "@/components/Title";
+import { Badge } from "@/components/ui/badge";
 import { getAllChapters, getConclusion } from "@/lib/journey";
 import { buildMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
@@ -23,14 +25,21 @@ export default function JourneyIndexPage() {
       <header className="mx-auto max-w-3xl px-6 space-y-4 pt-6 pb-12 my-8 text-center">
         <StaggerContainer>
           <StaggerItem>
-            <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-primary font-semibold">
+            <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-primary font-semibold">
               2011 — 2026
-            </p>
+            </span>
           </StaggerItem>
           <StaggerItem>
-            <h1 className="mt-4 text-4xl md:text-5xl font-semibold text-foreground sm:text-5xl">
-              Qui suis-je
-            </h1>
+            <Title
+              level={1}
+              className="md:text-5xl font-extrabold text-neutral-800 dark:text-zinc-300"
+            >
+              Qui se cache derrière{" "}
+              <span className="text-primary">Nexmyr ?</span>
+              <Badge variant="outline" className="text-sm">
+                Brian Coupama • Développeur & Fondateur de Nexmyr
+              </Badge>
+            </Title>
           </StaggerItem>
           <StaggerItem>
             <p className="mt-6 md:text-lg text-balance text-muted-foreground">

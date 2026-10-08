@@ -23,7 +23,7 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <header className={isScrolled ? "backdrop-blur-lg bg-background/80" : ""}>
+    <header className={`${isScrolled && "backdrop-blur-sm bg-background/90"}`}>
       <Section>
         <Navbar isScrolled={isScrolled} />
       </Section>

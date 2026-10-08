@@ -34,8 +34,11 @@ export default function Skills() {
                 className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
             </div>
-            <Title level={2} className="text-current">
-              Avec quoi je travaille.
+            <Title
+              level={2}
+              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+            >
+              Avec quoi je <span className="text-primary">travaille.</span>
             </Title>
             <Subtitle className="py-2 max-w-lg mx-auto">
               {

@@ -22,8 +22,12 @@ export default async function Services() {
   const SERVICE_SECTIONS = [
     {
       category: "pack",
-      label: "Creation de site web",
-      title: "Mes formules de création",
+      label: "Création de site web",
+      title: (
+        <>
+          Mes formules de <span className="text-primary">création</span>
+        </>
+      ),
       subtitle:
         "Du site vitrine simple au projet sur mesure complet. Je réalise aussi des applications mobiles, desktop et des contrats de maintenance — retrouvez-les juste en dessous.",
       cols: "md:grid-cols-3",
@@ -62,7 +66,10 @@ export default async function Services() {
                     />
                   </div>
 
-                  <Title level={2} className="text-current">
+                  <Title
+                    level={2}
+                    className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+                  >
                     {section.title}
                   </Title>
 
@@ -95,10 +102,10 @@ export default async function Services() {
               <Opacity delay={0.04}>
                 <div className="max-w-5xl mx-auto flex items-center justify-between flex-wrap gap-4 px-5 py-4 border border-border bg-card my-6">
                   <div>
-                    <p className="text-lg font-semibold text-foreground">
+                    <p className="text-xl font-semibold text-foreground">
                       Pas besoin {"d'un"} site web ?
                     </p>
-                    <p className="max-w-xl text-sm text-muted-foreground mt-0.5">
+                    <p className="max-w-2xl text-base text-muted-foreground mt-0.5">
                       Je conçois aussi des applications mobiles et desktop sur
                       mesure, ainsi que des contrats de maintenance pour garder
                       votre projet performant dans la durée.

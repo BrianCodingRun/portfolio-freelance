@@ -28,18 +28,21 @@ export default async function FaqPricingPage() {
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Separator
                   orientation="horizontal"
-                  className="bg-primary data-horizontal:w-8"
+                  className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
                 />
-                <span className="text-primary uppercase text-sm font-display">
+                <span className="text-primary uppercase text-sm sm:text-base font-semibold">
                   FAQ
                 </span>
                 <Separator
                   orientation="horizontal"
-                  className="bg-primary data-horizontal:w-8"
+                  className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
                 />
               </div>
-              <Title level={2} className="text-current">
-                Questions fréquentes.
+              <Title
+                level={2}
+                className="md:text-5xl text-neutral-800 dark:text-zinc-300"
+              >
+                Questions <span className="text-primary">fréquentes.</span>
               </Title>
               <Subtitle className="text-muted-foreground not-italic py-2 max-w-md mx-auto">
                 Tout ce que vous devez savoir avant de me confier votre projet.

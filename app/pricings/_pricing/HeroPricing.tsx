@@ -6,20 +6,23 @@ import Section from "@/components/Section";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { BadgeEuro, Mail } from "lucide-react";
+import { ArrowDown, BadgeEuro, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroPricing() {
   return (
-    <Section>
-      <StaggerContainer className="py-6 max-w-2xl mx-auto text-center space-y-6">
+    <Section className="min-h-96 flex items-center">
+      <StaggerContainer className="py-6 max-w-3xl mx-auto text-center space-y-4">
         <StaggerItem>
           <Badge className="text-sm p-3">Votre besoin, ma solution.</Badge>
         </StaggerItem>
         <StaggerItem>
-          <Title level={1} className="text-current md:text-5xl">
+          <Title
+            level={1}
+            className="md:text-5xl font-extrabold leading-snug text-neutral-800 dark:text-zinc-300"
+          >
             Des solutions web sur mesure pour propulser{" "}
             <span className="text-primary">votre activité</span>
           </Title>
@@ -48,6 +51,13 @@ export default function HeroPricing() {
               Me contacter
             </Link>
           </div>
+          <Button
+            variant="link"
+            className="inline-flex flex-col my-6 hover:no-underline cursor-auto"
+          >
+            <span className="text-base"> Scroller vers le bas </span>
+            <ArrowDown className="w-6 h-6" />
+          </Button>
         </FadeUp>
       </StaggerContainer>
     </Section>

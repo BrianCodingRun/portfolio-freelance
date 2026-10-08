@@ -2,7 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { useAnalyticsConsent } from "@/hooks/useAnalyticsConsent";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+
+const COLLECTED = [
+  "Pages visitées",
+  "Durée de visite",
+  "Pays",
+  "Appareil et navigateur",
+];
 
 export function ConsentBanner() {
   const { consent, accept, refuse } = useAnalyticsConsent();
@@ -31,66 +39,47 @@ export function ConsentBanner() {
         "p-7 max-sm:p-5",
       ].join(" ")}
     >
-      {/* ── Content ── */}
       <div className="flex flex-col gap-2.5">
-        {/* Eyebrow */}
-        <div className="flex items-center gap-2">
-          <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="text-xs font-medium uppercase tracking-widest text-secondary-foreground">
-            Confidentialité &amp; Données
-          </span>
-        </div>
-
-        {/* Title */}
         <p id="consent-title" className="text-2xl font-semibold leading-snug">
-          Ce site collecte des{" "}
-          <em className="not-italic text-primary">données analytiques</em>
+          Mesure d&apos;audience du site
         </p>
 
-        {/* Description */}
         <p
           id="consent-desc"
-          className="text-sm sm:text-base font-light leading-relaxed text-secondary-foreground"
+          className="text-base font-light leading-relaxed text-secondary-foreground"
         >
-          Pour améliorer votre expérience, nous mesurons votre navigation de
-          manière anonyme. Aucune donnée n&apos;est revendue ni partagée avec
-          des tiers.
+          Je mesure la fréquentation de ce site pour l&apos;améliorer. Votre
+          adresse IP n&apos;est jamais enregistrée : elle sert uniquement à
+          déterminer votre pays, puis elle est écartée. <br /> Les statistiques
+          sont conservées 13 mois et ne sont partagées avec aucun tiers. Vous
+          pouvez changer d&apos;avis à tout moment avec l&apos;icône en bas à
+          gauche.{" "}
+          <Link href="/privacy" className="underline underline-offset-4">
+            En savoir plus
+          </Link>
         </p>
 
-        {/* Data tags */}
-        <div className="flex flex-wrap gap-1.5 mt-1">
-          {[
-            "Localisation (pays / ville)",
-            "Appareil & navigateur",
-            "Pages visitées",
-            "Durée de visite",
-            "Adresse IP",
-          ].map((tag, index) => (
-            <span
-              key={index}
-              className="text-xs sm:text-sm px-2 py-0.5 border border-border bg-muted text-muted-foreground tracking-wide"
+        <ul
+          aria-label="Données mesurées"
+          className="mt-1 flex flex-wrap gap-1.5"
+        >
+          {COLLECTED.map((item) => (
+            <li
+              key={item}
+              className="border border-border bg-muted px-2 py-0.5 text-sm tracking-wide text-muted-foreground"
             >
-              {tag}
-            </span>
+              {item}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
-      {/* ── Actions ── */}
-      <div className="flex flex-col max-sm:flex-row gap-2 shrink-0">
-        <Button
-          onClick={accept}
-          size="lg"
-          className="border-none font-semibold shadow-none"
-        >
+      {/* Deux boutons de même poids : refuser est aussi simple qu'accepter */}
+      <div className="flex shrink-0 flex-col gap-2 max-sm:flex-row">
+        <Button onClick={accept} className="max-sm:flex-1">
           Accepter
         </Button>
-        <Button
-          onClick={refuse}
-          variant="outline"
-          size="lg"
-          className="font-medium shadow-none border-primary text-primary"
-        >
+        <Button onClick={refuse} className="max-sm:flex-1">
           Refuser
         </Button>
       </div>
