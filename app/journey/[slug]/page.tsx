@@ -1,7 +1,5 @@
-import Section from "@/components/Section";
 import Opacity from "@/components/motion/Opacity";
-import StaggerContainer from "@/components/motion/StaggerContainer";
-import StaggerItem from "@/components/motion/StaggerItem";
+import Section from "@/components/Section";
 import { Separator } from "@/components/ui/separator";
 import {
   getAdjacentChapters,
@@ -9,6 +7,7 @@ import {
   getChapterBySlug,
 } from "@/lib/journey";
 import { buildMetadata } from "@/lib/metadata";
+import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -64,40 +63,67 @@ export default async function JourneyChapterPage({ params }: PageProps) {
     <Section className="text-foreground max-w-none xl:max-w-none w-full px-0 md:px-0 mx-auto">
       {/* Hero */}
       <Opacity delay={0.2}>
-        <header className="bg-background text-foreground relative flex min-h-[60vh] items-end overflow-hidden border-b border-border -inset-y-24">
+        <header className="relative isolate -mt-24 flex min-h-[60vh] items-end overflow-hidden border-b border-border bg-background text-foreground">
           {chapter.image ? (
             <>
+              {/* Même traitement que les tuiles de la grille : niveaux de gris + teinte de marque */}
               <Image
                 src={chapter.image}
                 alt={chapter.title}
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover"
+                className="-z-30 object-cover opacity-80 grayscale contrast-110 dark:opacity-100"
               />
-              {/* Overlay so text stays readable over the photo, in both themes */}
-              <div className="absolute inset-0 bg-background opacity-80" />
-              <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/60 to-background/20" />
+              <div
+                aria-hidden
+                className="absolute inset-0 -z-20 bg-primary/60 mix-blend-color"
+              />
+              {/* Dégradé pour la lisibilité du texte (plus couvrant en mode clair) */}
+              <div
+                aria-hidden
+                className="absolute inset-0 -z-10 bg-linear-to-t from-background via-background/90 via-60% to-background/30 dark:via-background/75 dark:via-50% dark:to-background/20"
+              />
+              {/* Dégradé haut pour garder la navigation lisible sur l'image */}
+              <div
+                aria-hidden
+                className="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-background/80 to-transparent"
+              />
             </>
           ) : (
-            <div className="absolute inset-0 bg-linear-to-br from-primary/15 via-muted to-background" />
+            <div className="absolute inset-0 -z-10 bg-linear-to-br from-primary/15 via-muted to-background" />
           )}
 
+          {/* Numéro en filigrane */}
           <div
             aria-hidden
-            className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 font-display text-[10rem] leading-none text-primary sm:block"
+            className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 font-display text-[10rem] leading-none text-primary/20 lg:block"
           >
             {String(chapter.number).padStart(2, "0")}
           </div>
 
           <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-16 pt-32">
-            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-primary">
+            <Link
+              href="/journey"
+              className="group mb-8 flex w-fit items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition hover:underline"
+            >
+              <ArrowLeft
+                className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5"
+                aria-hidden
+              />
+              Retour à mon parcours
+            </Link>
+
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs uppercase tracking-[0.2em] text-primary">
               <span>
                 Chapitre {String(chapter.number).padStart(2, "0")} /{" "}
                 {totalChapters}
               </span>
               <Separator className="data-horizontal:w-3 bg-primary" />
               <span>{chapter.year}</span>
+              <span className="border border-primary/40 px-2 py-0.5 text-[10px] tracking-widest">
+                {chapter.theme}
+              </span>
             </div>
             <h1 className="mt-4 text-balance font-semibold text-4xl sm:text-5xl">
               {chapter.title}
@@ -108,74 +134,28 @@ export default async function JourneyChapterPage({ params }: PageProps) {
           </div>
         </header>
       </Opacity>
-      <Opacity delay={1}>
-        <Section className="xl:max-w-3xl px-6 pt-8">
-          <Link
-            href="/journey"
-            className="group inline-flex items-center gap-2 text-xs uppercase tracking-wide text-primary/70 transition hover:text-primary"
-          >
-            <span
-              aria-hidden
-              className="group-hover:-translate-x-0.5 transition-transform"
-            >
-              <ArrowLeft className="w-3 h-3" />
-            </span>
-            Retour à la timeline
-          </Link>
-        </Section>
-      </Opacity>
 
-      <Section className="xl:max-w-3xl py-8">
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <StaggerItem>
-            <div className="border bg-card p-4">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                Annee
-              </p>
-              <p className="mt-2 font-medium">{chapter.year}</p>
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
-            <div className="border bg-card p-4">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                Chapitre
-              </p>
-              <p className="mt-2 font-medium">
-                {String(chapter.number).padStart(2, "0")} / {totalChapters}
-              </p>
-            </div>
-          </StaggerItem>
-          <StaggerItem>
-            <div className="border bg-card p-4">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                Theme
-              </p>
-              <p className="mt-2 font-medium">{chapter.theme}</p>
-            </div>
-          </StaggerItem>
-        </StaggerContainer>
-      </Section>
-
+      {/* Citation : filet doré, comme sur la section À propos */}
       {chapter.quote && (
-        <Section className="xl:max-w-3xl">
-          <blockquote className="border border-primary/20 bg-primary/5 p-6">
-            <p className="text-lg italic text-foreground">
-              &quot;{chapter.quote.text}&quot;
-            </p>
-
-            <footer className="mt-4 text-sm text-muted-foreground">
-              — {chapter.quote.author}
-            </footer>
+        <Section className="xl:max-w-3xl pt-10">
+          <blockquote className="border-l-2 border-primary pl-6 text-xl font-medium italic leading-snug text-foreground md:text-2xl">
+            {chapter.quote.text}
           </blockquote>
         </Section>
       )}
 
-      {/* Body */}
-      <article className="mx-auto max-w-3xl px-6 md:px-8 py-16">
-        <div className="space-y-6 text-muted-foreground">
+      {/* Body : le premier paragraphe sert d'introduction */}
+      <article className="mx-auto max-w-3xl px-6 py-12 md:px-8">
+        <div className="space-y-6">
           {chapter.body.map((paragraph, i) => (
-            <p key={i} className="leading-relaxed">
+            <p
+              key={i}
+              className={
+                i === 0
+                  ? "text-lg leading-relaxed text-foreground md:text-xl"
+                  : "leading-relaxed text-muted-foreground"
+              }
+            >
               {paragraph}
             </p>
           ))}
@@ -183,7 +163,7 @@ export default async function JourneyChapterPage({ params }: PageProps) {
       </article>
 
       {chapter.achievement && (
-        <Section className="max-w-2xl pb-10">
+        <Section className="xl:max-w-3xl pb-10">
           <div className="border bg-primary-foreground p-6">
             <p className="text-xs uppercase tracking-widest text-primary">
               Certification obtenue
@@ -232,60 +212,112 @@ export default async function JourneyChapterPage({ params }: PageProps) {
         </Section>
       )}
 
-      {/* Navigation */}
-      <nav className="mx-auto max-w-3xl px-6 md:px-8 py-10">
-        <div className="mt-8 grid grid-cols-2 gap-4 border-t border-border pt-8">
-          <div>
-            {previous ? (
-              <Link
-                href={`/journey/${previous.slug}`}
-                className="group block text-left"
-              >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                  Chapitre précédent
-                </span>
-                <div className="flex items-center gap-1 mt-1 group-hover:text-primary">
-                  <span className="group-hover:-translate-x-0.5 transition-transform">
-                    <ArrowLeft className="w-3 h-3" />
-                  </span>
-                  <span className="text-sm text-foreground/80 transition">
-                    {previous.title}
-                  </span>
-                </div>
-              </Link>
-            ) : (
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
-                Premier chapitre
-              </span>
-            )}
-          </div>
+      {/* Navigation entre chapitres */}
+      <nav
+        aria-label="Navigation entre les chapitres"
+        className="mx-auto max-w-3xl px-6 py-10 md:px-8"
+      >
+        <div className="mt-8 grid grid-cols-1 gap-4 border-t border-border pt-8 sm:grid-cols-2">
+          {previous ? (
+            <ChapterNavTile
+              href={`/journey/${previous.slug}`}
+              label="Chapitre précédent"
+              title={previous.title}
+              image={previous.image}
+              direction="previous"
+            />
+          ) : (
+            <ChapterNavTile
+              href="/journey"
+              label="Tout mon parcours"
+              title="Retour aux moments forts"
+              direction="previous"
+            />
+          )}
 
-          <div className="text-right">
-            {next ? (
-              <Link
-                href={`/journey/${next.slug}`}
-                className="group block text-right"
-              >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                  Chapitre suivant
-                </span>
-                <div className="mt-1 flex items-center justify-end gap-2 group-hover:text-primary">
-                  <span className="text-sm text-foreground/80">
-                    {next.title}
-                  </span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">
-                    <ArrowRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </Link>
-            ) : (
-              <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
-                Dernier chapitre
-              </span>
-            )}
-          </div>
+          {next ? (
+            <ChapterNavTile
+              href={`/journey/${next.slug}`}
+              label="Chapitre suivant"
+              title={next.title}
+              image={next.image}
+              direction="next"
+            />
+          ) : (
+            <ChapterNavTile
+              href="/contact"
+              label="Et maintenant"
+              title="Parlons de votre projet"
+              direction="next"
+            />
+          )}
         </div>
       </nav>
     </Section>
+  );
+}
+
+function ChapterNavTile({
+  href,
+  label,
+  title,
+  image,
+  direction,
+}: {
+  href: string;
+  label: string;
+  title: string;
+  image?: string;
+  direction: "previous" | "next";
+}) {
+  const isNext = direction === "next";
+
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "group relative isolate flex min-h-36 flex-col justify-end overflow-hidden bg-card p-5 ring-1 ring-border transition duration-100 hover:ring-primary/50",
+        isNext && "items-end text-right",
+      )}
+    >
+      {image && (
+        <>
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="(min-width: 640px) 50vw, 100vw"
+            className="-z-30 object-cover opacity-80 grayscale transition duration-300 group-hover:scale-105 group-hover:grayscale-0 dark:opacity-100"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-20 bg-primary/60 mix-blend-color transition-opacity duration-200 group-hover:opacity-0"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-t from-background via-background/90 via-65% to-background/25 dark:via-background/75 dark:via-50% dark:to-background/10"
+          />
+        </>
+      )}
+
+      <span className="text-[10px] uppercase tracking-[0.2em] text-primary">
+        {label}
+      </span>
+      <span className="mt-1 flex items-center gap-2 text-lg font-semibold leading-snug text-foreground">
+        {!isNext && (
+          <ArrowLeft
+            className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:-translate-x-0.5"
+            aria-hidden
+          />
+        )}
+        {title}
+        {isNext && (
+          <ArrowRight
+            className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-0.5"
+            aria-hidden
+          />
+        )}
+      </span>
+    </Link>
   );
 }

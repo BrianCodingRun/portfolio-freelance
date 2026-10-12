@@ -6,12 +6,13 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
+import ConsentSettingsButton from "./ConsentSettingsButton";
 import Title from "./Title";
 
 export default function Footer() {
   return (
     <footer className="border-t-2 border-primary bg-card">
-      <div className="mx-auto max-w-5xl px-6 py-8">
+      <div className="mx-auto max-w-5xl px-6 pb-12 pt-8 md:py-8">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] items-center">
           {/* Présentation */}
           <div className="space-y-4">
@@ -126,13 +127,14 @@ export default function Footer() {
         <div className="mt-12 flex flex-col gap-4 border-t border-primary/20 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Nexmyr — Tous droits réservés</p>
 
-          <div className="flex gap-6">
+          <div className="flex md:flex-row flex-col md:gap-6 gap-2">
             <Link
               href="/privacy"
               className="hover:text-primary hover:underline transition-colors"
             >
               Politique de confidentialité
             </Link>
+            <ConsentSettingsButton className="w-fit cursor-pointer text-left hover:text-primary hover:underline transition-colors" />
             <Link
               href="/legal"
               className="hover:text-primary hover:underline transition-colors"

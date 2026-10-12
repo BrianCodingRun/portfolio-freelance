@@ -186,7 +186,7 @@ export default function Process() {
                 orientation="horizontal"
                 className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
-              <span className="text-primary uppercase text-sm sm:text-base font-semibold">
+              <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
                 Comment ca marche ?
               </span>
               <Separator
@@ -196,11 +196,12 @@ export default function Process() {
             </div>
             <Title
               level={2}
-              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+              className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight sm:max-w-xl mx-auto"
             >
-              Comment je structure votre projet ?
+              Le déroulement de votre{" "}
+              <span className="text-primary">projet.</span>
             </Title>
-            <Subtitle className="text-muted-foreground not-italic py-2 max-w-lg mx-auto">
+            <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
               Un processus simple et transparent pour transformer votre idée en
               projet concret.
             </Subtitle>

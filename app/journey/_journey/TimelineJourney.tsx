@@ -1,7 +1,9 @@
 "use client";
 
 import Section from "@/components/Section";
+import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import type { JourneyChapter, JourneyConclusion } from "@/types/journey";
 import {
   motion,
@@ -9,7 +11,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar, Construction } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -65,8 +67,8 @@ export default function TimelineJourney({
   });
 
   return (
-    <Section className="md:max-w-7xl">
-      <div ref={containerRef} className="relative mx-auto max-w-5xl px-6">
+    <Section className="px-0">
+      <div ref={containerRef} className="relative">
         {/* Center line */}
         <motion.div
           initial={{
@@ -145,18 +147,25 @@ export default function TimelineJourney({
                 >
                   {/* Image — real photo if provided, gradient placeholder otherwise */}
                   <div
-                    className={`relative aspect-[4/3] overflow-hidden ring-1 ring-border transition duration-300 group-hover:ring-primary/50 ${
-                      chapter.image ? "" : `bg-gradient-to-br ${gradient}`
+                    className={`relative isolate aspect-4/3 overflow-hidden ring-1 ring-border transition duration-300 group-hover:ring-primary/50 ${
+                      chapter.image ? "" : `bg-linear-to-br ${gradient}`
                     }`}
                   >
                     {chapter.image ? (
-                      <Image
-                        src={chapter.image}
-                        alt={chapter.title}
-                        fill
-                        sizes="(min-width: 640px) 50vw, 100vw"
-                        className="object-cover"
-                      />
+                      <>
+                        <Image
+                          src={chapter.image}
+                          alt={chapter.title}
+                          fill
+                          sizes="(min-width: 640px) 50vw, 100vw"
+                          className="object-cover grayscale contrast-110 transition duration-500 group-hover:grayscale-0"
+                        />
+                        {/* Teinte de marque : unifie photos stock et photos réelles */}
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 bg-primary/70 mix-blend-color transition-opacity duration-500 group-hover:opacity-0"
+                        />
+                      </>
                     ) : (
                       <span className="absolute bottom-3 right-4 text-xs text-muted-foreground">
                         {String(chapter.number).padStart(2, "0")}
@@ -223,10 +232,8 @@ export default function TimelineJourney({
         }}
         className="relative mt-24 flex flex-col items-center justify-center gap-4 space-y-6 text-center min-h-[80vh] mb-14"
       >
-        <h2 className="font-display text-xl md:text-5xl text-primary">
-          {conclusion.title}
-        </h2>
-        <article className="px-6">
+        <h2 className="text-5xl text-primary">{conclusion.title}</h2>
+        <article className="md:px-6">
           <div className="text-muted-foreground space-y-2">
             {conclusion.body.map((paragraph, index) => (
               <p key={index} className="md:max-w-2xl text-lg leading-relaxed">
@@ -235,6 +242,32 @@ export default function TimelineJourney({
             ))}
           </div>
         </article>
+
+        {/* CTA final */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+          <a
+            href="https://calendly.com/briancoupama/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "default", size: "lg" }),
+              "border-none font-semibold shadow-none w-full sm:w-auto justify-center",
+            )}
+          >
+            <Calendar className="w-3.5 h-3.5" aria-hidden />
+            Parlons de votre projet
+          </a>
+          <Link
+            href="/projects"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "font-medium shadow-none w-full sm:w-auto justify-center border-accent-foreground text-primary",
+            )}
+          >
+            <Construction className="w-3.5 h-3.5" aria-hidden />
+            Découvrir mes projets
+          </Link>
+        </div>
       </motion.div>
     </Section>
   );

@@ -19,8 +19,9 @@ export default function ConsentWidget() {
       <Tooltip>
         <TooltipTrigger
           onClick={reset}
+          aria-label="Modifier mes préférences de confidentialité"
           className={
-            "fixed bottom-6 left-6 z-10 tracking-wide transition-all duration-150 cursor-pointer overflow-hidden"
+            "hidden md:block fixed bottom-6 left-6 z-10 tracking-wide transition-all duration-150 cursor-pointer overflow-hidden"
           }
         >
           <Cookie

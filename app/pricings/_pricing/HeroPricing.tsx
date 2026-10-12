@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export default function HeroPricing() {
   return (
-    <Section className="min-h-96 flex items-center">
+    <Section className="flex flex-col items-center md:gap-12">
       <StaggerContainer className="py-6 max-w-3xl mx-auto text-center space-y-4">
         <StaggerItem>
           <Badge className="text-sm p-3">Votre besoin, ma solution.</Badge>
@@ -51,15 +51,15 @@ export default function HeroPricing() {
               Me contacter
             </Link>
           </div>
-          <Button
-            variant="link"
-            className="inline-flex flex-col my-6 hover:no-underline cursor-auto"
-          >
-            <span className="text-base"> Scroller vers le bas </span>
-            <ArrowDown className="w-6 h-6" />
-          </Button>
         </FadeUp>
       </StaggerContainer>
+      <Button
+        variant="link"
+        className="max-sm:hidden inline-flex flex-col my-6 hover:no-underline cursor-auto"
+      >
+        <span className="text-base"> Scroller vers le bas </span>
+        <ArrowDown className="w-6 h-6" />
+      </Button>
     </Section>
   );
 }

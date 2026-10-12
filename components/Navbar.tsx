@@ -48,7 +48,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
   };
 
   return (
-    <nav className="flex items-center justify-between h-20">
+    <nav className="flex items-center justify-between h-24 md:h-20">
       <div className="flex items-center shrink-0">
         <Link
           href="/"
@@ -118,8 +118,9 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
       <div className="md:hidden flex items-center">
         {/* Theme Dark/Light mode */}
         <ToggleTheme />
-        <button
+        <Button
           onClick={toggleMenu}
+          variant="link"
           className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
         >
           <span className="sr-only">Open main menu</span>
@@ -129,7 +130,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
             <span className="w-6 h-0.5 absolute top-5 left-2/4 -translate-2/4 block bg-neutral-700 dark:bg-zinc-200" />
             <span className="w-6 h-0.5 absolute top-7 left-2/4 -translate-2/4 block bg-neutral-700 dark:bg-zinc-200" />
           </div>
-        </button>
+        </Button>
       </div>
       <AnimatePresence mode="wait">
         {isOpen && (
@@ -138,7 +139,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
             initial="closed"
             animate="open"
             exit="closed"
-            className="md:hidden z-50 fixed top-0 right-0 bottom-0 left-0 w-full min-h-svh flex flex-col justify-between bg-background py-6 px-4"
+            className="md:hidden z-50 fixed top-0 right-0 bottom-0 left-0 w-full min-h-svh flex flex-col justify-between bg-background py-6 px-4 overflow-hidden"
           >
             <motion.div variants={fade} className="flex justify-between">
               <Link
@@ -168,7 +169,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                         onClick={toggleMenu}
                         className={`${
                           pathname === link.href ? "text-primary" : ""
-                        } text-6xl transition-colors block font-semibold`}
+                        } text-6xl transition-colors block font-semibold focus:underline`}
                       >
                         {link.name}
                       </Link>
@@ -233,7 +234,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
                 </Button>
               </motion.div>
             </div>
-            <div className="absolute overflow-hidden -z-30 -right-32 -bottom-32 w-52 rotate-32">
+            <div className="absolute -z-30 -right-32 -bottom-32 w-52 rotate-32">
               <div className="grid grid-cols-3 justify-between">
                 <SquareEffect />
                 <SquareEffect />

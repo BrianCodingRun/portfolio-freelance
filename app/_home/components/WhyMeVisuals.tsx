@@ -4,9 +4,7 @@ import dynamic from "next/dynamic";
 
 const Map = dynamic(() => import("@/components/map/Map"), {
   ssr: false,
-  loading: () => (
-    <div className="size-full animate-pulse bg-primary-foreground/10" />
-  ),
+  loading: () => <div className="size-full bg-primary-foreground/10" />,
 });
 
 export function MapVisual() {
@@ -14,7 +12,7 @@ export function MapVisual() {
     <div
       role="img"
       aria-label="Carte de La Réunion avec ma zone d'intervention"
-      className="max-sm:hidden relative h-72 w-full flex-1 overflow-hidden lg:min-h-80"
+      className="max-sm:hidden relative h-80 w-full flex-1 overflow-hidden lg:min-h-80"
     >
       <Map interactive={false} transparent />
     </div>

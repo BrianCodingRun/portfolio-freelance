@@ -8,10 +8,9 @@ import { fitReunion } from "./bounds";
 import { getMapConfig } from "./config";
 import { addTownLabels } from "./labels";
 import { addServiceAreaLayers } from "./layers";
-import { addOfficeMarker } from "./markers";
 import { addCommunesSource } from "./sources";
 
-import "./marker.css";
+import "@/app/globals.css";
 
 type MapProps = {
   className?: string;
@@ -39,11 +38,10 @@ export default function Map({
     });
 
     map.once("load", () => {
-      fitReunion(map, transparent ? 8 : 40);
+      fitReunion(map, transparent ? 10 : 40);
       addCommunesSource(map);
       addServiceAreaLayers(map, variant);
       addTownLabels(map, variant);
-      addOfficeMarker(map);
     });
 
     mapRef.current = map;

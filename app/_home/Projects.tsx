@@ -20,14 +20,14 @@ export default function Projects({ projects }: { projects: Project[] }) {
     <Section>
       <div className="w-full flex flex-col">
         <FadeUp delay={0.4}>
-          <div className="text-center mb-10">
+          <div className="text-center md:mb-10">
             {/* LABEL */}
             <div className="flex items-center justify-center gap-2 mb-4">
               <Separator
                 orientation="horizontal"
                 className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
               />
-              <span className="text-primary font-semibold uppercase text-sm sm:text-base">
+              <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
                 Ce que {"j'ai"} produit
               </span>
               <Separator
@@ -38,13 +38,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
             {/* TITLE */}
             <Title
               level={2}
-              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+              className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight max-w-xl mx-auto"
             >
               Une sélection de mes{" "}
               <span className="text-primary">réalisations.</span>
             </Title>
             {/* DESCRIPTION */}
-            <Subtitle className="py-2 max-w-xl mx-auto">
+            <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
               Chaque projet répond à un besoin différent, avec la stack la plus
               adaptée — pour un client ou à titre personnel.
             </Subtitle>

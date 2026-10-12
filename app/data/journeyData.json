@@ -1,0 +1,172 @@
+{
+  "chapters": [
+    {
+      "slug": "different-path",
+      "number": 1,
+      "year": "2011",
+      "theme": "Résilience",
+      "title": "Le début d'un chemin différent",
+      "teaser": "À 16 ans, je quitte le système scolaire plus tôt que prévu sans savoir où cela me mènera.",
+      "image": "/images/journey/opendoor.jpg",
+
+      "quote": {
+        "text": "Parfois, le chemin que l'on n'a pas choisi devient celui qui nous construit.",
+        "author": "Réflexion personnelle"
+      },
+
+      "highlights": [
+        "Développement de l'autonomie",
+        "Capacité d'adaptation",
+        "Persévérance face à l'incertitude"
+      ],
+
+      "body": [
+        "En 2011, alors que je m'apprêtais à entrer en troisième, mon parcours scolaire a pris une direction inattendue. À la suite d'un déménagement familial, les démarches de réinscription n'ont pas pu aboutir à temps. Je me suis donc retrouvé en dehors du système scolaire traditionnel plus tôt que prévu.",
+        "À 16 ans, je n'avais ni plan précis ni vision claire de mon avenir professionnel. Pourtant, ce qui pouvait apparaître comme une impasse est devenu le point de départ d'un chemin différent. Un chemin qui m'a obligé à développer mon autonomie, ma capacité d'adaptation et ma persévérance.",
+        "Avec le recul, je réalise que cette étape n'a pas marqué la fin de mes apprentissages. Elle a simplement changé leur forme."
+      ]
+    },
+    {
+      "slug": "searching",
+      "number": 2,
+      "year": "2011-2018",
+      "theme": "Reconstruction",
+      "title": "Chercher sa voie, se reconstruire",
+      "teaser": "Des années à explorer des pistes professionnelles, puis une pause volontaire pour se recentrer et reprendre confiance.",
+      "image": "/images/journey/voyage_en_forêt_ensoleillée.webp",
+
+      "quote": {
+        "text": "Chercher sa voie est déjà une façon d'avancer.",
+        "author": "Réflexion personnelle"
+      },
+
+      "highlights": [
+        "Découverte de plusieurs secteurs",
+        "Remise en question permanente",
+        "Reprise de confiance",
+        "Obtention du permis B"
+      ],
+
+      "body": [
+        "Les années qui ont suivi ont été consacrées à une quête essentielle : trouver ma place.",
+        "Accompagné par la Mission Locale, j'ai exploré de nombreuses pistes professionnelles. L'informatique m'attirait déjà, mais sans diplôme ni expérience, il était difficile d'accéder directement aux formations qui m'intéressaient.",
+        "J'ai découvert différents secteurs d'activité, participé à plusieurs dispositifs d'accompagnement et envisagé de nombreuses orientations. Certaines expériences ont confirmé mes envies, d'autres m'ont permis de comprendre ce qui ne me correspondait pas.",
+        "Cette période a parfois été marquée par le doute, mais elle m'a surtout appris une chose fondamentale : avancer ne signifie pas toujours aller vite.",
+        "Après ces années d'exploration, j'ai choisi de faire une pause afin de me recentrer et de préparer la suite dans de meilleures conditions. J'ai retrouvé de la stabilité, repris confiance et obtenu mon permis B, une étape importante vers davantage d'autonomie.",
+        "Moins visible que d'autres réussites, cette phase de reconstruction a pourtant joué un rôle déterminant : elle m'a permis d'aborder la suite avec un nouvel état d'esprit."
+      ]
+    },
+    {
+      "slug": "the-spark",
+      "number": 3,
+      "year": "2021-2023",
+      "theme": "Révélation",
+      "title": "Le déclic d'une vocation",
+      "teaser": "Pour la première fois, je découvre un domaine dans lequel je me projette réellement. Deux ans plus tard, un premier diplôme de niveau Bac+2 le confirme.",
+      "image": "/images/journey/first-victory.webp",
+
+      "quote": {
+        "text": "Le point de départ ne détermine jamais le point d'arrivée.",
+        "author": "Réflexion personnelle"
+      },
+
+      "highlights": [
+        "Formation PMD",
+        "Découverte du développement web",
+        "Formation Sites et Applications Mobiles",
+        "Titre Professionnel DWWM"
+      ],
+
+      "achievement": {
+        "title": "Développeur Web et Web Mobile",
+        "level": "Niveau 5",
+        "equivalent": "Bac+2",
+        "year": "2023"
+      },
+
+      "body": [
+        "Après quelques années plus calmes, l'année 2021 a marqué un véritable tournant.",
+        "J'ai intégré la formation PMD (Préparation aux Métiers du Digital), qui m'a permis de découvrir plusieurs univers du numérique : web design, marketing digital, personal branding et développement web.",
+        "C'est durant cette formation que quelque chose s'est produit. Pour la première fois, j'ai trouvé un domaine qui me passionnait réellement. Le développement web réunissait tout ce que je recherchais : la logique, la créativité, la résolution de problèmes et la possibilité de construire des projets concrets.",
+        "Il était alors temps de renforcer mes compétences. En 2022, j'ai suivi une formation orientée Sites et Applications Mobiles, une étape intermédiaire pour consolider mes bases techniques avant de viser plus haut.",
+        "En 2023, j'ai intégré la formation Développeur Web et Web Mobile à l'IFR de Saint-Pierre, pour une durée de 9 mois. Pour quelqu'un qui avait quitté le système scolaire plusieurs années auparavant, préparer un titre professionnel de niveau 5 (équivalent Bac+2) avait une signification particulière.",
+        "L'examen de fin de formation n'a pas été simple. Mais au terme de cette préparation exigeante, j'ai validé mon titre professionnel avec succès.",
+        "Cette réussite a démontré que le point de départ ne détermine pas le point d'arrivée : avec du travail et de la persévérance, il est possible d'atteindre des objectifs qui semblaient autrefois inaccessibles."
+      ]
+    },
+    {
+      "slug": "entrepreneurship",
+      "number": 4,
+      "year": "2024-2025",
+      "theme": "Vision",
+      "title": "Vers l'entrepreneuriat",
+      "teaser": "Et si je travaillais pour moi-même ? L'idée du freelance devient un projet concret, puis je franchis un nouveau cap avec un Bac+3.",
+      "image": "/images/journey/entrepreneuriat.webp",
+
+      "quote": {
+        "text": "Une idée devient un projet lorsqu'on commence à lui donner une structure.",
+        "author": "Réflexion personnelle"
+      },
+
+      "highlights": [
+        "Découverte de l'entrepreneuriat",
+        "Projection vers le freelance",
+        "Formation CDA",
+        "Validation d'un titre de niveau 6"
+      ],
+
+      "achievement": {
+        "title": "Concepteur Développeur d'Applications",
+        "level": "Niveau 6",
+        "equivalent": "Bac+3",
+        "year": "2025"
+      },
+
+      "body": [
+        "Après l'obtention de mon diplôme, une question a commencé à prendre de la place : et si je travaillais pour moi-même ?",
+        "En 2024, j'ai participé à un accompagnement consacré à l'entrepreneuriat. Au-delà des aspects pratiques — statuts juridiques, fiscalité, gestion, aides disponibles — cette expérience m'a surtout permis de mesurer concrètement ce qu'impliquait le statut d'indépendant.",
+        "Jusqu'ici, devenir développeur freelance restait une idée lointaine. Cette année-là, elle est devenue un projet avec des contours réels.",
+        "En 2025, j'ai décidé d'aller encore plus loin en intégrant la formation Concepteur Développeur d'Applications (CDA), de niveau 6 (équivalent Bac+3). Elle m'a permis d'approfondir mes connaissances en conception logicielle, architecture applicative et développement avancé.",
+        "Une nouvelle fois, j'ai validé mon titre professionnel. Cette réussite a renforcé ma confiance et confirmé ma capacité à relever des défis de plus en plus ambitieux."
+      ]
+    },
+    {
+      "slug": "launch",
+      "number": 5,
+      "year": "2026",
+      "theme": "Concrétisation",
+      "title": "Concrétiser une ambition",
+      "teaser": "Après des années d'apprentissage, le lancement officiel de mon activité, aujourd'hui portée sous le nom de Nexmyr.",
+      "image": "/images/journey/PimpMyAPP-2026.webp",
+
+      "quote": {
+        "text": "Transformer un rêve en activité réelle est une aventure à part entière.",
+        "author": "Réflexion personnelle"
+      },
+
+      "highlights": [
+        "Création de l'activité freelance",
+        "Immatriculation officielle",
+        "Immersion PimpMyApp",
+        "Collaboration multidisciplinaire"
+      ],
+
+      "body": [
+        "Après plusieurs années d'apprentissage, de formations et d'expériences, l'année 2026 marque la concrétisation d'un objectif de longue date : j'ai officiellement lancé mon activité de développeur web freelance.",
+        "Cette étape représente bien plus qu'une création d'entreprise. Elle symbolise l'aboutissement d'un parcours construit progressivement, étape après étape.",
+        "Aujourd'hui, sous le nom de Nexmyr, j'accompagne les entreprises dans la création de sites web performants, modernes et pensés pour répondre à leurs besoins réels.",
+        "En parallèle, j'ai eu l'opportunité de participer à PimpMyApp by Warren Walter, en partenariat avec Orange Digital Center. Ce n'était ni une compétition ni une certification, mais une immersion dans l'innovation, la collaboration et la réflexion autour des usages numériques.",
+        "J'y ai rencontré des profils inspirants, découvert de nouvelles approches de conception et vécu une aventure humaine particulièrement enrichissante. Elle illustre bien ma vision du métier : apprendre en continu, collaborer avec les autres et rester ouvert aux nouvelles idées."
+      ]
+    }
+  ],
+  "conclusion": {
+    "title": "Le chemin continue",
+    "body": [
+      "Chaque étape de cette histoire représente une leçon, une rencontre ou un défi surmonté.",
+      "Mon parcours n'a jamais été linéaire. Pourtant, c'est précisément ce qui lui donne sa valeur.",
+      "Il démontre qu'il n'existe pas un seul chemin vers la réussite. Avec de la détermination, de la curiosité et une volonté constante de progresser, il est possible de construire son propre parcours.",
+      "Et ce chapitre n'est que le début de la suite."
+    ]
+  }
+}

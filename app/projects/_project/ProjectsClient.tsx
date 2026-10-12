@@ -18,6 +18,7 @@ A SURTOUT PAS SUPPRIMER: NOTE A MOI MÊME !
 import FadeUp from "@/components/motion/FadeUp";
 import Section from "@/components/Section";
 import { ProjectCard } from "@/components/shared/ProjectCard";
+import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -63,21 +64,21 @@ export function ProjectsClient({ projects }: Props) {
         {/* En-tête */}
         <FadeUp delay={0.02}>
           <header className="space-y-2 max-w-xl">
-            <p className="text-sm font-semibold tracking-widest text-primary uppercase">
+            <span className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase">
               Nexmyr · Portfolio
-            </p>
+            </span>
 
             <Title
               level={1}
-              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
+              className="2xl:text-5xl text-3xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
             >
               Mes réalisations
             </Title>
 
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <Subtitle className="py-0">
               Chaque projet répond à un besoin différent, avec la stack la plus
               adaptée — pour un client ou à titre personnel.
-            </p>
+            </Subtitle>
           </header>
         </FadeUp>
 

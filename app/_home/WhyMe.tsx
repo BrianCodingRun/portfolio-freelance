@@ -16,13 +16,13 @@ export default function WhyMe() {
       <Column>
         <div className="w-full">
           <FadeUp delay={0.4}>
-            <div className="text-center mb-5 md:mb-10">
+            <div className="text-center md:mb-10">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Separator
                   orientation="horizontal"
                   className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
                 />
-                <span className="text-primary font-semibold uppercase text-sm sm:text-base">
+                <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
                   Pourquoi me choisir
                 </span>
                 <Separator
@@ -32,11 +32,11 @@ export default function WhyMe() {
               </div>
               <Title
                 level={2}
-                className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+                className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight sm:max-w-xl mx-auto"
               >
                 Des atouts <span className="text-primary">concrets.</span>
               </Title>
-              <Subtitle className="max-sm:text-base 2xl:text-lg text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
+              <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
                 Au-delà des compétences techniques, voici ce qui fait la
                 différence quand on travaille ensemble.
               </Subtitle>

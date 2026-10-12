@@ -148,7 +148,7 @@ export default function Hero() {
                   <span className="block w-14 h-5 bg-primary" />
                   <div className="flex items-center gap-1 text-primary">
                     <TrendingUp className="w-3 h-3" />
-                    <span className="text-[10px] font-medium">+12%</span>
+                    <span className="text-xs font-medium">+12%</span>
                   </div>
                 </div>
                 <div className="border border-muted-foreground/25 p-3 space-y-1.5">
@@ -156,7 +156,7 @@ export default function Hero() {
                   <span className="block w-14 h-5 bg-neutral-800 dark:bg-zinc-200" />
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <TrendingUp className="w-3 h-3" />
-                    <span className="text-[10px] font-medium">+4%</span>
+                    <span className="text-xs font-medium">+4%</span>
                   </div>
                 </div>
                 <div className="border border-muted-foreground/25 p-3 space-y-1.5">
@@ -164,7 +164,7 @@ export default function Hero() {
                   <span className="block w-14 h-5 bg-muted-foreground" />
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <TrendingDown className="w-3 h-3" />
-                    <span className="text-[10px] font-medium">-2%</span>
+                    <span className="text-xs font-medium">-2%</span>
                   </div>
                 </div>
               </div>

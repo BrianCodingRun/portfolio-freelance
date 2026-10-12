@@ -17,7 +17,7 @@ export default function PricingList({ pricings }: { pricings: Pricing[] }) {
               orientation="horizontal"
               className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
             />
-            <span className="text-primary uppercase text-sm sm:text-base font-semibold">
+            <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
               Ce que je propose ?
             </span>
             <Separator
@@ -29,14 +29,14 @@ export default function PricingList({ pricings }: { pricings: Pricing[] }) {
         <StaggerItem>
           <Title
             level={2}
-            className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug"
+            className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight sm:max-w-xl mx-auto"
           >
             Des tarifs qui {"s'adapte"} à{" "}
             <span className="text-primary">votre besoin.</span>
           </Title>
         </StaggerItem>
         <StaggerItem>
-          <Subtitle className="py-0 max-w-md mx-auto">
+          <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
             Choisissez le forfait qui correspond à {"l'envergure"} de votre
             projet.
           </Subtitle>

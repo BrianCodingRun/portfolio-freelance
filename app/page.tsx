@@ -29,12 +29,8 @@ export default async function Home() {
     <>
       {/* HERO */}
       <Hero />
-      {/* SPACING */}
-      <Spacing size="sm" />
       {/* MARQUEE ANIMATION TEXT */}
       <InfiniteMarquee />
-      {/* SPACING */}
-      <Spacing size="sm" />
       {/* ABOUT ME */}
       <AboutMe profile={profile} />
       {/* SPACING */}

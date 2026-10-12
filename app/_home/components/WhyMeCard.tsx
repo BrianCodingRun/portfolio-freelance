@@ -42,14 +42,6 @@ export default function WhyMeCard({
         "items-center text-center sm:items-start sm:text-left",
       )}
     >
-      {/* Numéro outline en filigrane */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-2 font-mono text-6xl font-bold text-transparent opacity-40 [-webkit-text-stroke:1px_currentColor]"
-      >
-        {String(index + 1).padStart(2, "0")}
-      </span>
-
       <CardHeader className="flex flex-col items-center space-y-3 sm:items-start">
         <span
           className={cn(

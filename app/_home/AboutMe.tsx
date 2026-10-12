@@ -29,14 +29,14 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
                 animate="visible"
                 className="bg-primary w-7 h-0.5 origin-left"
               />
-              <span className="max-sm:text-sm 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
+              <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
                 Au service de {"l'humain"}
               </span>
             </div>
             {/* Titre accrocheur */}
             <Title
               level={2}
-              className="max-sm:text-lg 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
+              className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight sm:max-w-xl"
             >
               Le visage derrière <span className="text-primary">Nexmyr.</span>
               <Badge variant="outline" className="max-sm:hidden text-sm">
@@ -51,10 +51,10 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
               alt="Brian Coupama, fondateur de Nexmyr"
               width={48}
               height={48}
-              className="w-12 h-12 object-cover object-[center_-6px] border border-primary/40 shrink-0"
+              className="w-14 h-14 object-cover object-[center_-6px] border border-primary/40 shrink-0"
               loading="eager"
             />
-            <div className="text-xs leading-tight">
+            <div className="text-base leading-tight">
               <p className="font-semibold text-neutral-800 dark:text-zinc-200">
                 Brian Coupama
               </p>
@@ -64,14 +64,14 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
             </div>
           </div>
           {/* Bio */}
-          <p className="max-sm:text-base 2xl:text-lg text-xl leading-relaxed">
+          <p className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed">
             {profile?.bio === ""
               ? "Passionné par le développement web depuis 2021, j'ai construit mes compétences étape par étape — du titre DWWM jusqu'au Bac+3 CDA. Basé à La Réunion, j'accompagne les entreprises, indépendants et associations de l'île dans la création de sites qui leur ressemblent et qui attirent de vrais clients."
               : profile?.bio}
           </p>
 
           {/* Citation personnelle */}
-          <blockquote className="border-l-2 border-primary pl-4 max-sm:text-sm text-base text-muted-foreground font-light italic max-w-xl">
+          <blockquote className="border-l-2 border-primary pl-4 max-sm:text-base text-lg text-muted-foreground font-light italic max-w-xl">
             &quot;
             {
               "J'ai appris à douter, à recommencer, à tenir. C'est ça, aujourd'hui, que je mets dans chaque projet."

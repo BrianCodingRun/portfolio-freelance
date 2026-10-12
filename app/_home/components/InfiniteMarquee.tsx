@@ -17,9 +17,9 @@ export default function InfiniteMarquee() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <div className="w-full overflow-hidden max-sm:py-8 md:py-16">
+    <div className="w-full overflow-hidden max-sm:py-6 md:py-12">
       <div
-        className="-mx-4 -rotate-3 bg-primary py-2"
+        className="-mx-4 -rotate-2 bg-primary py-2"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >

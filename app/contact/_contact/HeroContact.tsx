@@ -123,8 +123,8 @@ export default function HeroContact() {
         </div>
 
         {/* Colonne droite — Carte */}
-        <div className="relative overflow-hidden border border-border h-70 lg:h-full min-h-65">
-          <Map />
+        <div className="relative overflow-hidden border h-70 lg:h-full min-h-65 border-primary bg-primary text-primary-foreground">
+          <Map transparent />
           <div className="absolute bottom-0 left-0 w-full bg-card p-4 flex items-center gap-4">
             <div className="w-5 h-2 bg-primary border border-border" />
             <p className="text-xs font-medium text-muted-foreground">

@@ -1,4 +1,4 @@
-import journeyData from "@/app/data/journey.json";
+import journeyData from "@/app/data/journeyData.json";
 import type { JourneyChapter, JourneyData } from "@/types/journey";
 
 const data = journeyData as JourneyData;

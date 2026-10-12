@@ -110,6 +110,12 @@
   --shadow-lg: none;
   --shadow-xl: none;
   --shadow-2xl: none; /* design plat, sans ombre portée — cf. design system */
+
+  --town-halo: #2f2d2d;
+  --town-label-color: #f5edd8;
+  --town-label-halo:
+    0 0 3px var(--town-halo), 0 0 3px var(--town-halo),
+    0 1px 2px var(--town-halo);
 }
 
 /* ===== DARK MODE — tokens du design system Nexmyr ===== */
@@ -159,6 +165,25 @@
   --sidebar-accent-foreground: hsl(38 47% 60%);
   --sidebar-border: hsl(39 29% 18%);
   --sidebar-ring: hsl(38 47% 60%);
+
+  --town-label-color: #192312;
+  --town-halo: #a9772d;
+  --town-label-halo:
+    0 0 3px var(--town-halo), 0 0 3px var(--town-halo),
+    0 1px 2px var(--town-halo);
+}
+
+/* Noms des villes : texte crème avec un halo pour rester lisible sur la carte */
+.town-label {
+  color: var(--town-label-color);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  text-shadow: var(--town-label-halo);
 }
 
 @layer base {
