@@ -19,7 +19,14 @@ export type Pricing = {
   supportIncluded: boolean;
   categorie: FormulaPricing;
   cta: string;
-  icon: "Rocket" | "Star" | "Crown" | "Zap" | "Shield" | "Diamond";
+  icon:
+    | "Rocket"
+    | "Star"
+    | "Crown"
+    | "Zap"
+    | "Shield"
+    | "Diamond"
+    | "RefreshCw";
   popular: boolean;
   active: boolean;
   order: number;

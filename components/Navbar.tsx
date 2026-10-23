@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { fade, mobileMenu, slideUp, slideUpSkew } from "@/lib/motion/";
-import Logo from "@/public/assets/nexmyr_logo_fond_sombre.svg";
+import Logo from "@/public/assets/nexmyr_logo.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -48,7 +48,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
   };
 
   return (
-    <nav className="flex items-center justify-between h-24 md:h-20">
+    <nav className="flex items-center justify-between h-20">
       <div className="flex items-center shrink-0">
         <Link
           href="/"
@@ -57,7 +57,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
           className="text-center"
         >
           <Logo
-            className={`w-12 h-12 md:w-16 md:h-16 origin-left transition-transform duration-100 ${
+            className={`w-12 h-12 md:w-14 md:h-14 origin-left transition-transform duration-100 ${
               isScrolled ? "scale-[0.85]" : "scale-100"
             }`}
           />

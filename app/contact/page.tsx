@@ -1,6 +1,7 @@
 import { Spacing } from "@/components/Spacing";
 import { buildMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
+import ContactSection from "./_contact/ContactSection";
 import HeroContact from "./_contact/HeroContact";
 
 export const metadata: Metadata = buildMetadata({
@@ -15,6 +16,8 @@ export default function ContactPage() {
     <>
       <Spacing size="sm" />
       <HeroContact />
+      <Spacing size="sm" />
+      <ContactSection />
       <Spacing size="sm" />
     </>
   );

@@ -1,69 +1,98 @@
-import FadeUp from "@/components/motion/FadeUp";
-import Opacity from "@/components/motion/Opacity";
-import StaggerContainer from "@/components/motion/StaggerContainer";
-import StaggerItem from "@/components/motion/StaggerItem";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+
 import Section from "@/components/Section";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Separator } from "@/components/ui/separator";
+
+import { buttonVariants } from "@/components/ui/button";
 import { getActivePricings } from "@/lib/api/pricings";
 import { generateFaqData } from "@/lib/faq";
+import { cn } from "@/lib/utils";
 
 export default async function FaqPricingPage() {
   const pricings = await getActivePricings();
-
   const faqData = generateFaqData(pricings);
+
   return (
     <Section>
-      <StaggerContainer className="py-6 mx-auto text-center space-y-6">
-        <StaggerItem>
-          <div className="w-full">
-            <FadeUp delay={0.4}>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Separator
-                  orientation="horizontal"
-                  className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
-                />
-                <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
-                  FAQ
-                </span>
-                <Separator
-                  orientation="horizontal"
-                  className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
-                />
-              </div>
-              <Title
-                level={2}
-                className="max-sm:text-2xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight sm:max-w-2xl mx-auto"
-              >
-                Questions <span className="text-primary">fréquentes</span>
-              </Title>
-              <Subtitle className="text-muted-foreground not-italic py-2 max-w-md mx-auto">
-                Tout ce que vous devez savoir avant de me confier votre projet.
-              </Subtitle>
-            </FadeUp>
-          </div>
-        </StaggerItem>
+      <div>
+        {/* En-tête */}
+        <div className="mx-auto max-w-2xl space-y-3 md:space-y-5 md:text-center">
+          <p className="text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-primary">
+            Questions fréquentes
+          </p>
 
-        <Opacity delay={0.3}>
-          <Accordion className="max-w-4xl w-full mx-auto">
-            {faqData.map((item) => (
-              <AccordionItem key={item.id} value={item.id}>
-                <AccordionTrigger>{item.question}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-left text-sm sm:text-base">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Opacity>
-      </StaggerContainer>
+          <Title
+            level={2}
+            className="text-3xl text-foreground font-semibold tracking-tight md:text-5xl"
+          >
+            Des réponses à vos <span className="text-primary">questions.</span>
+          </Title>
+
+          <Subtitle className="md:mx-auto py-0 max-w-xs md:max-w-lg text-muted-foreground not-italic">
+            Tout ce qu&apos;il faut savoir avant de démarrer votre projet.
+          </Subtitle>
+        </div>
+
+        {/* Questions */}
+        <Accordion className="md:mx-auto w-full md:max-w-4xl my-4 md:my-8">
+          {faqData.map((item) => (
+            <AccordionItem
+              key={item.id}
+              value={item.id}
+              className="border-border"
+            >
+              <AccordionTrigger className="py-4 text-left text-base font-medium leading-relaxed hover:no-underline md:py-5 md:text-lg [&>svg]:text-primary cursor-pointer">
+                {item.question}
+              </AccordionTrigger>
+
+              <AccordionContent
+                className="
+                      pb-6
+                      pr-4
+                      text-left
+                      text-sm
+                      leading-relaxed
+                      text-muted-foreground
+                      md:pb-7
+                      md:pr-8
+                      md:text-base
+                    "
+              >
+                {item.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        {/* Contact */}
+        <section className="mx-auto w-full max-w-4xl border bg-card p-4 md:p-8 text-center space-y-4 my-6 md:my-12">
+          <span className="block uppercase text-xs">
+            Passons à {"l'"}action
+          </span>
+          <h2 className="text-2xl font-semibold">Un projet en tête ?</h2>
+          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+            Un site web, une application ou une idée à concrétiser ? Échangeons
+            sur vos besoins et donnons vie à votre projet.
+          </p>
+          <Link
+            href="https://calendly.com/nexmyr/premier-echange"
+            target="_blank"
+            className={cn(buttonVariants({ variant: "default" }), "mt-4")}
+          >
+            Réservez un RDV ici
+            <ArrowUpRight aria-hidden="true" className="size-5" />
+          </Link>
+        </section>
+      </div>
     </Section>
   );
 }

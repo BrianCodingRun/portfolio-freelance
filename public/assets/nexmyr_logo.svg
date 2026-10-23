@@ -1,0 +1,17 @@
+<svg viewBox="0 0 424 421" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="418" cy="415" r="6" transform="rotate(-180 418 415)" fill="var(--primary)"/>
+<path d="M421.277 418.594L423.408 416.483L224 219L221.868 221.111L219.737 223.222L419.145 420.705L421.277 418.594Z" fill="var(--primary)"/>
+<circle cx="6" cy="6" r="6" fill="var(--primary)"/>
+<path d="M7.07465 6.6924L4.94339 8.80374L204 206L206.131 203.889L208.263 201.777L9.20591 4.58106L7.07465 6.6924Z" fill="var(--primary)"/>
+<rect x="38" y="36" width="80" height="80" fill="var(--primary)"/>
+<rect x="308" y="36" width="80" height="80" fill="var(--primary)"/>
+<rect x="38" y="126" width="80" height="80" fill="var(--primary)"/>
+<rect x="128" y="126" width="80" height="80" fill="var(--primary)"/>
+<rect x="308" y="126" width="80" height="80" fill="var(--primary)"/>
+<rect x="38" y="216" width="80" height="80" fill="var(--primary)"/>
+<rect x="218" y="216" width="80" height="80" fill="var(--primary)"/>
+<rect x="308" y="216" width="80" height="80" fill="var(--primary)"/>
+<rect x="38" y="306" width="80" height="80" fill="var(--primary)"/>
+<rect x="308" y="306" width="80" height="80" fill="var(--primary)"/>
+<rect x="148" y="146" width="40" height="40" fill="var(--secondary)"/>
+</svg>

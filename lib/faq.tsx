@@ -1,19 +1,31 @@
-import type { Pricing } from "@/types/pricing";
-import { getPricingsByCategory } from "./pricing";
+// lib/faq.tsx
 
-export type FAQItem = {
-  id: string;
-  question: string;
-  answer: React.ReactNode;
-};
+import type { Pricing } from "@/types/pricing";
+import type { FAQItem } from "./faq/types";
+import { getPricingsByCategory } from "./pricings/pricing";
+export type { FAQItem } from "./faq/types";
 
 export function generateFaqData(pricings: Pricing[]): FAQItem[] {
   const packs = getPricingsByCategory(pricings, "pack");
   const maintenance = getPricingsByCategory(pricings, "maintenance");
   const refonte = getPricingsByCategory(pricings, "refonte");
 
-  const maintenancePrice = maintenance[0]?.price;
-  const refontePrice = refonte[0]?.price;
+  // Packs avec un tarif défini
+  const pricedPacks = packs.filter(
+    (pack) => !pack.onQuote && typeof pack.price === "number",
+  );
+
+  // Prix de maintenance le plus bas
+  const maintenancePrices = maintenance
+    .map((offer) => offer.price)
+    .filter((price): price is number => typeof price === "number");
+
+  const maintenancePrice =
+    maintenancePrices.length > 0 ? Math.min(...maintenancePrices) : undefined;
+
+  const refontePrice = refonte.find(
+    (offer) => typeof offer.price === "number" && !offer.onQuote,
+  )?.price;
 
   const seoPacks = packs.filter((pack) => pack.seo);
   const advancedSeoPacks = packs.filter((pack) => pack.advancedSeo);
@@ -22,42 +34,52 @@ export function generateFaqData(pricings: Pricing[]): FAQItem[] {
 
   const customPack = packs.find((pack) => pack.onQuote);
 
+  const packsWithDelay = packs.filter(
+    (pack) => typeof pack.delay === "string" && pack.delay.trim() !== "",
+  );
+
   return [
     {
       id: "item-1",
       question: "Combien coûte la création d'un site web ?",
       answer: (
-        <>
-          Je propose plusieurs formules selon vos besoins :{" le "}
-          {packs
-            .filter((pack) => pack.onQuote !== true)
-            .map((pack, index) => {
-              const isLast = index === packs.length - 1;
-              return (
-                <span key={pack._id}>
-                  <strong className="text-foreground">{pack.title}</strong> à
-                  partir de {pack.price} € HT
-                  {!isLast ? (index === packs.length - 2 ? "" : " et le ") : ""}
-                </span>
-              );
-            })}
+        <div className="[word-spacing:0.2rem]">
+          Je propose plusieurs formules selon vos besoins :{" "}
+          {pricedPacks.map((pack, index) => (
+            <span key={pack._id}>
+              {index > 0 && (index === pricedPacks.length - 1 ? " et " : ", ")}
+              le{" "}
+              <strong className="text-foreground font-semibold">
+                {pack.title}
+              </strong>{" "}
+              à {pack.price}€ HT
+              {index > 0 && index === pricedPacks.length - 1 && "."}
+            </span>
+          ))}
           {refontePrice && (
             <>
-              . Je propose également la{" "}
-              <strong className="text-foreground">refonte de site web</strong> à
-              partir de {refontePrice} € HT
+              Je propose également la{" "}
+              <strong className="text-foreground font-semibold">
+                refonte de site web
+              </strong>{" "}
+              à partir de {refontePrice} € HT
             </>
           )}
           {customPack && (
             <>
-              . Pour les projets qui nécessite plus de réflexion {"j'ai"}{" "}
-              également le{" "}
-              <strong className="text-foreground">{customPack.title}</strong>
+              <br />
+              <br />
+              Pour les projets qui nécessitent une conception plus
+              personnalisée, je propose également le{" "}
+              <strong className="text-foreground font-semibold">
+                {customPack.title}
+              </strong>{" "}
+              disponible sur devis.
             </>
           )}
-          . Tous les prix sont hors taxes — TVA non applicable (art. 293B du
-          CGI).
-        </>
+          <br /> <br /> Tous les prix sont hors taxes — TVA non applicable (art.
+          293B du CGI).
+        </div>
       ),
     },
 
@@ -67,12 +89,12 @@ export function generateFaqData(pricings: Pricing[]): FAQItem[] {
       answer: (
         <>
           Le règlement se fait en deux fois : un acompte de{" "}
-          <strong className="text-foreground">30 %</strong> à la signature du
-          devis pour démarrer les travaux, et le solde de{" "}
-          <strong className="text-foreground">70 %</strong> à la livraison,
-          avant la mise en ligne. Pour les projets supérieurs à 2 000 €, un
-          échéancier intermédiaire peut être convenu. Le paiement {"s'effectue"}{" "}
-          par virement bancaire.
+          <strong className="text-foreground font-semibold">30 %</strong> à la
+          signature du devis pour démarrer les travaux, et le solde de{" "}
+          <strong className="text-foreground font-semibold">70 %</strong> à la
+          livraison, avant la mise en ligne. <br /> <br /> Le paiement{" "}
+          {"s'effectue"} par virement bancaire, les coordonnées bancaires sont
+          visibles sur la facture en bas à gauche.
         </>
       ),
     },
@@ -83,17 +105,20 @@ export function generateFaqData(pricings: Pricing[]): FAQItem[] {
       answer: (
         <>
           Les délais varient selon le pack choisi :{" "}
-          {packs.map((pack, index) => {
-            const isLast = index === packs.length - 1;
+          {packsWithDelay.map((pack, index) => {
+            const isLast = index === packsWithDelay.length - 1;
 
             return (
               <span key={pack._id}>
-                <strong className="text-foreground">{pack.delay}</strong> pour
-                le {pack.title}
+                <strong className="text-foreground font-semibold">
+                  {pack.delay}
+                </strong>{" "}
+                pour le {pack.title}
                 {!isLast ? (index === packs.length - 2 ? ", et " : ", ") : "."}
               </span>
             );
           })}{" "}
+          <br /> <br />
           Ces délais sont estimatifs et dépendent de la rapidité de transmission
           de vos contenus et retours.
         </>
@@ -110,24 +135,27 @@ export function generateFaqData(pricings: Pricing[]): FAQItem[] {
           mobile.
           {seoPacks.length > 0 && (
             <>
-              {" "}
-              Les{" "}
+              <br /> <br /> Les{" "}
               {seoPacks.map((pack, index) => (
                 <span key={pack._id}>
-                  <strong className="text-foreground">{pack.title}</strong>
+                  <strong className="text-foreground font-semibold">
+                    {pack.title}
+                  </strong>
                   {index < seoPacks.length - 1 ? ", " : ""}
                 </span>
               ))}{" "}
               incluent une optimisation SEO.
             </>
           )}
-          {advancedSeoPacks && (
+          {advancedSeoPacks.length > 0 && (
             <>
-              {" "}
+              <br />
               Les{" "}
               {advancedSeoPacks.map((pack, index) => (
                 <span key={pack._id}>
-                  <strong className="text-foreground">{pack.title}</strong>
+                  <strong className="text-foreground font-semibold">
+                    {pack.title}
+                  </strong>
                   {index < advancedSeoPacks.length - 1 ? " et " : " "}
                 </span>
               ))}
@@ -143,23 +171,18 @@ export function generateFaqData(pricings: Pricing[]): FAQItem[] {
       question: "Pourrai-je modifier mon site moi-même après la livraison ?",
       answer: (
         <>
-          Oui.
+          Cela dépend de la solution choisie et des fonctionnalités prévues pour
+          votre projet.
           {trainingPacks.length > 0 && (
             <>
               {" "}
-              Les{" "}
-              {trainingPacks.map((pack, index) => (
-                <span key={pack._id}>
-                  <strong className="text-foreground">{pack.title}</strong>
-                  {index < trainingPacks.length - 1 ? ", " : ""}
-                </span>
-              ))}{" "}
-              incluent une formation à la gestion du site vous permettant de
-              mettre à jour vos contenus en toute autonomie.
+              Certaines formules incluent également une formation pour vous
+              accompagner dans la gestion de vos contenus.
             </>
-          )}{" "}
-          Pour les modifications plus techniques, mes offres de maintenance sont
-          là pour vous accompagner.
+          )}
+          <br /> <br />
+          Pour les modifications plus techniques, mes offres de maintenance
+          permettent de bénéficier {"d'"}un accompagnement régulier.
         </>
       ),
     },
@@ -173,12 +196,12 @@ export function generateFaqData(pricings: Pricing[]): FAQItem[] {
           Ensuite, mes forfaits de maintenance prennent le relais pour corriger
           les bugs, effectuer les mises à jour et assurer le bon fonctionnement
           de votre site dans la durée.
-          {maintenancePrice && (
+          {maintenancePrice !== undefined && (
             <>
-              {" "}
+              <br /> <br />
               Les offres de maintenance démarrent à partir de{" "}
-              <strong className="text-foreground">
-                {maintenancePrice} € HT / mois
+              <strong className="text-foreground font-semibold">
+                {maintenancePrice}€ HT / mois
               </strong>
               .
             </>

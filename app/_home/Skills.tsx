@@ -3,9 +3,7 @@ import {
   skillsData,
   type SkillCategory,
 } from "@/app/data/skillsData";
-import FadeUp from "@/components/motion/FadeUp";
-import StaggerContainer from "@/components/motion/StaggerContainer";
-import StaggerItem from "@/components/motion/StaggerItem";
+import Column from "@/components/Column";
 import Section from "@/components/Section";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
@@ -17,36 +15,34 @@ const CATEGORIES: SkillCategory[] = ["frontend", "backend", "outils"];
 export default function Skills() {
   return (
     <Section id="skills">
-      <div className="w-full flex flex-col">
+      <Column>
         {/* Header centré */}
-        <FadeUp delay={0.4}>
-          <div className="text-center md:mb-10">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Separator
-                orientation="horizontal"
-                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
-              />
-              <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
-                Ma stack technique
-              </span>
-              <Separator
-                orientation="horizontal"
-                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
-              />
-            </div>
-            <Title
-              level={2}
-              className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight md:max-w-lg md:mx-auto"
-            >
-              Avec quoi je <span className="text-primary">travaille.</span>
-            </Title>
-            <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
-              {
-                "Les outils que j'utilise au quotidien pour livrer des projets fiables, rapides et maintenables."
-              }
-            </Subtitle>
+        <div className="text-center md:mb-10">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Separator
+              orientation="horizontal"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
+            />
+            <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
+              Ma stack technique
+            </span>
+            <Separator
+              orientation="horizontal"
+              className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
+            />
           </div>
-        </FadeUp>
+          <Title
+            level={2}
+            className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight md:max-w-lg md:mx-auto"
+          >
+            Avec quoi je <span className="text-primary">travaille.</span>
+          </Title>
+          <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
+            {
+              "Les outils que j'utilise au quotidien pour livrer des projets fiables, rapides et maintenables."
+            }
+          </Subtitle>
+        </div>
 
         {/* Skills par catégorie */}
         <div className="flex flex-col gap-8 mt-6">
@@ -65,18 +61,16 @@ export default function Skills() {
                 </div>
 
                 {/* Grid */}
-                <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-3 gap-2">
                   {skills.map((skill) => (
-                    <StaggerItem key={skill.id}>
-                      <SkillCard {...skill} />
-                    </StaggerItem>
+                    <SkillCard key={skill.id} {...skill} />
                   ))}
-                </StaggerContainer>
+                </div>
               </div>
             );
           })}
         </div>
-      </div>
+      </Column>
     </Section>
   );
 }

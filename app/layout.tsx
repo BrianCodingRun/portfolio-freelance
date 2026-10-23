@@ -6,7 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Metadata } from "next";
-import { Martian_Mono, Syne } from "next/font/google";
+import { Syne } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const syne = Syne({
@@ -15,10 +16,22 @@ const syne = Syne({
   display: "swap",
 });
 
-const martianMono = Martian_Mono({
-  subsets: ["latin"],
+const atkinsonMono = localFont({
+  src: [
+    {
+      path: "../assets/fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf",
+      weight: "200 800",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf",
+      weight: "200 800",
+      style: "italic",
+    },
+  ],
   variable: "--font-mono",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -33,11 +46,6 @@ export const metadata: Metadata = {
 
   alternates: {
     canonical: "/",
-  },
-
-  robots: {
-    index: false,
-    follow: false,
   },
 
   openGraph: {
@@ -69,7 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${syne.variable} ${martianMono.variable} min-h-full antialiased`}
+      className={`${syne.variable}  ${atkinsonMono.variable} min-h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-background antialiased font-sans">

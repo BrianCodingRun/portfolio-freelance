@@ -4,7 +4,6 @@ import Section from "@/components/Section";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { JourneyChapter, JourneyConclusion } from "@/types/journey";
-import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Construction } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,14 +48,7 @@ export default function BentoJourney({
           const layout = TILE_LAYOUT[index] ?? "md:col-span-2";
 
           return (
-            <motion.li
-              key={chapter.slug}
-              className={layout}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.2, delay: index * 0.06 }}
-            >
+            <li key={chapter.slug} className={layout}>
               <Link
                 href={`/journey/${chapter.slug}`}
                 className="group relative isolate flex h-full min-h-72 flex-col justify-end overflow-hidden ring-1 ring-border transition duration-100 hover:ring-primary/50"
@@ -128,19 +120,13 @@ export default function BentoJourney({
                   </span>
                 </div>
               </Link>
-            </motion.li>
+            </li>
           );
         })}
       </ol>
 
       {/* Conclusion + appel à l'action : traitée comme une dernière tuile pleine largeur */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5 }}
-        className="relative mb-14 mt-4 overflow-hidden bg-card p-6 ring-1 ring-border sm:p-10 lg:p-14"
-      >
+      <div className="relative mb-14 mt-4 overflow-hidden bg-card p-6 ring-1 ring-border sm:p-10 lg:p-14">
         {/* Repères d'angle, en écho au cadre de la section À propos */}
         <div
           aria-hidden
@@ -190,8 +176,8 @@ export default function BentoJourney({
             )}
 
             <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-              <a
-                href="https://calendly.com/briancoupama/30min"
+              <Link
+                href="https://calendly.com/nexmyr/premier-echange"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -201,7 +187,7 @@ export default function BentoJourney({
               >
                 <Calendar className="h-3.5 w-3.5" aria-hidden />
                 Parlons de votre projet
-              </a>
+              </Link>
               <Link
                 href="/projects"
                 className={cn(
@@ -215,7 +201,7 @@ export default function BentoJourney({
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </Section>
   );
 }

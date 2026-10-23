@@ -1,8 +1,9 @@
 import Opacity from "@/components/motion/Opacity";
 import Section from "@/components/Section";
-import { ProjectCard } from "@/components/shared/ProjectCard";
+import { ProjectCard } from "@/components/shared/project/ProjectCard";
 import { getProject, getProjects } from "@/lib/api/projects";
 import { buildMetadata } from "@/lib/metadata";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
@@ -66,7 +67,7 @@ export default async function ProjectDetailPage({ params }: Props) {
     .slice(0, 2);
 
   return (
-    <Section className="space-y-10 px-4 py-8 sm:px-6 lg:px-8">
+    <Section className="space-y-10 px-4 py-8 sm:px-6 lg:px-8 xl:max-w-5xl">
       <Link
         href="/projects"
         className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground"
@@ -92,7 +93,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       {others.length > 0 && (
         <section aria-labelledby="other-projects" className="space-y-6">
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex max-sm:items-center md:items-end justify-between gap-4">
             <h2
               id="other-projects"
               className="text-2xl font-semibold tracking-tight"
@@ -106,11 +107,23 @@ export default async function ProjectDetailPage({ params }: Props) {
               Tous les projets
             </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {others.map((p) => (
-              <ProjectCard key={p._id} project={p} />
-            ))}
-          </div>
+          {others.length > 0 && (
+            <div
+              className={cn(
+                "mt-8 grid grid-cols-1",
+                "xl:grid-cols-2",
+                "border-l border-t border-border",
+              )}
+            >
+              {others.map((project, index) => (
+                <ProjectCard
+                  key={project.slug}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 

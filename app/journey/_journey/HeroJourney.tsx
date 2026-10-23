@@ -1,8 +1,8 @@
 "use client";
 
+import Subtitle from "@/components/Subtitle";
+import Title from "@/components/Title";
 import { Badge } from "@/components/ui/badge";
-import { heroDescription, heroTitleBlur } from "@/lib/motion/variants";
-import { motion } from "framer-motion";
 
 export default function HeroJourney() {
   return (
@@ -10,27 +10,20 @@ export default function HeroJourney() {
       <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-primary font-semibold">
         2011 — 2026
       </span>
-      <motion.h1
-        variants={heroTitleBlur}
-        initial="hidden"
-        animate="visible"
+      <Title
+        level={1}
         className="text-3xl md:text-6xl font-extrabold text-neutral-800 dark:text-zinc-300"
       >
         Qui se cache derrière <span className="text-primary">Nexmyr ?</span>
         <Badge variant="outline" className="hidden md:inline-flex text-sm">
           Brian Coupama • Développeur & Fondateur de Nexmyr
         </Badge>
-      </motion.h1>
-      <motion.p
-        variants={heroDescription}
-        initial="hidden"
-        animate="visible"
-        className="mt-6 md:text-lg md:text-balance text-muted-foreground"
-      >
+      </Title>
+      <Subtitle className="mt-6 md:text-lg md:text-balance text-muted-foreground">
         Cinq moments, une trajectoire pas toujours linéaire, d’un système
         scolaire quitté tôt jusqu’au lancement de mon activité de développeur
         web freelance.
-      </motion.p>
+      </Subtitle>
     </header>
   );
 }

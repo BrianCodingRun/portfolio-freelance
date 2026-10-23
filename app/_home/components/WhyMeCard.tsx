@@ -37,7 +37,7 @@ export default function WhyMeCard({
         "group relative h-full overflow-hidden border-2 ring-0 shadow-[6px_6px_0_0_var(--color-primary)]",
         "transition-all duration-200 hover:translate-x-0.75 hover:translate-y-0.75 hover:shadow-[3px_3px_0_0_var(--color-primary)]",
         item.featured
-          ? "border-primary bg-primary text-primary-foreground shadow-[6px_6px_0_0_var(--color-foreground)]"
+          ? "border-4 border-primary shadow-[6px_6px_0_0_var(--color-foreground)]"
           : "border-primary/40 hover:border-primary",
         "items-center text-center sm:items-start sm:text-left",
       )}
@@ -62,12 +62,7 @@ export default function WhyMeCard({
       </CardHeader>
 
       <CardContent className="flex flex-1 flex-col max-sm:items-center">
-        <CardDescription
-          className={cn(
-            "text-lg leading-relaxed",
-            item.featured && "text-primary-foreground",
-          )}
-        >
+        <CardDescription className={cn("text-lg leading-relaxed")}>
           {item.description}
         </CardDescription>
         <div

@@ -4,16 +4,16 @@ type Variant = "default" | "onDark";
 
 const PALETTES = {
   default: {
-    fill: "#D89B42",
-    fillOpacity: 0.2,
-    line: "#D89B42",
-    lineOpacity: 0.6,
+    fill: "#7A5D2A",
+    fillOpacity: 0.08,
+    line: "#7A5D2A",
+    lineOpacity: 0.85,
   },
   onDark: {
-    fill: "#F5EDD8",
-    fillOpacity: 0.14,
-    line: "#F5EDD8",
-    lineOpacity: 0.75,
+    fill: "#C9A66B",
+    fillOpacity: 0.08,
+    line: "#C9A66B",
+    lineOpacity: 0.85,
   },
 } as const;
 
@@ -57,4 +57,28 @@ export function addServiceAreaLayers(map: Map, variant: Variant = "default") {
     },
     beforeId,
   );
+}
+
+export function updateServiceAreaTheme(map: Map, variant: Variant) {
+  const palette = PALETTES[variant];
+
+  if (map.getLayer("service-area-fill")) {
+    map.setPaintProperty("service-area-fill", "fill-color", palette.fill);
+
+    map.setPaintProperty(
+      "service-area-fill",
+      "fill-opacity",
+      palette.fillOpacity,
+    );
+  }
+
+  if (map.getLayer("service-area-outline")) {
+    map.setPaintProperty("service-area-outline", "line-color", palette.line);
+
+    map.setPaintProperty(
+      "service-area-outline",
+      "line-opacity",
+      palette.lineOpacity,
+    );
+  }
 }

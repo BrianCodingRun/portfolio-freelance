@@ -1,65 +1,102 @@
-import ScrollToSection from "@/app/_home/components/ScrollToSection";
-import FadeUp from "@/components/motion/FadeUp";
-import StaggerContainer from "@/components/motion/StaggerContainer";
-import StaggerItem from "@/components/motion/StaggerItem";
 import Section from "@/components/Section";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowDown, BadgeEuro, Mail } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function HeroPricing() {
   return (
-    <Section className="flex flex-col items-center md:gap-12">
-      <StaggerContainer className="py-6 max-w-3xl mx-auto text-center space-y-4">
-        <StaggerItem>
-          <Badge className="text-sm p-3">Votre besoin, ma solution.</Badge>
-        </StaggerItem>
-        <StaggerItem>
+    <section className="relative isolate flex min-h-[60vh]  items-center overflow-hidden">
+      {/* Photographie en arrière-plan */}
+      <>
+        <Image
+          src="/images/pricings/hero-workspace.webp"
+          alt="Environnement de travail dédié au développement web"
+          fill
+          priority
+          sizes="100vw"
+          className="-z-30 object-cover object-center grayscale contrast-110"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-20 bg-primary/30 mix-blend-color"
+        />
+      </>
+
+      {/* Dégradés */}
+
+      {/* Dégradé horizontal pour desktop */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden md:block bg-linear-to-r from-background from-15% via-background/85 via-35% to-transparent to-65% dark:from-background dark:from-15% dark:via-background/90 dark:via-40% dark:to-transparent dark:to-85%
+        "
+      />
+
+      {/* Dégradé mobile : fond uniforme derrière le contenu */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/95 from-0% via-background/95 via-65% to-background/65 md:hidden dark:from-background/95 dark:via-background/90 dark:to-background/60
+        "
+      />
+
+      {/* Contenu du Hero */}
+      <Section className="relative z-10 py-12 md:py-28">
+        <div className="relative isolate max-w-5xl">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -z-10 -inset-x-6 -inset-y-10 bg-linear-to-r from-background/95 via-background/90 to-transparent blur-2xl dark:hidden"
+          />
+          <Badge variant="outline" className="md:text-base md:h-7">
+            Mes prestations de services
+          </Badge>
+
           <Title
             level={1}
-            className="md:text-5xl font-extrabold leading-snug text-neutral-800 dark:text-zinc-300"
+            className="max-w-3xl text-left text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-6xl text-neutral-900 dark:text-zinc-300"
           >
-            Des solutions web sur mesure pour propulser{" "}
-            <span className="text-primary">votre activité</span>
+            Des solutions adaptées{" "}
+            <span className="text-primary">à chaque projet.</span>
           </Title>
-        </StaggerItem>
-        <StaggerItem>
-          <Subtitle className="py-0">
-            Alliant rigueur technique et design centré sur {"l'"}utilisateur
-            pour transformer vos idées en expériences numériques performantes et
-            mémorables.
+
+          <Subtitle className="mt-5 max-w-xl text-left text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Du site vitrine à {"l'"}application sur mesure, découvrez des
+            prestations pensées pour répondre aux besoins réels de votre
+            activité.
           </Subtitle>
-        </StaggerItem>
-        <FadeUp delay={0.02}>
-          <div className="flex gap-2 flex-col sm:flex-row w-full sm:w-auto items-center justify-center">
-            <ScrollToSection id="pricings" size="lg">
-              <BadgeEuro />
-              Voir les tarifs
-            </ScrollToSection>
+
+          <div className="mt-6 sm:mt-12 flex flex-col items-start gap-3 sm:flex-row">
+            <Link
+              href="#services"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "w-full gap-2 sm:w-auto",
+              )}
+            >
+              Découvrir les prestations
+              <ArrowDown className="size-4" />
+            </Link>
+
             <Link
               href="/contact"
               className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "font-medium shadow-none w-full sm:w-auto justify-center border-primary text-primary",
+                buttonVariants({
+                  variant: "outline",
+                  size: "lg",
+                }),
+                "w-full gap-2 border-primary text-primary sm:w-auto",
               )}
             >
-              <Mail />
+              <Mail className="size-4" />
               Me contacter
+              <ArrowUpRight className="size-4" />
             </Link>
           </div>
-        </FadeUp>
-      </StaggerContainer>
-      <Button
-        variant="link"
-        className="max-sm:hidden inline-flex flex-col my-6 hover:no-underline cursor-auto"
-      >
-        <span className="text-base"> Scroller vers le bas </span>
-        <ArrowDown className="w-6 h-6" />
-      </Button>
-    </Section>
+        </div>
+      </Section>
+    </section>
   );
 }

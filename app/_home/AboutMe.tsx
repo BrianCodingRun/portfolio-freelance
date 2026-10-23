@@ -5,7 +5,6 @@ import SquareEffect from "@/components/SquareEffect";
 import Title from "@/components/Title";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { lineXVariant } from "@/lib/motion/variants";
 import { cn } from "@/lib/utils";
 import profileBg from "@/public/assets/avatar/profile.webp";
 import type { UserType } from "@/types/user";
@@ -23,12 +22,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
           <div className="flex flex-col">
             {/* Label */}
             <div className="flex items-center gap-2">
-              <motion.div
-                variants={lineXVariant}
-                initial="hidden"
-                animate="visible"
-                className="bg-primary w-7 h-0.5 origin-left"
-              />
+              <div className="bg-primary w-7 h-0.5 origin-left" />
               <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
                 Au service de {"l'humain"}
               </span>
@@ -94,7 +88,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
             />
           </Link>
         </div>
-        <div className="hidden md:block relative max-sm:w-full">
+        <div className="hidden md:block relative max-sm:w-full group">
           {/* GRAPHIC ELEMENT TOP RIGHT */}
           <motion.div
             initial={{
@@ -227,7 +221,7 @@ export default function AboutMe({ profile }: { profile: UserType | null }) {
               alt="Brian Coupama développeur web freelance à La Réunion"
               width={320}
               height={320}
-              className="w-full h-64 md:w-80 md:h-80 object-cover object-[center_-6px]"
+              className="w-full h-64 md:w-80 md:h-80 object-cover object-[center_-6px] grayscale sepia group-hover:grayscale-0 group-hover:sepia-0 transition-all"
               loading="eager"
             />
             <div className="border border-primary/5 bg-primary-foreground p-4 space-y-1">

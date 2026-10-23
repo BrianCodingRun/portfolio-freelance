@@ -1,4 +1,4 @@
-import Logo from "@/public/assets/nexmyr_logo_fond_sombre.svg";
+import Logo from "@/public/assets/nexmyr_logo.svg";
 import Link from "next/link";
 import {
   FaGithub,
@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="border-t-2 border-primary bg-card">
       <div className="mx-auto max-w-5xl px-6 pb-12 pt-8 md:py-8">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] items-center">
+        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] items-start">
           {/* Présentation */}
           <div className="space-y-4">
             <div className="space-y-4">
@@ -83,8 +83,8 @@ export default function Footer() {
               Restons connectés
             </h4>
 
-            <p className="text-sm text-muted-foreground">
-              Une idée de projet ou simplement envie {"d'échanger"} ?
+            <p className="text-sm text-muted-foreground max-w-72">
+              Une idée de projet qui nécessite un outil que je peux construire ?
             </p>
 
             <div className="flex gap-4">

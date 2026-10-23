@@ -35,20 +35,20 @@ export default async function Home() {
       <AboutMe profile={profile} />
       {/* SPACING */}
       <Spacing size="sm" />
-      {/* WHY ME */}
-      <WhyMe />
-      {/* SPACING */}
-      <Spacing size="sm" />
       {/* PROJECTS */}
       <Projects projects={projects} />
       {/* SPACING */}
       <Spacing size="sm" />
-      {/* SKILL */}
-      <Skills />
+      {/* WHY ME */}
+      <WhyMe />
       {/* SPACING */}
       <Spacing size="sm" />
       {/* SERVICES */}
       <Services />
+      {/* SPACING */}
+      <Spacing size="sm" />
+      {/* SKILL */}
+      <Skills />
       {/* SPACING */}
       <Spacing size="sm" />
       {/* PROCESS */}

@@ -1,233 +1,116 @@
-"use client";
-
-import FadeUp from "@/components/motion/FadeUp";
 import Section from "@/components/Section";
-import Subtitle from "@/components/Subtitle";
-import Title from "@/components/Title";
-import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from "framer-motion";
-import { SquareCheckBig } from "lucide-react";
-import Image from "next/image";
+  ArrowUpRight,
+  Check,
+  CodeXml,
+  FileText,
+  MessagesSquare,
+  Rocket,
+} from "lucide-react";
 import Link from "next/link";
-import { useRef, useState } from "react";
 
-interface stepsType {
-  title: string;
-  description: string;
-  perk: string;
-  image: string;
-  link?: {
-    label: string;
-    url: string;
-  };
-}
-
-const steps: stepsType[] = [
+const steps = [
   {
-    title: "Phase de discussion",
+    number: "01",
+    title: "Discutons de votre projet",
     description:
-      "Nous échangeons sur vos besoins, vos objectifs et les fonctionnalités nécessaires pour votre projet.",
+      "Nous échangeons sur vos besoins, vos objectifs et les fonctionnalités nécessaires à votre projet.",
     perk: "Gratuit & sans engagement",
-    image: "/images/process/step-1.webp",
-    link: {
-      label: "Parlez moi de votre projet",
-      url: "mailto:contact@nexmyr.com",
-    },
+    icon: MessagesSquare,
   },
   {
-    title: "Proposition et devis",
-    description:
-      "Je vous propose une solution adaptée avec un devis clair et détaillé.",
+    number: "02",
+    title: "Une proposition adaptée",
+    description: "Vous recevez un devis clair, détaillé et personnalisé.",
     perk: "Sous 48h",
-    image: "/images/process/step-2.webp",
+    icon: FileText,
   },
   {
-    title: "Développement",
+    number: "03",
+    title: "Place au développement",
     description:
-      "Je réalise votre site ou application avec des points réguliers pour suivre l'avancement.",
+      "Je réalise votre site ou application avec des points réguliers pour suivre son avancement.",
     perk: "Points hebdomadaires",
-    image: "/images/process/step-3.webp",
-    link: {
-      label: "Découvrir mes projets",
-      url: "/projects",
-    },
+    icon: CodeXml,
   },
   {
-    title: "Mise en ligne",
+    number: "04",
+    title: "Votre projet prend vie",
     description:
       "Votre projet est livré, optimisé et prêt à accueillir vos premiers utilisateurs.",
     perk: "Support inclus",
-    image: "/images/process/step-4.webp",
-    link: {
-      label: "Mes offres de maintenance",
-      url: "/pricings",
-    },
+    icon: Rocket,
   },
 ];
 
 export default function Process() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-  const reduceMotion = useReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: trackRef,
-    offset: ["start start", "end end"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (p) => {
-    const next = Math.min(steps.length - 1, Math.floor(p * steps.length));
-    setActive((prev) => (prev === next ? prev : next));
-  });
-
-  const fade = {
-    initial: { opacity: 0, y: reduceMotion ? 0 : 16 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: reduceMotion ? 0 : -16 },
-    transition: { duration: 0.325, ease: "easeOut" as const },
-  };
-
   return (
-    <Section className="xl:max-w-7xl">
-      {/* ── Desktop : sticky scroll ── */}
-      <div
-        ref={trackRef}
-        className="relative hidden lg:block"
-        style={{ height: `${steps.length * 80}vh` }}
-      >
-        <div className="sticky top-0 flex h-screen items-center">
-          <div className="mx-auto grid w-full grid-cols-2 items-center gap-16">
-            {/* Texte */}
-            <div className="relative">
-              <p className="mb-8 text-sm uppercase tracking-widest text-muted-foreground">
-                Un process structuré en quatre étapes !
-              </p>
+    <Section className="xl:max-w-5xl">
+      <div className="mb-12 mx-auto max-w-3xl text-center">
+        <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+          Mon accompagnement
+        </p>
 
-              <AnimatePresence mode="wait">
-                <motion.div key={active} {...fade}>
-                  <p className="mb-3 text-sm uppercase text-muted-foreground">
-                    Étape {String(active + 1).padStart(2, "0")}.
-                  </p>
-                  <h3 className="mb-6 text-6xl font-medium text-neutral-800 dark:text-zinc-200">
-                    {steps[active].title}
-                  </h3>
-                  <p className="mb-8 max-w-md text-lg text-muted-foreground">
-                    {steps[active].description}
-                  </p>
-                  {steps[active].link && (
-                    <Link
-                      href={steps[active].link.url}
-                      className={cn(
-                        buttonVariants({ variant: "default" }),
-                        "mb-2",
-                      )}
-                    >
-                      {steps[active].link.label}
-                    </Link>
-                  )}
-                  <p className="flex items-center gap-2 text-sm">
-                    <SquareCheckBig className="size-4" />
-                    {steps[active].perk}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
+        <h2 className="mb-6 text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl max-w-xs sm:max-w-none">
+          Votre projet, <span className="text-primary">étape par étape.</span>
+        </h2>
 
-              {/* Indicateur de progression */}
-              <div className="mt-12 flex gap-2">
-                {steps.map((_, i) => (
-                  <span
-                    key={i}
-                    className={`h-1 w-12 rounded-full transition-colors duration-300 ${
-                      i <= active ? "bg-primary" : "bg-border"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Image : fondu croisé */}
-            <div className="relative aspect-4/3 overflow-hidden border">
-              {steps.map((step, i) => (
-                <motion.div
-                  key={step.image}
-                  className="absolute inset-0"
-                  animate={{ opacity: i === active ? 1 : 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Image
-                    src={step.image}
-                    alt={step.title}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover"
-                    priority={i === 0}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          De notre premier échange à la mise en ligne, je vous accompagne avec
+          une méthode claire, transparente et adaptée à vos besoins.
+        </p>
       </div>
 
-      {/* ── Mobile / tablette : liste classique ── */}
-      <div className="mx-auto grid max-w-2xl gap-6 py-16 lg:hidden">
-        <FadeUp delay={0.4}>
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Separator
-                orientation="horizontal"
-                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
-              />
-              <span className="max-sm:text-xs 2xl:text-lg text-base text-primary uppercase tracking-widest font-semibold">
-                Comment ca marche ?
-              </span>
-              <Separator
-                orientation="horizontal"
-                className="bg-primary data-horizontal:w-10 data-horizontal:h-0.5"
-              />
-            </div>
-            <Title
-              level={2}
-              className="max-sm:text-3xl 2xl:text-3xl text-5xl font-bold text-neutral-800 dark:text-zinc-200 md:leading-snug leading-tight sm:max-w-xl mx-auto"
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+        {steps.map((step) => {
+          const Icon = step.icon;
+
+          return (
+            <article
+              key={step.number}
+              className="group flex min-h-64 flex-col border border-border p-6 transition-colors duration-300 hover:border-primary/50 sm:p-8"
             >
-              Le déroulement de votre{" "}
-              <span className="text-primary">projet.</span>
-            </Title>
-            <Subtitle className="max-sm:text-lg 2xl:text-xl text-xl leading-relaxed sm:max-w-lg sm:mx-auto">
-              Un processus simple et transparent pour transformer votre idée en
-              projet concret.
-            </Subtitle>
-          </div>
-        </FadeUp>
-        {steps.map((step, i) => (
-          <div key={step.title} className="border p-6">
-            <div className="relative mb-4 aspect-4/3 overflow-hidden">
-              <Image
-                src={step.image}
-                alt={step.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <p className="mb-2 text-sm uppercase text-muted-foreground">
-              Étape {String(i + 1).padStart(2, "0")}.
-            </p>
-            <h3 className="mb-3 text-2xl font-medium">{step.title}</h3>
-            <p className="mb-4 text-muted-foreground">{step.description}</p>
-            <p className="flex items-center gap-2 text-sm">
-              <SquareCheckBig className="size-4" />
-              {step.perk}
-            </p>
-          </div>
-        ))}
+              <div className="mb-5 sm:mb-10 flex items-start justify-between">
+                <span className="text-xs font-medium tracking-[0.2em] text-primary">
+                  {step.number}
+                </span>
+
+                <Icon
+                  aria-hidden="true"
+                  className="size-7 text-primary"
+                  strokeWidth={1.5}
+                />
+              </div>
+
+              <h3 className="mb-4 text-xl font-semibold text-foreground sm:text-2xl">
+                {step.title}
+              </h3>
+
+              <p className="mb-8 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+                {step.description}
+              </p>
+
+              <div className="mt-auto flex items-center gap-2 border-t border-border pt-5 text-sm text-primary">
+                <Check aria-hidden="true" className="size-4 shrink-0" />
+                <span>{step.perk}</span>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
+          Une idée en tête ? Échangeons sur votre projet, sans engagement.
+        </p>
+
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 border border-primary px-5 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+        >
+          Discuter de mon projet
+          <ArrowUpRight aria-hidden="true" className="size-4" />
+        </Link>
       </div>
     </Section>
   );

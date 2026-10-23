@@ -1,5 +1,4 @@
 import { BrowserFrame } from "@/components/BrowserFrame";
-import Opacity from "@/components/motion/Opacity";
 import { buttonVariants } from "@/components/ui/button";
 import { getBrowserFrameProps } from "@/lib/project-utils";
 import { cn } from "@/lib/utils";
@@ -24,7 +23,7 @@ export function ProjectHero({ project }: Props) {
       <div className="space-y-4">
         {/* Pour qui a été fait le projet (même repère que sur la carte) */}
         {project.client && (
-          <p className="flex items-center gap-2 text-sm text-muted-foreground md:text-base">
+          <p className="mb-2 flex items-center justify-start gap-3 font-mono text-xs uppercase text-muted-foreground">
             <span
               aria-hidden
               className="size-1.5 shrink-0 rounded-full bg-primary"
@@ -65,31 +64,29 @@ export function ProjectHero({ project }: Props) {
       </div>
 
       {/* Capture : même cadre que sur la carte du portfolio */}
-      <Opacity delay={0.04}>
-        <div className="relative aspect-video w-full overflow-hidden border">
-          {project.coverImage ? (
-            <BrowserFrame {...getBrowserFrameProps(project)} className="h-full">
-              <Image
-                src={project.coverImage}
-                alt={project.coverAlt ?? `Aperçu du projet ${project.title}`}
-                fill
-                priority
-                sizes="(max-width: 1280px) 100vw, 1280px"
-                className="object-cover object-top"
-                style={
-                  project.coverPosition
-                    ? { objectPosition: project.coverPosition }
-                    : undefined
-                }
-              />
-            </BrowserFrame>
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
-              Aperçu non disponible
-            </div>
-          )}
-        </div>
-      </Opacity>
+      <div className="relative aspect-video w-full max-sm:h-52 md:h-96 overflow-hidden border">
+        {project.coverImage ? (
+          <BrowserFrame {...getBrowserFrameProps(project)} className="h-full">
+            <Image
+              src={project.coverImage}
+              alt={project.coverAlt ?? `Aperçu du projet ${project.title}`}
+              fill
+              priority
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="object-cover object-top"
+              style={
+                project.coverPosition
+                  ? { objectPosition: project.coverPosition }
+                  : undefined
+              }
+            />
+          </BrowserFrame>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
+            Aperçu non disponible
+          </div>
+        )}
+      </div>
     </header>
   );
 }

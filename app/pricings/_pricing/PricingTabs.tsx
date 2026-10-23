@@ -1,8 +1,8 @@
 "use client";
 
-import ServiceCard from "@/app/_home/components/ServiceCard";
+import ServiceCard from "@/app/_home/components/PricingCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getPricingsByCategory } from "@/lib/pricing";
+import { getPricingsByCategory } from "@/lib/pricings/pricing";
 import type { Pricing } from "@/types/pricing";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";

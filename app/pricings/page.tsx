@@ -4,8 +4,9 @@ import { buildMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import FaqPricingPage from "./_pricing/FaqPricingPage";
 import HeroPricing from "./_pricing/HeroPricing";
-import PricingList from "./_pricing/PricingList";
+import PricingCategories from "./_pricing/PricingCategories";
 import ProcessProject from "./_pricing/ProcessProject";
+import WhySection from "./_pricing/WhySection";
 
 export const metadata: Metadata = buildMetadata({
   title: "Tarifications",
@@ -20,14 +21,14 @@ export default async function PricingPage() {
     <>
       {/* HERO */}
       <HeroPricing />
+      {/* PRICING CATEGORIES */}
+      <PricingCategories pricings={pricings} />
       {/* PROCESS */}
       <ProcessProject />
       {/* SPACING */}
       <Spacing size="sm" />
-      {/* PRICINGS */}
-      <PricingList pricings={pricings} />
-      {/* SPACING */}
-      <Spacing size="sm" />
+      {/* WHY */}
+      <WhySection />
       {/* FAQ */}
       <FaqPricingPage />
       {/* SPACING */}

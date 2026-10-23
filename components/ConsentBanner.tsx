@@ -35,12 +35,12 @@ export function ConsentBanner() {
         "w-[min(780px,calc(100vw-32px))]",
         "max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:w-full max-sm:translate-x-0",
         "bg-card text-card-foreground border border-border shadow-2xl",
-        "grid grid-cols-[1fr_auto] max-sm:grid-cols-1 gap-6 items-center",
+        "grid grid-cols-[1fr_0.25fr] max-sm:grid-cols-1 gap-3 items-center",
         "p-7 max-sm:p-5",
       ].join(" ")}
     >
-      <div className="flex flex-col gap-2.5">
-        <p id="consent-title" className="text-2xl font-semibold leading-snug">
+      <div className="flex flex-col gap-6">
+        <p id="consent-title" className="text-3xl font-semibold leading-snug">
           Mesure d&apos;audience du site
         </p>
 
@@ -53,7 +53,7 @@ export function ConsentBanner() {
           déterminer votre pays, puis elle est écartée. <br /> Les statistiques
           sont conservées 13 mois et ne sont partagées avec aucun tiers. Vous
           pouvez changer d&apos;avis à tout moment avec l&apos;icône en bas à
-          gauche.{" "}
+          gauche. <br />
           <Link href="/privacy" className="underline underline-offset-4">
             En savoir plus
           </Link>
@@ -76,10 +76,10 @@ export function ConsentBanner() {
 
       {/* Deux boutons de même poids : refuser est aussi simple qu'accepter */}
       <div className="flex shrink-0 flex-col gap-2 max-sm:flex-row">
-        <Button onClick={accept} className="max-sm:flex-1">
+        <Button onClick={accept} className="max-sm:flex-1" size="lg">
           Accepter
         </Button>
-        <Button onClick={refuse} className="max-sm:flex-1">
+        <Button onClick={refuse} className="max-sm:flex-1" size="lg">
           Refuser
         </Button>
       </div>

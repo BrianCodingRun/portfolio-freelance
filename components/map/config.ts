@@ -13,6 +13,7 @@ export function getMapConfig(
 ): Omit<MapOptions, "container"> {
   const style: StyleSpecification = {
     version: 8,
+    glyphs: "/fonts/map/{fontstack}/{range}.pbf",
     sources: {},
     layers: transparent
       ? []

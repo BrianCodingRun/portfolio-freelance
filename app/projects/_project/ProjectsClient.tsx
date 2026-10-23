@@ -15,9 +15,8 @@ A SURTOUT PAS SUPPRIMER: NOTE A MOI MÊME !
 // import Opacity from "@/components/motion/Opacity";
 // import { AnimatePresence, motion } from "framer-motion";
 // import { useMemo, useState } from "react";
-import FadeUp from "@/components/motion/FadeUp";
 import Section from "@/components/Section";
-import { ProjectCard } from "@/components/shared/ProjectCard";
+import { ProjectCard } from "@/components/shared/project/ProjectCard";
 import Subtitle from "@/components/Subtitle";
 import Title from "@/components/Title";
 import { buttonVariants } from "@/components/ui/button";
@@ -62,25 +61,23 @@ export function ProjectsClient({ projects }: Props) {
     <Section>
       <div className="py-12 space-y-12">
         {/* En-tête */}
-        <FadeUp delay={0.02}>
-          <header className="space-y-2 max-w-xl">
-            <span className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase">
-              Nexmyr · Portfolio
-            </span>
+        <header className="space-y-2 max-w-xl">
+          <span className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase">
+            Nexmyr · Portfolio
+          </span>
 
-            <Title
-              level={1}
-              className="2xl:text-5xl text-3xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
-            >
-              Mes réalisations
-            </Title>
+          <Title
+            level={1}
+            className="2xl:text-5xl text-3xl font-bold text-neutral-800 dark:text-zinc-200 leading-snug sm:max-w-xl"
+          >
+            Mes <span className="text-primary">réalisations</span>
+          </Title>
 
-            <Subtitle className="py-0">
-              Chaque projet répond à un besoin différent, avec la stack la plus
-              adaptée — pour un client ou à titre personnel.
-            </Subtitle>
-          </header>
-        </FadeUp>
+          <Subtitle className="py-0">
+            Chaque projet répond à un besoin différent, avec la stack la plus
+            adaptée — pour un client ou à titre personnel.
+          </Subtitle>
+        </header>
 
         {/* Filtres */}
         {/* <FadeUp delay={0.02}>
@@ -144,26 +141,43 @@ export function ProjectsClient({ projects }: Props) {
             )}
           </motion.div>
         </AnimatePresence> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {projects.map((project) => (
-            <ProjectCard key={project._id} project={project} />
-          ))}
-        </div>
+        {projects.length > 0 && (
+          <div
+            className={cn(
+              "mt-8 grid grid-cols-1",
+              "md:grid-cols-2 xl:grid-cols-3",
+              "border-l border-t border-border",
+            )}
+          >
+            {projects.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+        )}
       </div>
-      <div className="border bg-card p-8 text-center space-y-3 mb-8">
-        <h2 className="text-2xl font-semibold">Un projet en tête ?</h2>
-        <p className="text-base text-muted-foreground max-w-sm mx-auto">
+      <section
+        aria-labelledby="pricing-cta-title"
+        className="mx-auto space-y-4 border bg-card p-4 text-center mb-12 md:p-8"
+      >
+        <span className="block text-xs uppercase">Passons à l'action</span>
+
+        <h2 id="pricing-cta-title" className="text-2xl font-semibold">
+          Un projet en tête ?
+        </h2>
+
+        <p className="text-muted-foreground mx-auto max-w-lg text-lg">
           Une idée de plateforme, un site à créer, un besoin métier à
           digitaliser — discutons-en.
         </p>
+
         <Link
           href="/contact"
-          className={cn(buttonVariants({ variant: "default" }))}
+          className={cn(buttonVariants({ variant: "default" }), "mt-4")}
         >
-          <Mail className="w-4 h-4" />
+          <Mail aria-hidden="true" className="size-5" />
           Me contacter
         </Link>
-      </div>
+      </section>
     </Section>
   );
 }

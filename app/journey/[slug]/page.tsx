@@ -1,4 +1,3 @@
-import Opacity from "@/components/motion/Opacity";
 import Section from "@/components/Section";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -62,78 +61,76 @@ export default async function JourneyChapterPage({ params }: PageProps) {
   return (
     <Section className="text-foreground max-w-none xl:max-w-none w-full px-0 md:px-0 mx-auto">
       {/* Hero */}
-      <Opacity delay={0.2}>
-        <header className="relative isolate -mt-24 flex min-h-[60vh] items-end overflow-hidden border-b border-border bg-background text-foreground">
-          {chapter.image ? (
-            <>
-              {/* Même traitement que les tuiles de la grille : niveaux de gris + teinte de marque */}
-              <Image
-                src={chapter.image}
-                alt={chapter.title}
-                fill
-                priority
-                sizes="100vw"
-                className="-z-30 object-cover opacity-80 grayscale contrast-110 dark:opacity-100"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-20 bg-primary/60 mix-blend-color"
-              />
-              {/* Dégradé pour la lisibilité du texte (plus couvrant en mode clair) */}
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10 bg-linear-to-t from-background via-background/90 via-60% to-background/30 dark:via-background/75 dark:via-50% dark:to-background/20"
-              />
-              {/* Dégradé haut pour garder la navigation lisible sur l'image */}
-              <div
-                aria-hidden
-                className="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-background/80 to-transparent"
-              />
-            </>
-          ) : (
-            <div className="absolute inset-0 -z-10 bg-linear-to-br from-primary/15 via-muted to-background" />
-          )}
+      <header className="relative isolate -mt-24 flex min-h-[60vh] items-end overflow-hidden border-b border-border bg-background text-foreground">
+        {chapter.image ? (
+          <>
+            {/* Même traitement que les tuiles de la grille : niveaux de gris + teinte de marque */}
+            <Image
+              src={chapter.image}
+              alt={chapter.title}
+              fill
+              priority
+              sizes="100vw"
+              className="-z-30 object-cover opacity-80 grayscale contrast-110 dark:opacity-100"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-20 bg-primary/60 mix-blend-color"
+            />
+            {/* Dégradé pour la lisibilité du texte (plus couvrant en mode clair) */}
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 bg-linear-to-t from-background via-background/90 via-60% to-background/30 dark:via-background/75 dark:via-50% dark:to-background/20"
+            />
+            {/* Dégradé haut pour garder la navigation lisible sur l'image */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-background/80 to-transparent"
+            />
+          </>
+        ) : (
+          <div className="absolute inset-0 -z-10 bg-linear-to-br from-primary/15 via-muted to-background" />
+        )}
 
-          {/* Numéro en filigrane */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 font-display text-[10rem] leading-none text-primary/20 lg:block"
+        {/* Numéro en filigrane */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 font-display text-[10rem] leading-none text-primary/20 lg:block"
+        >
+          {String(chapter.number).padStart(2, "0")}
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-16 pt-32">
+          <Link
+            href="/journey"
+            className="group mb-8 flex w-fit items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition hover:underline"
           >
-            {String(chapter.number).padStart(2, "0")}
-          </div>
+            <ArrowLeft
+              className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5"
+              aria-hidden
+            />
+            Retour à mon parcours
+          </Link>
 
-          <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-16 pt-32">
-            <Link
-              href="/journey"
-              className="group mb-8 flex w-fit items-center gap-2 text-sm font-medium text-primary underline-offset-4 transition hover:underline"
-            >
-              <ArrowLeft
-                className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5"
-                aria-hidden
-              />
-              Retour à mon parcours
-            </Link>
-
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs uppercase tracking-[0.2em] text-primary">
-              <span>
-                Chapitre {String(chapter.number).padStart(2, "0")} /{" "}
-                {totalChapters}
-              </span>
-              <Separator className="data-horizontal:w-3 bg-primary" />
-              <span>{chapter.year}</span>
-              <span className="border border-primary/40 px-2 py-0.5 text-[10px] tracking-widest">
-                {chapter.theme}
-              </span>
-            </div>
-            <h1 className="mt-4 text-balance font-semibold text-4xl sm:text-5xl">
-              {chapter.title}
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-              {chapter.teaser}
-            </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs uppercase tracking-[0.2em] text-primary">
+            <span>
+              Chapitre {String(chapter.number).padStart(2, "0")} /{" "}
+              {totalChapters}
+            </span>
+            <Separator className="data-horizontal:w-3 bg-primary" />
+            <span>{chapter.year}</span>
+            <span className="border border-primary/40 px-2 py-0.5 text-[10px] tracking-widest">
+              {chapter.theme}
+            </span>
           </div>
-        </header>
-      </Opacity>
+          <h1 className="mt-4 text-balance font-semibold text-4xl sm:text-5xl">
+            {chapter.title}
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            {chapter.teaser}
+          </p>
+        </div>
+      </header>
 
       {/* Citation : filet doré, comme sur la section À propos */}
       {chapter.quote && (
