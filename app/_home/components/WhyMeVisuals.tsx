@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const Map = dynamic(() => import("@/components/map/Map"), {
+const Map = dynamic(() => import("@/components/map/MapComponent"), {
   ssr: false,
   loading: () => <div className="size-full bg-primary-foreground/10" />,
 });

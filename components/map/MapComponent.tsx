@@ -1,6 +1,6 @@
 "use client";
 
-import maplibregl from "maplibre-gl";
+import { Map, setWorkerUrl } from "maplibre-gl";
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
@@ -11,6 +11,12 @@ import { addTownLabels, updateTownLabelsTheme } from "./labels";
 import { addLandmarks, updateLandmarksTheme } from "./landmarks";
 import { addServiceAreaLayers, updateServiceAreaTheme } from "./layers";
 import { addCommunesSource } from "./sources";
+setWorkerUrl(
+  new URL(
+    "maplibre-gl/dist/maplibre-gl-worker.mjs",
+    import.meta.url,
+  ).toString(),
+);
 
 type MapProps = {
   className?: string;
@@ -18,7 +24,7 @@ type MapProps = {
   transparent?: boolean;
 };
 
-export default function Map({
+export default function MapComponent({
   className,
   interactive = true,
   transparent = false,
@@ -26,7 +32,7 @@ export default function Map({
   const { resolvedTheme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<maplibregl.Map | null>(null);
+  const mapRef = useRef<Map | null>(null);
 
   // Conserver le thème courant pour l'initialisation asynchrone.
   const variantRef = useRef<"default" | "onDark">("default");
@@ -37,7 +43,7 @@ export default function Map({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const map = new maplibregl.Map({
+    const map = new Map({
       container: containerRef.current,
       ...getMapConfig(transparent),
       interactive,
