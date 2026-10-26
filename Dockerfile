@@ -1,11 +1,11 @@
 # ---- Dependencies ----
-FROM node:20-alpine AS deps
+FROM node:20-alpine3.20 AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
 # ---- Builder ----
-FROM node:20-alpine AS builder
+FROM node:20-alpine3.20 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -19,9 +19,12 @@ ENV NEXT_PUBLIC_MAPTILER_API_KEY=$NEXT_PUBLIC_MAPTILER_API_KEY
 RUN npm run build
 
 # ---- Runner ----
-FROM node:20-alpine AS runner
+FROM node:20-alpine3.20 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
+
+# Mise à jour des paquets système pour appliquer les patchs de sécurité de l'OS
+RUN apk update && apk upgrade --no-cache
 
 # Utilisateur non-root pour la sécurité
 RUN addgroup --system --gid 1001 nodejs \
