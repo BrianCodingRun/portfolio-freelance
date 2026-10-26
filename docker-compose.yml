@@ -12,6 +12,12 @@ services:
     env_file:
       - .env.production
 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+
     healthcheck:
       test:
         [

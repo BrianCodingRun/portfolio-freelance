@@ -27,7 +27,31 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push image
+      # Changement crucial : push est configuré sur 'false' temporairement pour scanner l'image locale d'abord
+      - name: Build image locally
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_API_WEBSITE_URL=${{secrets.NEXT_PUBLIC_API_WEBSITE_URL}}
+            NEXT_PUBLIC_MAPTILER_API_KEY=${{secrets.NEXT_PUBLIC_MAPTILER_API_KEY}}
+
+      # Scan de sécurité de l'image Docker
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          format: "table"
+          exit-code: "1" # Fait planter le workflow si des failles critiques sont trouvées
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
+
+      # Si le scan passe, l'image est poussée vers GHCR
+      - name: Push image to GHCR
         uses: docker/build-push-action@v6
         with:
           context: .
