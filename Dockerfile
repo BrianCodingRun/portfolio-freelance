@@ -23,8 +23,13 @@ FROM node:20-alpine3.20 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-# Mise à jour des paquets système pour appliquer les patchs de sécurité de l'OS
-RUN apk update && apk upgrade --no-cache
+# Mise à jour des paquets système
+RUN apk upgrade --no-cache
+
+# Supprimer npm et npx, inutiles dans le runtime standalone
+RUN rm -rf /usr/local/lib/node_modules/npm \
+    /usr/local/bin/npm \
+    /usr/local/bin/npx
 
 # Utilisateur non-root pour la sécurité
 RUN addgroup --system --gid 1001 nodejs \
